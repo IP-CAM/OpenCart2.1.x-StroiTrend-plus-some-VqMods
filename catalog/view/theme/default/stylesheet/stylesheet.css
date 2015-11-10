@@ -204,7 +204,7 @@ div.required .control-label:before {
 }
 /* menu */
 #menu {
-	background-color: #000000;
+	background-color: #00562f;
 	min-height: 40px;
     margin-bottom: 0px;
 }
@@ -216,7 +216,7 @@ div.required .control-label:before {
 	background-color: transparent;
 }
 #menu .nav > li > a:hover, #menu .nav > li.open > a {
-	background-color: rgba(0, 0, 0, 0.1);
+	background-color: rgba(0, 0, 0, 0);
 }
 #menu .dropdown-menu {
 	padding-bottom: 0;

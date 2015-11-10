@@ -48,7 +48,8 @@
 </head>
 
 <body class="<?php echo $class; ?>">
-    <nav id="top">
+     <header>
+        <nav id="top">
         <div class="topH">
             <div class="container">
 
@@ -74,7 +75,9 @@
                                 <ul class="nav navbar-nav" style="margin-top: 0px;" >
                                     <li>
                                         <div class="froboto uppcase">
+                                           <div>
                                             <a href="">Главная</a>
+                                            </div>
                                         </div>
                                     </li>
                                     <li>
@@ -247,26 +250,8 @@
         </div>
 
     </nav>
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4">
-                    <div id="logo">
-                        <?php if ($logo) { ?>
-                            <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
-                            <?php } else { ?>
-                                <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
-                                <?php } ?>
-                    </div>
-                </div>
-                <div class="col-sm-5">
-                    <?php echo $search; ?>
-                </div>
-                <div class="col-sm-3">
-                    <?php echo $cart; ?>
-                </div>
-            </div>
-        </div>
+  
+       
     </header>
     <?php if ($categories) { ?>
 
