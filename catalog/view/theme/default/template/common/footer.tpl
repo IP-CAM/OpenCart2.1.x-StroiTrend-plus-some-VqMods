@@ -1,43 +1,56 @@
 <footer>
-      <div class="container">
-    <div class="row">
-      <?php if ($informations) { ?>
-      <div class="col-sm-3">
-        <h5><?php echo $text_information; ?></h5>
-        <ul class="list-unstyled">
-          <?php foreach ($informations as $information) { ?>
-          <li><a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a></li>
-          <?php } ?>
-        </ul>
-      </div>
-      <?php } ?>
-      <div class="col-sm-3">
-        <h5><?php echo $text_service; ?></h5>
-        <ul class="list-unstyled">
-          <li><a href="<?php echo $contact; ?>"><?php echo $text_contact; ?></a></li>
-          <li><a href="<?php echo $return; ?>"><?php echo $text_return; ?></a></li>
-          <li><a href="<?php echo $sitemap; ?>"><?php echo $text_sitemap; ?></a></li>
-        </ul>
-      </div>
-      <div class="col-sm-3">
-        <h5><?php echo $text_extra; ?></h5>
-        <ul class="list-unstyled">
-          <li><a href="<?php echo $manufacturer; ?>"><?php echo $text_manufacturer; ?></a></li>
-          <li><a href="<?php echo $voucher; ?>"><?php echo $text_voucher; ?></a></li>
-          <li><a href="<?php echo $affiliate; ?>"><?php echo $text_affiliate; ?></a></li>
-          <li><a href="<?php echo $special; ?>"><?php echo $text_special; ?></a></li>
-        </ul>
-      </div>
-      <div class="col-sm-3">
-        <h5><?php echo $text_account; ?></h5>
-        <ul class="list-unstyled">
-          
-        </ul>
-      </div>
+    <div class="container">
+        <div class="row">
+           <div>
+        
+            <div class="col-md-2 col-md-offset-5">
+                <div id="logo">
+                    <?php if ($logo) { ?>
+                        <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>"  style="display: inline-flex;" class="img-responsive"/></a><?php } else { ?>
+                            <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
+                            <?php } ?>
+                </div>
+            </div>
+            <div class="col-md-5">
+            </div>
+            </div>
+                </div>
+            
+            <br />
+            <div class="row">
+                <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
+                <div class="col-md-1"><a href="" title="titles">Главная</a></div>
+                
+                <div class="col-md-1"><a href="" title="titles">Item 3</a></div>
+                <div class="col-md-1"><a href="" title="titles">Item 4</a></div>
+                <div class="col-md-1"><a href="" title="titles">Item 5</a></div>
+                <div class="col-md-1 col-md-offset-3 upsite"><a href="#top" title="titles">UP</a></div>
+            </div>
+            <div class="row">
+                <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
+                <div class="col-md-1"><a href="" title="titles">Item 2</a></div>
+                <div class="col-md-1"><a href="" title="titles">Item 3</a></div>
+                <div class="col-md-1"><a href="" title="titles">Item 4</a></div>
+                <div class="col-md-1"><a href="" title="titles">Item 5</a></div>
+               
+            </div>
+   
+            <div class="row">
+                <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
+    
+            </div>            
+            
+            
+            
+    
+
+
     </div>
-    <hr>
-    <p><?php echo $powered; ?></p>
-  </div>
 </footer>
 
 <!--
@@ -47,4 +60,6 @@ Please donate via PayPal to donate@opencart.com
 
 <!-- Theme created by Welford Media for OpenCart 2.0 www.welfordmedia.co.uk -->
 
-</body></html>
+</body>
+
+</html>

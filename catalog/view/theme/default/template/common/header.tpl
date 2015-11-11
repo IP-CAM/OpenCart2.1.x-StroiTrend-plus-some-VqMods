@@ -66,7 +66,7 @@
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav">
                                 <li>
-                                    <div id="logo">
+                                    <div name ="top" id="logo">
                                         <?php if ($logo) { ?>
                                             <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" style="
     display: inline-flex;"/></a>
