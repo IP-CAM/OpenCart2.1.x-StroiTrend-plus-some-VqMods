@@ -1,4 +1,5 @@
 <footer>
+    <h1>asd</h1>
   <div class="container">
     <div class="row">
       <?php if ($informations) { ?>
