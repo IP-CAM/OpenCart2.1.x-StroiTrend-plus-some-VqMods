@@ -106,18 +106,7 @@
                                                        
                                                        
                                                        
-                                                         <!--  <?php if ($informations) { ?>
-                                                             
-                                                                
-                                                              
-                                                                  <?php foreach ($informations as $information) { ?>
-                                                                <a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a>
-                                                                  <?php break;} ?>
-                                                              
-                                                           
-                                                              <?php } ?>
--->
-                                                       
+                                                      
                                                        
                                                        
                                                         <a href="<?php echo $AboutUs; ?>">О Компании</a>
