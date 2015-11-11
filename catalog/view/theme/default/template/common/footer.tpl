@@ -1,5 +1,9 @@
 <footer>
- 
+  <h1>ASDASD</h1>
+  <h1>asdasdasd</h1>
+  <h1>asdasdasd</h1>
+  <h1>asdasda</h1>
+  <h1>asdasdasd</h1>
   <div class="container">
     <div class="row">
       <?php if ($informations) { ?>
@@ -43,11 +47,7 @@
     <p><?php echo $powered; ?></p>
   </div>
   
-  <h1>ASDASD</h1>
-  <h1>asdasdasd</h1>
-  <h1>asdasdasd</h1>
-  <h1>asdasda</h1>
-  <h1>asdasdasd</h1>
+ 
   
 </footer>
 
