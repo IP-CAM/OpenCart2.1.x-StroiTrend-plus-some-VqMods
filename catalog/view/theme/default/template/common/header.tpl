@@ -45,10 +45,10 @@
                                             <?php foreach ($analytics as $analytic) { ?>
                                                 <?php echo $analytic; ?>
                                                     <?php } ?>
-                                                    
- <script type="text/javascript" src="catalog/view/javascript/callback.js"></script>
-<script type="text/javascript" src="catalog/view/javascript/jquery.simplemodal.js"></script>
-<link href="catalog/view/theme/default/stylesheet/callback.css" rel="stylesheet" type="text/css" />
+
+                                                        <script type="text/javascript" src="catalog/view/javascript/callback.js"></script>
+                                                        <script type="text/javascript" src="catalog/view/javascript/jquery.simplemodal.js"></script>
+                                                        <link href="catalog/view/theme/default/stylesheet/callback.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="<?php echo $class; ?>">
@@ -57,8 +57,8 @@
             <div class="topH">
                 <nav id="menu" class="navbar">
 
-                    <div class="navbar navbar-header"><span id="category" class="visible-xs"><?php echo $text_category; ?></span>
-                        <button type="button" class="btn btn-navbar navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+                    <div class="navbar navbar-header froboto"><span id="category" class="visible-xs uppcase" style="color:black;"><?php echo $text_category; ?></span>
+                        <button type="button" class="buttonbl navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
                     </div>
                     <div class="container">
 
@@ -66,7 +66,7 @@
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav">
                                 <li>
-                                    <div name ="top" id="logo">
+                                    <div name="top" id="logo">
                                         <?php if ($logo) { ?>
                                             <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" style="
     display: inline-flex;"/></a>
@@ -89,7 +89,7 @@
                                             <div class="froboto uppcase">
                                                 <a data-toggle="collapse" data-target="#categ">
                                                     <?php echo $category['name']; ?>
-                                                    
+
                                                 </a>
                                             </div>
                                             <li>
@@ -103,13 +103,13 @@
                                             <li>
                                                 <div class="froboto uppcase">
                                                     <div>
-                                                       
-                                                       
-                                                       
-                                                       
-                                                      
-                                                       
-                                                       
+
+
+
+
+
+
+
                                                         <a href="<?php echo $AboutUs; ?>">О Компании</a>
                                                     </div>
                                                 </div>
@@ -117,17 +117,17 @@
                                             <li>
                                                 <div class="froboto uppcase">
                                                     <div>
-                                                       <a href="<?php echo $contact; ?>">Контакты</a>
+                                                        <a href="<?php echo $contact; ?>">Контакты</a>
                                                     </div>
                                                 </div>
                                             </li>
                                             <li></li>
                                             <li>
-                                               <div class="col-md-2">
-                                               
-                                                <a class="contact-btn buttonbl">
+                                                <div class="col-md-2">
+
+                                                    <a class="contact-btn buttonbl">
                                                Заказать звонок</a>
-                                            
+
                                                 </div>
                                             </li>
                                             <li>
@@ -194,5 +194,3 @@
     </header>
     <?php if ($categories) { ?>
         <?php } ?>
-        
-    
