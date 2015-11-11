@@ -45,6 +45,10 @@
                                             <?php foreach ($analytics as $analytic) { ?>
                                                 <?php echo $analytic; ?>
                                                     <?php } ?>
+                                                    
+ <script type="text/javascript" src="catalog/view/javascript/callback.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery.simplemodal.js"></script>
+<link href="catalog/view/theme/default/stylesheet/callback.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="<?php echo $class; ?>">
@@ -111,7 +115,9 @@
                                             </li>
                                             <li></li>
                                             <li>
-                                                <div class="col-md-2 "><a class="buttonbl froboto uppcase" href="">Заказать&nbsp;звонок</a></div>
+                                               <div class="col-md-2">
+                                                <a class="buttonbl">Заказать звонок</a>
+                                                </div>
                                             </li>
                                             <li>
                                                 <div class="froboto uppcase">
