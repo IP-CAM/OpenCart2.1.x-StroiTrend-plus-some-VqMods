@@ -31,6 +31,12 @@
       <li><a href="<?php echo $total; ?>"><?php echo $text_total; ?></a></li>
 
       <li><a href="<?php echo $feed; ?>"><?php echo $text_feed; ?></a></li>
+
+				<li><a href="<?php echo $news; ?>">News</a></li>
+			
+
+				<li><a href="<?php echo $articles; ?>">articles</a></li>
+			
       <li><a href="<?php echo $analytics; ?>"><?php echo $text_analytics; ?></a></li>
       <li><a href="<?php echo $captcha; ?>"><?php echo $text_captcha; ?></a></li>
       <li><a href="<?php echo $fraud; ?>"><?php echo $text_fraud; ?></a></li>

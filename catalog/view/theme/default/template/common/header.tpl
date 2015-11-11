@@ -102,7 +102,25 @@
                                             <li>
                                                 <div class="froboto uppcase">
                                                     <div>
-                                                        <a href="">О Компании</a>
+                                                       
+                                                       
+                                                       
+                                                       
+                                                         <!--  <?php if ($informations) { ?>
+                                                             
+                                                                
+                                                              
+                                                                  <?php foreach ($informations as $information) { ?>
+                                                                <a href="<?php echo $information['href']; ?>"><?php echo $information['title']; ?></a>
+                                                                  <?php break;} ?>
+                                                              
+                                                           
+                                                              <?php } ?>
+-->
+                                                       
+                                                       
+                                                       
+                                                        <a href="<?php echo $AboutUs; ?>">О Компании</a>
                                                     </div>
                                                 </div>
                                             </li>
@@ -116,7 +134,10 @@
                                             <li></li>
                                             <li>
                                                <div class="col-md-2">
-                                                <a class="buttonbl">Заказать звонок</a>
+                                               
+                                                <a class="contact-btn buttonbl">
+                                               Заказать звонок</a>
+                                            
                                                 </div>
                                             </li>
                                             <li>
@@ -183,3 +204,5 @@
     </header>
     <?php if ($categories) { ?>
         <?php } ?>
+        
+    

@@ -1,2 +1,37 @@
 2015-11-10 17:51:21 - PHP Notice:  Undefined variable: text_contact in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 108
 2015-11-10 17:52:40 - PHP Notice:  Undefined variable: text_contact in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 108
+2015-11-11 10:37:28 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 10:41:17 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 10:43:08 - PHP Notice:  Error: Table 'opencartdb.oc_articles' doesn't exist<br />Error No: 1146<br />SELECT COUNT(*) AS total FROM oc_articles in C:\xampp\htdocs\OpenCart\system\library\db\mysqli.php on line 41
+2015-11-11 10:43:08 - PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\OpenCart\admin\model\extension\articles.php on line 86
+2015-11-11 10:43:08 - PHP Notice:  Error: Table 'opencartdb.oc_articles' doesn't exist<br />Error No: 1146<br />SELECT * FROM oc_articles n LEFT JOIN oc_articles_description nd ON n.articles_id = nd.articles_id WHERE nd.language_id = '1' ORDER BY date_added DESC LIMIT 0,20 in C:\xampp\htdocs\OpenCart\system\library\db\mysqli.php on line 41
+2015-11-11 10:43:08 - PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\OpenCart\admin\model\extension\articles.php on line 74
+2015-11-11 10:43:08 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\OpenCart\admin\controller\extension\articles.php on line 99
+2015-11-11 10:43:15 - PHP Notice:  Error: Table 'opencartdb.oc_articles' doesn't exist<br />Error No: 1146<br />SELECT COUNT(*) AS total FROM oc_articles in C:\xampp\htdocs\OpenCart\system\library\db\mysqli.php on line 41
+2015-11-11 10:43:15 - PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\OpenCart\admin\model\extension\articles.php on line 86
+2015-11-11 10:43:15 - PHP Notice:  Error: Table 'opencartdb.oc_articles' doesn't exist<br />Error No: 1146<br />SELECT * FROM oc_articles n LEFT JOIN oc_articles_description nd ON n.articles_id = nd.articles_id WHERE nd.language_id = '1' ORDER BY date_added DESC LIMIT 0,20 in C:\xampp\htdocs\OpenCart\system\library\db\mysqli.php on line 41
+2015-11-11 10:43:15 - PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\OpenCart\admin\model\extension\articles.php on line 74
+2015-11-11 10:43:15 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\OpenCart\admin\controller\extension\articles.php on line 99
+2015-11-11 11:04:33 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:05:12 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:10:14 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:11:42 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:13:24 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:13:53 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:14:36 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:14:59 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:17:06 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:25:11 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:25:15 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:25:18 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:35:00 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:35:19 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:36:13 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:37:11 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:37:55 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:38:53 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:40:58 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:41:42 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:41:46 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:42:08 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 11:42:14 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
