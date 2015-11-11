@@ -139,6 +139,8 @@ div.required .control-label:before {
 /* logo */
 #logo {
 	margin: 0 0 10px 0;
+    max-height: 90px;
+    max-width: 90px;
 }
 /* search */
 #search {
@@ -204,19 +206,19 @@ div.required .control-label:before {
 }
 /* menu */
 #menu {
-	background-color: #000000;
+	background-color: #ffffff;
 	min-height: 40px;
     margin-bottom: 0px;
 }
 #menu .nav > li > a {
 	color: #fff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	padding: 10px 15px 10px 15px;
+	padding: 0px 10px 0px 10px;
 	min-height: 15px;
 	background-color: transparent;
 }
 #menu .nav > li > a:hover, #menu .nav > li.open > a {
-	background-color: rgba(0, 0, 0, 0.1);
+	background-color: rgba(0, 0, 0, 0);
 }
 #menu .dropdown-menu {
 	padding-bottom: 0;

@@ -6,7 +6,7 @@
     -moz-border-radius: 0;
     border-radius: 0;
     text-shadow: none;
-    border: 2px solid black;
+    border: 1px solid #00562f;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -19,18 +19,18 @@
     margin-left: 2px;
     white-space: nowrap;
     line-height: 20px;
-    display: inline-block;
+
 }
 
 .buttonbl:hover {
-    border-bottom: 2px solid rgba(44, 34, 34, 0.87);
+    border-bottom: 1px solid #00562f;
     color: #ffffff;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     text-decoration: none;
-    background-color: #000000;
+    background-color: #00562f;
 }
 
 
@@ -39,17 +39,26 @@
 .inl-block {
     display: inline-flex;
 }
-
-.topH {
+.topH
+{
+    background-color:#00562f;
+}
+.topH li{
     min-height: 90px;
 }
 
-.topH div {
+.topH div ul li a {
     line-height: 90px;
 }
 
-.topH ul.nav {
-    margin-top: 1.2em;
+
+.topH li>a {
+    
+    color: rgba(255, 255, 255, 0.71) !important;
+}
+.topH li>a:hover {
+     background-color:rgba(255, 255, 255, 0) !important;
+    color: white !important;
 }
 
 
@@ -63,8 +72,13 @@
 
 .froboto a {
     color: black;
+    padding-bottom: 8px;
 }
-
+.froboto a:hover {
+    color: black;
+    border-bottom: 2px solid rgba(177, 177, 177, 0.63);
+    transition: all 0.0s ease;
+}
 .uppcase {
     text-transform: uppercase;
 }

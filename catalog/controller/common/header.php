@@ -34,6 +34,8 @@ class ControllerCommonHeader extends Controller {
 		$data['scripts'] = $this->document->getScripts();
 		$data['lang'] = $this->language->get('code');
 		$data['direction'] = $this->language->get('direction');
+        
+       
 
 		$data['name'] = $this->config->get('config_name');
 
@@ -141,6 +143,8 @@ class ControllerCommonHeader extends Controller {
 		$data['currency'] = $this->load->controller('common/currency');
 		$data['search'] = $this->load->controller('common/search');
 		$data['cart'] = $this->load->controller('common/cart');
+        $data['AboutUs']= $this->url->link('information/information', 'information_id=4');
+
 
 		// For page specific css
 		if (isset($this->request->get['route'])) {

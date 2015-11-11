@@ -1,5 +1,6 @@
 <?php
 // Text
+
 $_['text_home']          = 'Главная';
 $_['text_wishlist']      = 'Закладки (%s)';
 $_['text_shopping_cart'] = 'Корзина';
