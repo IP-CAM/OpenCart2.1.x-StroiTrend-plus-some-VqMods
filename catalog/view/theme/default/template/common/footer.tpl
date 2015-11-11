@@ -1,8 +1,5 @@
 <footer>
-    <h1>asd</h1>
-    <h1>asd</h1>
-    <h1>asd</h1>
-  <div class="container">
+      <div class="container">
     <div class="row">
       <?php if ($informations) { ?>
       <div class="col-sm-3">
@@ -34,10 +31,7 @@
       <div class="col-sm-3">
         <h5><?php echo $text_account; ?></h5>
         <ul class="list-unstyled">
-          <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
-          <li><a href="<?php echo $order; ?>"><?php echo $text_order; ?></a></li>
-          <li><a href="<?php echo $wishlist; ?>"><?php echo $text_wishlist; ?></a></li>
-          <li><a href="<?php echo $newsletter; ?>"><?php echo $text_newsletter; ?></a></li>
+          
         </ul>
       </div>
     </div>

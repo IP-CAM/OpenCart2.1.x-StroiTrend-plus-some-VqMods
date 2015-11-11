@@ -38,3 +38,7 @@
 2015-11-11 11:46:19 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
 2015-11-11 11:46:39 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
 2015-11-11 11:47:19 - PHP Notice:  Undefined variable: informations in C:\xampp\htdocs\OpenCart\catalog\view\theme\default\template\common\header.tpl on line 109
+2015-11-11 13:02:48 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 20
+2015-11-11 13:02:48 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 26
+2015-11-11 13:02:48 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 30
+2015-11-11 13:02:48 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 35
