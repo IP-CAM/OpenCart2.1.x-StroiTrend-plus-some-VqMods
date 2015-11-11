@@ -89,6 +89,7 @@
                                             <div class="froboto uppcase">
                                                 <a data-toggle="collapse" data-target="#categ">
                                                     <?php echo $category['name']; ?>
+                                                    
                                                 </a>
                                             </div>
                                             <li>

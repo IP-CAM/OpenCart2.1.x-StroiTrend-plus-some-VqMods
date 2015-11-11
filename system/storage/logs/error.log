@@ -37,3 +37,4 @@
 2015-11-11 15:01:29 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\common\footer.tpl on line 24
 2015-11-11 15:05:16 - PHP Notice:  Undefined variable: breadcrumbs in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\common\footer.tpl on line 24
 2015-11-11 15:05:16 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\common\footer.tpl on line 24
+2015-11-11 15:37:17 - PHP Notice:  Undefined variable: AboutUs in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\common\footer.tpl on line 40

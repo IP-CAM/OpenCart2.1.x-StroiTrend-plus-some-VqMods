@@ -1,57 +1,72 @@
 <footer>
     <div class="container">
         <div class="row">
-           <div>
-        
-            <div class="col-md-2 col-md-offset-5">
-                <div id="logo">
-                    <?php if ($logo) { ?>
-                        <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>"  style="display: inline-flex;" class="img-responsive"/></a><?php } else { ?>
-                            <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
-                            <?php } ?>
+            <div>
+
+                <div class="col-md-2 col-md-offset-5">
+                    <div id="logo">
+                        <?php if ($logo) { ?>
+                            <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>"  style="display: inline-flex;" class="img-responsive"/></a>
+                            <?php } else { ?>
+                                <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
+                                <?php } ?>
+                    </div>
+                </div>
+                <div class="col-md-5">
                 </div>
             </div>
-            <div class="col-md-5">
-            </div>
-            </div>
-                </div>
-            
-            <br />
-            <div class="row">
-                <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
-                <div class="col-md-1"><a href="" title="titles">Главная</a></div>
-                  <ul class="breadcrumb">
-    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
-    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-    <?php } ?>
-  </ul>
-                <div class="col-md-1"><a href="" title="titles">Item 3</a></div>
-                <div class="col-md-1"><a href="" title="titles">Item 4</a></div>
-                <div class="col-md-1"><a href="" title="titles">Item 5</a></div>
-                <div class="col-md-1 col-md-offset-3 upsite"><a href="#top" title="titles">UP</a></div>
-            </div>
-            <div class="row">
-                <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
-                <div class="col-md-1"><a href="" title="titles">Item 2</a></div>
-                <div class="col-md-1"><a href="" title="titles">Item 3</a></div>
-                <div class="col-md-1"><a href="" title="titles">Item 4</a></div>
-                <div class="col-md-1"><a href="" title="titles">Item 5</a></div>
-               
-            </div>
-   
-            <div class="row">
-                <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
+        </div>
+
+        <br />
+        <div class="row">
+           
+            <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Главная</a></div>
 
 
-            </div>
-            <div class="row">
-                <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
-    
-            </div>            
-            
-            
-            
-    
+
+          
+
+                           
+                           
+                           
+        <div class="col-md-1">  <?php foreach ($categories as $category) { ?>
+                <?php if ($category['children']) { ?>
+                    <a href="<?php echo $category['href']; ?>">
+                        <?php echo $category['name']; ?>
+                    </a>
+                    <?php } ?>
+                <?php } ?>
+        </div>
+         <div class="col-md-1 "><a href="<?php echo $AboutUs; ?>">О&nbsp;Компании</a></div>
+        <div class="col-md-1"><a href="<?php echo $contact; ?>" title="titles">Контакты</a></div>
+
+        <div class="col-md-1 col-md-offset-4 upsite"><a href="#top" title="titles">UP</a></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
+            <div class="col-md-1"><a href="" title="titles">Item 2</a></div>
+            <div class="col-md-1"><a href="" title="titles">Item 3</a></div>
+            <div class="col-md-1"><a href="" title="titles">Item 4</a></div>
+            <div class="col-md-1"><a href="" title="titles">Item 5</a></div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
+
+        </div>
+
+
+
+
+
+
+
 
 
     </div>
