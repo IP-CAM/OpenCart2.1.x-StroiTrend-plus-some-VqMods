@@ -1,74 +1,58 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div>
 
-                <div class="col-md-2 col-md-offset-5">
-                    <div id="logo">
-                        <?php if ($logo) { ?>
-                            <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>"  style="display: inline-flex;" class="img-responsive"/></a>
-                            <?php } else { ?>
-                                <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
-                                <?php } ?>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                </div>
-            </div>
-        </div>
-
-        <br />
-        <div class="row">
-           
-            <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Главная</a></div>
-
-
-
-          
-
-                           
-                           
-                           
-        <div class="col-md-1">  <?php foreach ($categories as $category) { ?>
-                <?php if ($category['children']) { ?>
-                    <a href="<?php echo $category['href']; ?>">
-                        <?php echo $category['name']; ?>
-                    </a>
+            <?php if ($logo) { ?>
+                <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>"  style="display: block;width: 60px;margin: 0 auto;border: 1px solid #fff;" class="img-responsive"/></a>
+                <?php } else { ?>
+                    <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
                     <?php } ?>
-                <?php } ?>
-        </div>
-         <div class="col-md-1 "><a href="<?php echo $AboutUs; ?>">О&nbsp;Компании</a></div>
-        <div class="col-md-1"><a href="<?php echo $contact; ?>" title="titles">Контакты</a></div>
-
-        <div class="col-md-1 col-md-offset-4 upsite"><a href="#top" title="titles">UP</a></div>
-        </div>
-        <div class="row">
-            <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
-            <div class="col-md-1"><a href="" title="titles">Item 2</a></div>
-            <div class="col-md-1"><a href="" title="titles">Item 3</a></div>
-            <div class="col-md-1"><a href="" title="titles">Item 4</a></div>
-            <div class="col-md-1"><a href="" title="titles">Item 5</a></div>
 
         </div>
+        <br />
+        <div class="row AlignTc">
 
-        <div class="row">
-            <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
+            <div class="col-md-10 col-md-offset-1 "><a class="uppcase fsize11" href="" title="titles">Главная</a>
+                <?php foreach ($categories as $category) { ?>
+                    <?php if ($category['children']) { ?>
+                        <a class="uppcase fsize11" href="<?php echo $category['href']; ?>">
+                            <?php echo $category['name']; ?>
+                        </a>
+                        <?php } ?>
+                            <?php } ?>
 
+                                <a class="uppcase fsize11" href="<?php echo $AboutUs; ?>">О&nbsp;Компании</a>
+                                <a class="uppcase fsize11" href="<?php echo $contact; ?>" title="titles">Контакты</a>
+            </div>
+
+            <div class="col-md-1 upsite" style="float:right">
+                <a href="#top" title="titles">
+                    <i class="fa fa-angle-up fsize28"></i>
+                </a>
+            </div>
 
         </div>
-        <div class="row">
-            <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
+        <br>
+        <div class="row AlignTc">
+
+            <div class="col-md-12 ">
+                <a href="#" title="titles"><i class="fa fa-instagram fsize28" ></i></a>
+                <a href="#" title="titles"><i class="fa fa-google-plus fsize28" ></i></a>
+                <a href="#" title="titles"><i class="fa fa-twitter fsize28" ></i></a>
+                <a href="#" title="titles"><i class="fa fa-vk fsize28"></i></a>
+                <a href="#" title="titles"><i class="fa fa-facebook fsize28" ></i></a></div>
+        </div>
+        <br>
+        <div class="row AlignTc">
+            <div class="col-md-12 "><a href="" title="titles">КОПИРАЙТ&nbsp;&copy;&nbsp;2015&nbsp;СТРОЙ&nbsp;ТРЕЙД</a></div>
 
         </div>
-
-
-
-
-
-
-
-
-
+        <div class="row AlignTc">
+            <div class="col-md-12 "><a style="margin-left: -3px;" href="http://divotek.com" title="titles">CREATED&nbsp;BY&nbsp;DIVOTEK&nbsp;WEB&nbsp;-&nbsp;STUDIO</a></div>
+        </div>
+        <br>
+        <br>
+        <br>
     </div>
 </footer>
 

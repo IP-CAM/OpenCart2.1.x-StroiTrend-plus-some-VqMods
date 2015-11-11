@@ -19,7 +19,6 @@
     margin-left: 2px;
     white-space: nowrap;
     line-height: 20px;
-
 }
 
 .buttonbl:hover {
@@ -33,17 +32,15 @@
     background-color: #00562f;
 }
 
-
-
-
 .inl-block {
     display: inline-flex;
 }
-.topH
-{
-    background-color:#00562f;
+
+.topH {
+    background-color: #00562f;
 }
-.topH li{
+
+.topH li {
     min-height: 90px;
 }
 
@@ -51,16 +48,15 @@
     line-height: 90px;
 }
 
-
 .topH li>a {
-    
     color: rgba(255, 255, 255, 0.71) !important;
 }
-.topH li>a:hover {
-     background-color:rgba(255, 255, 255, 0) !important;
+
+.topH li>a:hover,
+a:focus {
+    background-color: rgba(255, 255, 255, 0) !important;
     color: white !important;
 }
-
 
 .topH>nav {
     min-height: 90px !important;
@@ -74,19 +70,45 @@
     color: black;
     padding-bottom: 8px;
 }
-.froboto a:hover {
+
+.froboto a:hover,
+a:focus {
     color: black;
     border-bottom: 2px solid rgba(177, 177, 177, 0.63);
     transition: all 0.0s ease;
 }
+
 .uppcase {
     text-transform: uppercase;
 }
-.nav
-{
+
+.nav {
     margin-top: 0px;
 }
-.nav>li
-{
+
+.nav>li {
     padding: 0px 5px 0px 5px;
+}
+
+.fsize28 {
+    font-size: 20pt !important;
+}
+
+.fsize11 {
+    font-size: 11pt !important;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.upsite {
+    margin-top: -4px;
+}
+
+.fa {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.AlignTc {
+    text-align: center;
 }
