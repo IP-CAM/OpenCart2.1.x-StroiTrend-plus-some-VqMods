@@ -60,7 +60,18 @@ $this->load->model('catalog/information');
 			$data['logo'] = '';
 		}
 /**/
-        
+           $this->load->language('product/category');
+
+		$this->load->model('catalog/category');
+
+		$this->load->model('catalog/product');
+		$data['breadcrumbs'] = array();
+
+		$data['breadcrumbs'][] = array(
+			'text' => $this->language->get('text_home'),
+			'href' => $this->url->link('common/home')
+		);
+        /**/
         
         
         
@@ -96,5 +107,9 @@ $this->load->model('catalog/information');
 		} else {
 			return $this->load->view('default/template/common/footer.tpl', $data);
 		}
+        
+        
+     
+        
 	}
 }

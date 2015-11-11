@@ -20,7 +20,11 @@
             <div class="row">
                 <div class="col-md-1 col-md-offset-3"><a href="" title="titles">Item 1</a></div>
                 <div class="col-md-1"><a href="" title="titles">Главная</a></div>
-                
+                  <ul class="breadcrumb">
+    <?php foreach ($breadcrumbs as $breadcrumb) { ?>
+    <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
+    <?php } ?>
+  </ul>
                 <div class="col-md-1"><a href="" title="titles">Item 3</a></div>
                 <div class="col-md-1"><a href="" title="titles">Item 4</a></div>
                 <div class="col-md-1"><a href="" title="titles">Item 5</a></div>
