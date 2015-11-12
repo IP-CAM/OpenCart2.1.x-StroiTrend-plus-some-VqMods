@@ -32,6 +32,43 @@
     background-color: #00562f;
 }
 
+
+.buttinv {
+    color: #ffffff;
+    background: #00562f;
+    padding: 11px 16px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    text-shadow: none;
+    border: 1px solid #00562f;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    padding-top: 11px;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 2px;
+    white-space: nowrap;
+    line-height: 20px;
+}
+
+.buttinv:hover {
+    border-bottom: 1px solid #00562f;
+    color: #000000;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    background-color: #ffffff;
+}
+
+
+
 .inl-block {
     display: inline-flex;
 }
@@ -112,3 +149,53 @@ a:focus {
 .AlignTc {
     text-align: center;
 }
+
+
+
+
+.ArticleHead
+{
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 20pt;
+    font-family: 'Playfair Display', serif;
+}
+.mr
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+        
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

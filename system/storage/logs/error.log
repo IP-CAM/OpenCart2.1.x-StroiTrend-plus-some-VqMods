@@ -38,3 +38,10 @@
 2015-11-11 15:05:16 - PHP Notice:  Undefined variable: breadcrumbs in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\common\footer.tpl on line 24
 2015-11-11 15:05:16 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\common\footer.tpl on line 24
 2015-11-11 15:37:17 - PHP Notice:  Undefined variable: AboutUs in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\common\footer.tpl on line 40
+2015-11-12 9:41:36 - PHP Notice:  Undefined variable: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\articles.tpl on line 9
+2015-11-12 9:45:15 - PHP Notice:  Undefined variable: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\articles.tpl on line 9
+2015-11-12 9:46:58 - PHP Notice:  Undefined variable: articles in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\controller\module\articles.php on line 25
+2015-11-12 10:05:47 - PHP Notice:  Undefined variable: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\articles.tpl on line 11
+2015-11-12 10:05:47 - PHP Notice:  Undefined variable: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\articles.tpl on line 11
+2015-11-12 10:05:47 - PHP Notice:  Undefined variable: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\articles.tpl on line 11
+2015-11-12 10:05:47 - PHP Notice:  Undefined variable: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\articles.tpl on line 11
