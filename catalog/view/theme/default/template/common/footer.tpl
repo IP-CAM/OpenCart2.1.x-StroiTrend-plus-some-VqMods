@@ -64,32 +64,6 @@ Please donate via PayPal to donate@opencart.com
 <!-- Theme created by Welford Media for OpenCart 2.0 www.welfordmedia.co.uk -->
 
 </body>
-<script type="text/javascript">
-$(document).ready(function(){
 
-
-
-$('.owl-car').owlCarousel({
-    loop:true,
-    margin:10,
-    nav:true,
-    responsive:{
-        0:{
-            items:1
-        },
-        600:{
-            items:3
-        },
-        1140:{
-            items:3
-        }
-    }
-})
-});
-
-
-
-
-</script>
 
 </html>
