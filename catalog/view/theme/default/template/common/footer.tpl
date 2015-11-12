@@ -80,7 +80,7 @@ $('.owl-car').owlCarousel({
         600:{
             items:3
         },
-        1000:{
+        1140:{
             items:3
         }
     }
