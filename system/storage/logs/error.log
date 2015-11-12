@@ -45,3 +45,6 @@
 2015-11-12 10:05:47 - PHP Notice:  Undefined variable: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\articles.tpl on line 11
 2015-11-12 10:05:47 - PHP Notice:  Undefined variable: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\articles.tpl on line 11
 2015-11-12 10:05:47 - PHP Notice:  Undefined variable: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\articles.tpl on line 11
+2015-11-12 11:12:04 - PHP Notice:  Undefined variable: all_articles in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\news.tpl on line 6
+2015-11-12 11:12:04 - PHP Warning:  array_reverse() expects parameter 1 to be array, null given in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\news.tpl on line 6
+2015-11-12 11:12:04 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\news.tpl on line 6

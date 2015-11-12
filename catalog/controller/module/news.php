@@ -16,9 +16,11 @@ class ControllerModuleNews extends Controller {
 	 
 		$data['all_news'] = array();
 	 
+        	$this->load->model('tool/image');
 		foreach ($all_news as $news) {
 			$data['all_news'][] = array (
 				'title' 		=> html_entity_decode($news['title'], ENT_QUOTES),
+                'image'			=> $this->model_tool_image->resize($news['image'], 390, 245),
 				'description' 	=> (strlen(strip_tags(html_entity_decode($news['short_description'], ENT_QUOTES))) > 50 ? substr(strip_tags(html_entity_decode($news['short_description'], ENT_QUOTES)), 0, 50) . '...' : strip_tags(html_entity_decode($news['short_description'], ENT_QUOTES))),
 				'view' 			=> $this->url->link('information/news/news', 'news_id=' . $news['news_id']),
 				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($news['date_added']))
