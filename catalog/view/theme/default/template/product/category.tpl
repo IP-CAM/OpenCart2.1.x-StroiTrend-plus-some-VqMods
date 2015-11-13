@@ -42,7 +42,7 @@
         <ul>
 <?php foreach ($categories as $category) { ?>
     <li><a href="<?php echo $category['href']; ?>">
-<img src="<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>" title="<?php echo $category['name']; ?>" class="img-responsive" />
+        <img src="<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>" title="<?php echo $category['name']; ?>" class="img-responsive" />
 <?php echo $category['name']; ?></a></li>
     <?php } ?>
         </ul>

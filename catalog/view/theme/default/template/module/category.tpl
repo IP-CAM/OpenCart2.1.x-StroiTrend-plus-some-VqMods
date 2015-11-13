@@ -14,9 +14,25 @@
                                 <?php } ?>
                                     <?php } ?>
                                         <?php } else { ?>
-                                            <a href="<?php echo $category['href']; ?>" class="list-group-item">
-                                                <?php echo $category['name']; ?>
-                                            </a>
+                                           
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    <ul>
+                                                        <?php foreach ($category['children'] as $child) { ?>
+      <li><a href="<?php echo $child['href']; ?>">
+        <img src="<?php echo $child['image']; ?>" 
+        alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" 
+        class="img-responsive" />
+        <?php echo $child['name']; ?></a>
+      </li>
+                                                            <?php } ?>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            
                                             <?php } ?>
-                                                <?php } ?>
+                       <?php } ?>
 </div>
+<pre>
+    <?php var_dump($g); ?>
+</pre>

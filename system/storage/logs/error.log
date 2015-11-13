@@ -50,3 +50,286 @@
 2015-11-12 11:12:04 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\news.tpl on line 6
 2015-11-13 10:34:41 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 6
 2015-11-13 10:35:38 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 13
+2015-11-13 10:42:52 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 10:43:54 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 10:59:58 - PHP Notice:  Undefined variable: child in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 10:59:58 - PHP Notice:  Undefined variable: child in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 10:59:58 - PHP Notice:  Undefined variable: child in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 10:59:58 - PHP Notice:  Undefined variable: child in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 10:59:58 - PHP Notice:  Undefined variable: child in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:00:15 - PHP Notice:  Undefined variable: child in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:00:15 - PHP Notice:  Undefined variable: child in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:00:15 - PHP Notice:  Undefined variable: child in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:00:15 - PHP Notice:  Undefined variable: child in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:00:15 - PHP Notice:  Undefined variable: child in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:02:03 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:04:24 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:05:46 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 20
+2015-11-13 11:05:46 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:05:46 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:05:46 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:05:46 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:14:45 - PHP Notice:  Undefined variable: category in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 6
+2015-11-13 11:15:12 - PHP Notice:  Undefined variable: category in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 6
+2015-11-13 11:15:12 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 35
+2015-11-13 11:15:19 - PHP Notice:  Undefined variable: category in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 6
+2015-11-13 11:15:19 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 35
+2015-11-13 11:24:18 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\controller\module\category.php on line 56
+2015-11-13 11:25:11 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\controller\module\category.php on line 57
+2015-11-13 11:26:36 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\controller\module\category.php on line 57
+2015-11-13 11:26:36 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:26:36 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:26:36 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:26:36 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:26:36 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:30:55 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:30:55 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:30:55 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:30:55 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:30:55 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:34:15 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:34:15 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:34:15 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:36:04 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:36:04 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:36:04 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:36:04 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:36:04 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:36:04 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:37:05 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:37:05 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:37:05 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:37:05 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:37:05 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 21
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:37:05 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:41:07 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:41:21 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:42:17 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:43:07 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:43:18 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:43:18 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:43:18 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:43:18 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:43:18 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:43:18 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:43:18 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:43:18 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:43:18 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:43:18 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:43:18 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:43:18 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:43:18 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:43:18 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:43:18 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:43:18 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:44:01 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:44:01 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:44:01 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:44:01 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:44:01 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:44:01 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:44:01 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:44:01 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:44:01 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:44:01 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:44:01 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:44:01 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:44:01 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:44:01 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:44:01 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:44:01 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:45:13 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:45:13 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:45:13 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:45:13 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:45:13 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:45:13 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:45:13 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:45:13 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:45:13 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:45:13 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:45:13 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:45:13 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:45:13 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:45:13 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:45:13 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:45:13 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:48:40 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:48:40 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:48:40 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:48:40 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:48:40 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:48:40 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:48:40 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:48:40 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:48:40 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:48:40 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:48:40 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:48:40 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:48:40 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:48:40 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:48:40 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:48:40 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:50:32 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:50:32 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:50:32 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:50:32 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:50:32 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:50:32 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:50:32 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:50:32 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:50:32 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:50:32 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:50:32 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:50:32 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:50:32 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:50:32 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:50:32 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:50:32 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:28 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:55:28 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:55:28 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:28 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:28 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:55:28 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:55:28 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:28 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:28 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:55:28 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:55:28 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:28 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:28 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:55:28 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:55:28 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:28 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:58 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:55:58 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:55:58 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:58 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:58 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:55:58 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:55:58 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:58 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:58 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:55:58 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:55:58 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:58 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:58 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:55:58 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:55:58 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:55:58 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:56:53 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:56:53 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:56:53 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:56:53 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:56:53 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:56:53 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:56:53 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:56:53 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:56:53 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:56:53 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:56:53 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:56:53 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:56:53 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:56:53 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:56:53 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:56:53 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:59:54 - PHP Notice:  Undefined index: parrent_id in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\controller\module\category.php on line 43
+2015-11-13 11:59:54 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:59:54 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:59:54 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:59:54 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:59:54 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:59:54 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:59:54 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:59:54 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:59:54 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:59:54 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:59:54 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:59:54 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:59:54 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 11:59:54 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 11:59:54 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 11:59:54 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:01:36 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 12:01:36 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 12:01:36 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:01:36 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:01:36 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 12:01:36 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 12:01:36 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:01:36 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:01:36 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 12:01:36 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 12:01:36 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:01:36 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:01:36 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 12:01:36 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 12:01:36 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:01:36 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:02:16 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 12:02:16 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 12:02:16 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:02:16 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:02:16 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 12:02:16 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 12:02:16 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:02:16 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:02:16 - PHP Notice:  Undefined index: href in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 12:02:16 - PHP Notice:  Undefined index: image in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 12:02:16 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:02:16 - PHP Notice:  Undefined index: name in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:02:16 - PHP Warning:  Illegal string offset 'href' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 22
+2015-11-13 12:02:16 - PHP Warning:  Illegal string offset 'image' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 23
+2015-11-13 12:02:16 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
+2015-11-13 12:02:16 - PHP Warning:  Illegal string offset 'name' in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\category.tpl on line 24
