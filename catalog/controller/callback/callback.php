@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /* Плагин Callback 2.0 by samdev */
 /* Больше плагинов под Opencart 2 на http://greysoft.ru/tag/opencart-2-0 */
 
@@ -33,7 +33,10 @@ if (empty($action)) {
              
         $output .= "
                        <br/>
-                        <input type='submit' class='contact-send btn-send' value=".$sendw." tabindex='1006' />
+                        <input type='submit' class='contact-send buttonbl' style='
+    font-size: smaller;
+    padding: 4px 10px 4px 10px;
+' value=".$sendw." tabindex='1006' />
                         <input type='hidden' name='token' value='" . smcf_token($to) . "'/>
                 </form>
         </div>
