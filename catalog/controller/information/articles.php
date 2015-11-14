@@ -119,7 +119,7 @@ class ControllerInformationArticles extends Controller {
 			
 			$this->load->model('tool/image');
 			
-			$data['image'] = $this->model_tool_image->resize($articles['image'], 200, 200);
+			$data['image'] = $this->model_tool_image->resize($articles['image'], 1920, 854);
  
 			$data['heading_title'] = html_entity_decode($articles['title'], ENT_QUOTES);
 			$data['description'] = html_entity_decode($articles['description'], ENT_QUOTES);

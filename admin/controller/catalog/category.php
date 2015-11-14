@@ -1,3 +1,4 @@
+
 <?php
 class ControllerCatalogCategory extends Controller {
 	private $error = array();
@@ -69,7 +70,21 @@ class ControllerCatalogCategory extends Controller {
 			if (isset($this->request->get['page'])) {
 				$url .= '&page=' . $this->request->get['page'];
 			}
-
+            
+            
+////////////////////
+        if (isset($this->request->post['banners_select'])) {
+            $this->load->model('setting/setting');
+            $tmpsett=$this->model_setting_setting->getSetting('category_link_banner');
+            if ($this->request->post['banners_select']=='') {
+                unset($tmpsett["category_link_banner_setting"][$this->request->get['category_id']]);
+                } else {
+                $tmpsett["category_link_banner_setting"][$this->request->get['category_id']]=$this->request->post['banners_select'];
+                };
+            $this->model_setting_setting->editSetting('category_link_banner',$tmpsett);
+            };
+////////////////////
+            
 			$this->response->redirect($this->url->link('catalog/category', 'token=' . $this->session->data['token'] . $url, 'SSL'));
 		}
 
@@ -316,6 +331,12 @@ class ControllerCatalogCategory extends Controller {
 		$data['tab_general'] = $this->language->get('tab_general');
 		$data['tab_data'] = $this->language->get('tab_data');
 		$data['tab_design'] = $this->language->get('tab_design');
+        
+        
+
+        
+        
+
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
@@ -516,9 +537,43 @@ class ControllerCatalogCategory extends Controller {
 
 		$data['layouts'] = $this->model_design_layout->getLayouts();
 
+        
+        //
+        $data['entry_link_banner'] = "Связаный баннер";
+        
+		$this->load->model('design/banner');
+
+		$data['banners_list'] = $this->model_design_banner->getBanners();
+        
+        $this->load->model('setting/setting');
+        
+        
+        $tmpsett=$this->model_setting_setting->getSetting('category_link_banner');
+        if(!$tmpsett)
+            {
+            $this->model_setting_setting->editSetting('category_link_banner',array('category_link_banner_setting'=>array()));
+            $tmpsett=$this->model_setting_setting->getSetting('category_link_banner');
+            };
+        
+        $data['banners_select'] = isset($tmpsett["category_link_banner_setting"][$this->request->get['category_id']])?$tmpsett["category_link_banner_setting"][$this->request->get['category_id']]:0;
+        
+        if (isset($this->request->post['banners_select'])) {
+            $data['banners_select'] = $this->request->post['banners_select'];
+            $tmpsett["category_link_banner_setting"][$this->request->get['category_id']]=$data['banners_select'];
+            $this->model_setting_setting->editSetting('category_link_banner',$tmpsett);
+        }
+        
+        
+        $data['g']=$tmpsett;
+        
+        //
+        
+        
+        
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
+        
 
 		$this->response->setOutput($this->load->view('catalog/category_form.tpl', $data));
 	}

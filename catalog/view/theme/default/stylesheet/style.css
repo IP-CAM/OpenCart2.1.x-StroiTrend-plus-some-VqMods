@@ -71,7 +71,7 @@
 
 
 .inl-block {
-    display: inline-flex;
+    display: inline-block;
 }
 
 .topH {
@@ -105,15 +105,18 @@ a:focus {
 }
 
 .froboto a {
+   
+    border: 0px !important;
     color: black;
-    padding-bottom: 8px;
+    padding-bottom: 8px ;
 }
 
 .froboto a:hover,
 a:focus {
+     background-color: transparent !important;
     color: black;
-    border-bottom: 2px solid rgba(177, 177, 177, 0.63);
-    transition: all 0.0s ease;
+    border-bottom: 2px solid rgba(177, 177, 177, 0.63) !important;
+    transition: all 0.0s ease !important;
 }
 
 .uppcase {
@@ -299,6 +302,37 @@ width: 100%;
 
 
 
+
+
+@media screen and (min-width:480px) and (max-width:800px) {
+.topH li {
+    min-height: 30px;
+}
+    .buttonbl
+    {
+        padding-top: 5px
+            ;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+            
+    }
+
+.topH div ul li a {
+    line-height: 30px;
+}
+    .hide-sm
+    {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width:479px) {
+.hide-sm
+    {
+        display: none !important;
+    }
+}
 
 
 

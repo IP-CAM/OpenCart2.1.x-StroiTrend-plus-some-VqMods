@@ -8,31 +8,33 @@
                 <?php foreach ($category['children'] as $child) { ?>
                     <?php if ($child['category_id'] == $child_id) { ?>
                         <a href="<?php echo $child['href']; ?>" class="list-group-item active">&nbsp;&nbsp;&nbsp;- <?php echo $child['name']; ?></a>
-                        <?php } else { ?>
-                            <a href="<?php echo $child['href']; ?>" class="list-group-item">&nbsp;&nbsp;&nbsp;- <?php echo $child['name']; ?></a>
-                            <?php } ?>
-                                <?php } ?>
-                                    <?php } ?>
-                                        <?php } else { ?>
-                                           
-                                            <div class="row">
-                                                <div class="col-sm-3">
-                                                    <ul>
-                                                        <?php foreach ($category['children'] as $child) { ?>
-      <li><a href="<?php echo $child['href']; ?>">
-        <img src="<?php echo $child['image']; ?>" 
-        alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" 
-        class="img-responsive" />
-        <?php echo $child['name']; ?></a>
-      </li>
-                                                            <?php } ?>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            
-                                            <?php } ?>
-                       <?php } ?>
+<?php } else { ?>
+<a href="<?php echo $child['href']; ?>" class="list-group-item">&nbsp;&nbsp;&nbsp;- <?php echo $child['name']; ?></a>
+<?php } ?>
+<?php } ?>
+<?php } ?>
+<?php } else { ?>
+
+<div class="row">
+
+    <ul>
+        <?php foreach ($category['children'] as $child) { ?>
+<div class="col-md-3 list-unstyled">
+    <li>
+        <p><?php echo $child['name']; ?></p>
+            <div class="text-center inl-block mra">
+                <img src="<?php echo $child['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" />
+            </div>
+            <div class="froboto text-center">
+                <a href="<?php echo $child['href']; ?>"> Подробнее </a>
+            </div>
+    </li>
 </div>
-<pre>
-    <?php var_dump($g); ?>
-</pre>
+            <?php } ?>
+    </ul>
+
+</div>
+
+<?php } ?>
+                                                <?php } ?>
+</div>

@@ -34,17 +34,23 @@ class ControllerModuleCategory extends Controller {
 
 		foreach ($categories as $category) {
 			$children_data = array();
-                if ($category['image']) 
-                {
-					$image = $this->model_tool_image->resize($category['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
-				}else {
-					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
-				}
+                
             $parrent_id=isset($category['parrent_id'])?$category['parrent_id']:0;
 			if ($category['category_id'] == $data['category_id'] || $parrent_id == 0) {
 				$children = $this->model_catalog_category->getCategories($category['category_id']);
 
-				foreach($children as $child) {
+				foreach($children as $child) 
+                {
+                    if ($child['image']) 
+                {
+					$image = $this->model_tool_image->resize($child['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+				}else 
+                {
+					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+				}
+                    
+                    
+                    
 					$filter_data = array('filter_category_id' => $child['category_id'], 'filter_sub_category' => true);
 
 					$children_data[] = array(

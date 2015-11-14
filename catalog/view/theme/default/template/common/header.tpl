@@ -57,7 +57,12 @@
             <div class="topH">
                 <nav id="menu" class="navbar">
 
-                    <div class="navbar navbar-header froboto"><span id="category" class="visible-xs uppcase" style="color:black;"><?php echo $text_category; ?></span>
+                    <div class="navbar navbar-header froboto"><span id="category" class="visible-xs uppcase" style="color:black;"> <?php if ($logo) { ?>
+                                            <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" style="
+    display: inline-flex;"/></a>
+                                            <?php } else { ?>
+                                                <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
+                                                <?php } ?></span>
                         <button type="button" class="buttonbl navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
                     </div>
                     <div class="container">
@@ -66,10 +71,9 @@
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav">
                                 <li>
-                                    <div name="top" id="logo">
+                                    <div name="top" id="logo" class="inl-block hide-sm">
                                         <?php if ($logo) { ?>
-                                            <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" style="
-    display: inline-flex;"/></a>
+                                            <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
                                             <?php } else { ?>
                                                 <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
                                                 <?php } ?>
@@ -122,7 +126,7 @@
                                             </li>
                                             <li></li>
                                             <li>
-                                                <div class="col-md-2">
+                                                <div>
 
                                                     <a class="contact-btn buttonbl">
                                                Заказать звонок</a>
@@ -138,13 +142,13 @@
                                             </li>
                                             <li>
                                                 <?php if ($logged) { ?>
-                                                    <div class="col-md-2 ">
+                                                    <div >
                                                         <a class="buttonbl" href="<?php echo $account; ?>">
                                                             <?php echo $text_account; ?>
                                                         </a>
                                                     </div>
                                                     <?php } else { ?>
-                                                        <div class="col-md-1 ">
+                                                        <div >
                                                             <a class="buttonbl" href="<?php echo $login; ?>">
                                                                 <?php echo $text_login; ?>
                                                             </a>
@@ -153,7 +157,7 @@
 
                                             </li>
                                             <li>
-                                                <div style="line-height: 90px;">
+                                                <div>
                                                     <?php echo $cart; ?>
                                                 </div>
                                             </li>

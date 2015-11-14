@@ -187,6 +187,26 @@
                   </select>
                 </div>
               </div>
+              
+              
+               <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-entry_link_banner"><?php echo $entry_link_banner; ?></label>
+                <div class="col-sm-10">
+                  <select name="banners_select" id="input-entry_link_banner" class="form-control">
+                   <option value=""></option>
+                   <?php foreach ($banners_list as $ban) { ?>
+                    <?php if ($ban['banner_id']==$banners_select) { ?>
+                    <option value="<?php echo $ban['banner_id']; ?>" selected="selected"><?php echo $ban['name']; ?></option>
+                    <?php } else { ?>
+                    <option value="<?php echo $ban['banner_id']; ?>"><?php echo $ban['name']; ?></option>
+ 
+                    <?php } ?>
+                       <?php } ?>
+                  </select>
+                </div>
+              </div>
+              
+              
             </div>
             <div class="tab-pane" id="tab-design">
               <div class="table-responsive">
@@ -233,6 +253,8 @@
           </div>
         </form>
       </div>
+      <pre><?php var_dump($g); ?></pre>
+      
     </div>
   </div>
   <script type="text/javascript"><!--
