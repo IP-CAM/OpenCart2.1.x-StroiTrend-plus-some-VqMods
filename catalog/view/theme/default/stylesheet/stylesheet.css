@@ -438,7 +438,7 @@ div.required .control-label:before {
 /* content */
 
 #content {
-    min-height: 600px;
+    min-height: 0px;
 }
 
 

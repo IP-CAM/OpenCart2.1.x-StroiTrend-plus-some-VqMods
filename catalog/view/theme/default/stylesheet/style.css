@@ -140,6 +140,11 @@ a:focus {
     padding-left: 6px;
     padding-right: 6px;
 }
+.fsize16 {
+    font-size: 13pt !important;
+    padding-left: 6px;
+    padding-right: 6px;
+}
 
 .upsite {
     margin-top: -4px;
@@ -160,7 +165,7 @@ a:focus {
 {
      text-align: center;
 }
-.Article .Head
+.Head
 {
     text-align: center;
     margin-top: 20px;
@@ -210,8 +215,16 @@ a:focus {
 .Article .box
 {
     border: 1px solid #d2d1d6;
+    padding-top: 0px;
 
     
+}
+.box
+{
+    padding-top:15px;
+    border: 1px solid #d2d1d6;
+    padding-bottom:20px;
+
 }
 
 
@@ -252,7 +265,7 @@ a:focus {
 .News
 {
      text-align: center;
-    background-color: #f4f4f4;
+    background-color: #ededed;
 }
 .News .Head
 {
@@ -293,9 +306,33 @@ width: 100%;
     min-width: 350px;
 }
 
+.rowp10
+{
+    padding-top:10px;
+    padding-bottom: 10px;
+}
 
+.box> .row 
+{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.box>li>p
+{
+    text-align: center;
+}
 
-
+.white_box
+{
+    padding: 20px;
+    background-color: white;
+    min-height: 280px;
+    margin-bottom: 50px;
+}
+.white_box img
+{
+    min-height: 150px;
+}
 
 
 
@@ -333,6 +370,7 @@ width: 100%;
         display: none !important;
     }
 }
+
 
 
 

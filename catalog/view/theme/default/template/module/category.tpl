@@ -1,5 +1,4 @@
-
-   <div class="list-group">
+<div class="list-group">
     <?php foreach ($categories as $category) { ?>
         <?php if ($category['category_id'] == $category_id) { ?>
             <a href="<?php echo $category['href']; ?>" class="list-group-item active">
@@ -9,62 +8,61 @@
                 <?php foreach ($category['children'] as $child) { ?>
                     <?php if ($child['category_id'] == $child_id) { ?>
                         <a href="<?php echo $child['href']; ?>" class="list-group-item active">&nbsp;&nbsp;&nbsp;- <?php echo $child['name']; ?></a>
-<?php } else { ?>
-<a href="<?php echo $child['href']; ?>" class="list-group-item">&nbsp;&nbsp;&nbsp;- <?php echo $child['name']; ?></a>
-<?php } ?>
-<?php } ?>
-<?php } ?>
-<?php } else { ?>
+                        <?php } else { ?>
+                            <a href="<?php echo $child['href']; ?>" class="list-group-item">&nbsp;&nbsp;&nbsp;- <?php echo $child['name']; ?></a>
+                            <?php } ?>
+                                <?php } ?>
+                                    <?php } ?>
+                                        <?php } else { ?>
 
-<div class="row">
+                                            <div class="row">
 
-    <ul>
-        <?php foreach ($category['children'] as $child) { ?>
-<div class="col-md-3 list-unstyled">
-    <li>
-        <p><?php echo $child['name']; ?></p>
-            <div class="text-center inl-block mra">
-                <img src="<?php echo $child['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" />
-            </div>
-            
-            
-            
-            
-            
-                               
-                               <?php foreach ($banners as $banner) { 
-                               if($banner['category_child']==$child['category_id']) {?>
-                               
-                               
-                          <div class="text-center inl-block mra">     
-                <img src="<?php echo $banner['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" />
-                               <p>
-                <?php echo $banner['title']; ?>
-            </p>
-            <p>
-                <?php echo $banner['link']; ?>
-            </p>
-                                
-                      </div>          
-                              
-                                <?php  }}?>
-           
-            
-            
-            
-            
-            
-            
-            <div class="froboto text-center">
-                <a href="<?php echo $child['href']; ?>"> Подробнее </a>
-            </div>
-    </li>
-</div>
-            <?php } ?>
-    </ul>
+                                                <ul style="padding-left: 0px;">
+                                                    <?php foreach ($category['children'] as $child) { ?>
+                                                        <div class="col-md-3 list-unstyled ">
+                                                            <div class="box"><li>
+                                                                <p>
+                                                                    <?php echo $child['name']; ?>
+                                                                </p>
+                                                                <div class="text-center inl-block mra">
+                                                                    <img src="<?php echo $child['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" />
+                                                                </div>
 
+
+
+
+
+
+            <?php foreach ($banners as $banner) { 
+if($banner['category_child']==$child['category_id']) {?>
+
+
+                
+                   <div class="row rowp10" >
+                   <div class="col-md-3 col-md-offset-1" >
+                   
+                    <img src="<?php echo $banner['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" />
+                    </div>
+                  <div class="col-md-8" style="padding-left:0px;vertical-align:middle;">
+                     <div class="inl-block mra"> <span>
+<?php echo $banner['title']; ?>
+</span> </div>  
 </div>
 
-<?php } ?>
+             
+</div>
+                <?php  }}?>
+
+                                                                        <div class="froboto text-center">
+                                                                            <a href="<?php echo $child['href']; ?>"> Подробнее </a>
+                                                                        </div>
+                                                                </li></div>
+                                                        </div>
+                                                        <?php } ?>
+                                                </ul>
+
+                                            </div>
+
+                                            <?php } ?>
                                                 <?php } ?>
 </div>

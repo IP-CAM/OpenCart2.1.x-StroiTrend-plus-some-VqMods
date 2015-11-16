@@ -44,6 +44,7 @@ class ControllerModuleCategory extends Controller {
 			$children_data = array();
                 
             $parrent_id=isset($category['parrent_id'])?$category['parrent_id']:0;
+            
 			if ($category['category_id'] == $data['category_id'] || $parrent_id == 0) {
 				$children = $this->model_catalog_category->getCategories($category['category_id']);
 $banner_child = array();
@@ -73,7 +74,7 @@ $banner_child = array();
                                             (
                                                 'title' => $result['title'],
                                                 'link'  => $result['link'],
-                                                'image' => $this->model_tool_image->resize($result['image'], 40, 40),
+                                                'image' => $this->model_tool_image->resize($result['image'], 23, 23),
                                                 'category_child' => $child['category_id']
                                             );
                                         }
@@ -92,7 +93,7 @@ $banner_child = array();
 					$children_data[] = array
                         (
 						'category_id' => $child['category_id'],
-						'name' => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+						'name' => $child['name'] ,
 						'href' => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id']),
                         'image'=> $image
                         );

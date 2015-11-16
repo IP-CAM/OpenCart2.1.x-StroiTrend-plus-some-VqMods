@@ -142,3 +142,4 @@
 2015-11-16 10:14:41 - PHP Notice:  Undefined offset: 59 in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\controller\module\category.php on line 61
 2015-11-16 10:15:37 - PHP Notice:  Undefined offset: 62 in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\controller\module\category.php on line 61
 2015-11-16 10:15:37 - PHP Notice:  Undefined offset: 59 in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\controller\module\category.php on line 61
+2015-11-16 13:02:28 - PHP Notice:  Undefined index: main in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\common\content_top.tpl on line 13
