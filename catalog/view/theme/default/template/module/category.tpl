@@ -1,4 +1,5 @@
-<div class="list-group">
+
+   <div class="list-group">
     <?php foreach ($categories as $category) { ?>
         <?php if ($category['category_id'] == $category_id) { ?>
             <a href="<?php echo $category['href']; ?>" class="list-group-item active">
@@ -25,6 +26,35 @@
             <div class="text-center inl-block mra">
                 <img src="<?php echo $child['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" />
             </div>
+            
+            
+            
+            
+            
+                               
+                               <?php foreach ($banners as $banner) { 
+                               if($banner['category_child']==$child['category_id']) {?>
+                               
+                               
+                          <div class="text-center inl-block mra">     
+                <img src="<?php echo $banner['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" />
+                               <p>
+                <?php echo $banner['title']; ?>
+            </p>
+            <p>
+                <?php echo $banner['link']; ?>
+            </p>
+                                
+                      </div>          
+                              
+                                <?php  }}?>
+           
+            
+            
+            
+            
+            
+            
             <div class="froboto text-center">
                 <a href="<?php echo $child['href']; ?>"> Подробнее </a>
             </div>

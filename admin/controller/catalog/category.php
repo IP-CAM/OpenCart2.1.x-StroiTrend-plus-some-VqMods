@@ -73,7 +73,8 @@ class ControllerCatalogCategory extends Controller {
             
             
 ////////////////////
-        if (isset($this->request->post['banners_select'])) {
+        if (isset($this->request->post['banners_select']))
+            {
             $this->load->model('setting/setting');
             $tmpsett=$this->model_setting_setting->getSetting('category_link_banner');
             if ($this->request->post['banners_select']=='') {
@@ -538,7 +539,7 @@ class ControllerCatalogCategory extends Controller {
 		$data['layouts'] = $this->model_design_layout->getLayouts();
 
         
-        //
+////////////////////
         $data['entry_link_banner'] = "Связаный баннер";
         
 		$this->load->model('design/banner');
@@ -566,7 +567,7 @@ class ControllerCatalogCategory extends Controller {
         
         $data['g']=$tmpsett;
         
-        //
+////////////////////
         
         
         
