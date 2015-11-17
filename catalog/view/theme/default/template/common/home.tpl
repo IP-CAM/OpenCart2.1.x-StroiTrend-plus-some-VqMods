@@ -1,71 +1,61 @@
 <?php echo $header; ?>
-    <div class="container">
-        <div class="row">
-            <?php echo $column_left; ?>
-                <?php if ($column_left && $column_right) { ?>
-                    <?php $class = 'col-sm-6'; ?>
-                        <?php } elseif ($column_left || $column_right) { ?>
-                            <?php $class = 'col-sm-9'; ?>
-                                <?php } else { ?>
-                                    <?php $class = 'col-sm-12'; ?>
-                                        <?php } ?>
-                                            <div id="content" class="<?php echo $class; ?>">
-                                                <?php echo $content_top; ?>
 
-
-
-
-
-                                            </div>
-
-
-
-                                            <div class="News static">
-                                               <div class="container">
-                                                <div class="row mr">
-                                                    <p class="Head">
-                                                        Преймущества Строй-трейд
-                                                    </p>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-4">
-                                                     <div class="white_box">   <p class="froboto fsize16">
-                                                            Постоянно в наличии
-                                                        </p>
-                                                        <div class="row">
-                                                        <img src="<?php echo HTTP_SERVER;  ?>image/catalog/static/plitki.jpg" alt="">
-                                                        </div>
-                                                        <i  clas="fsize11">
-                                                            Все виды фанеры на сайте имеются в наличии на наших складах
-                                                        </i>
-                                                        </div></div>
-
-                                                    <div class="col-md-4">
-                                                      <div class="white_box">  <p class="froboto fsize16">Быстрая доставка по всей Украине</p>
-                                                        <div class="row"><img src="<?php echo HTTP_SERVER;  ?>/image/catalog/static/carr.jpg" alt=""> </div>
-                                                        <i clas="fsize11">Мы гарантируем оптимальные условия достаки в любой населенный пункт</i>
-                                                    </div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                     <div class="white_box">   <p class="froboto fsize16">Любая форма оплаты</p>
-                                                      <div class="row">  <img src="<?php echo HTTP_SERVER;  ?>/image/catalog/static/mpo.jpg" alt=""> </div>
-                                                        <i clas="fsize11">Наличный расчет, перевод на банковскую карту или счет</i>
-                                                    </div>
-
-                                                </div>
-                                                        </div>
-                                            </div>
-
+<?php echo $column_left; ?>
+<?php if ($column_left && $column_right) { ?>
+    <?php $class = 'col-sm-6'; ?>
+<?php } elseif ($column_left || $column_right) { ?>
+    <?php $class = 'col-sm-9'; ?>
+<?php } else { ?>
+    <?php $class = 'col-sm-12'; ?>
+<?php } ?>
+<div id="content-top">   
+<div class="container">
+    <div class="row">                            
+        <?php echo $content_top; ?>
+    </div>
 </div>
-                                            <div class="container">
-
-
-
-
-
-                                                <?php echo $content_bottom; ?>
-                                            </div>
-                                            <?php echo $column_right; ?>
+<div class="News static">
+    <div class="container">
+        <div class="row mr">
+            <p class="Head">
+                Преймущества Строй-трейд
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="white_box">
+                    <p class="froboto fsize16">
+                        Постоянно в наличии
+                    </p>
+                    <div class="row">
+                        <img src="<?php echo HTTP_SERVER;  ?>image/catalog/static/plitki.jpg" alt="">
+                    </div>
+                    <i clas="fsize11">Все виды фанеры на сайте имеются в наличии на наших складах</i>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="white_box">
+                    <p class="froboto fsize16">Быстрая доставка по всей Украине</p>
+                    <div class="row"><img src="<?php echo HTTP_SERVER;  ?>/image/catalog/static/carr.jpg" alt=""> </div>
+                    <i clas="fsize11">Мы гарантируем оптимальные условия достаки в любой населенный пункт</i>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="white_box">
+                    <p class="froboto fsize16">Любая форма оплаты</p>
+                    <div class="row"> <img src="<?php echo HTTP_SERVER;  ?>/image/catalog/static/mpo.jpg" alt=""> </div>
+                    <i clas="fsize11">Наличный расчет, перевод на банковскую карту или счет</i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+</div>
+    <div class="container">
+        <?php echo $content_bottom; ?>
+    </div>
+    <?phpecho $column_right; ?>
         </div>
     </div>
     

@@ -2,13 +2,9 @@
   
 </div>
  </div>
-  </div>
 
 
-
-  <div id="slideshow<?php echo $module; ?>" class="owl-carousel collapse" style="opacity: 1;
-   
-   ">
+  <div id="slideshow<?php echo $module; ?>" class="owl-carousel collapse" style="opacity: 1;">
     <?php foreach ($banners as $banner) { ?>
         <div class="item">
             <?php if ($banner['link']) { ?>
@@ -18,10 +14,8 @@
                     <?php } ?>
         </div>
         <?php } ?>
-</div>
-<div class="container">
-
-<script type="text/javascript">
+        
+        <script type="text/javascript">
     <!--
     $('#slideshow<?php echo $module; ?>').owlCarousel({
         items: 1,
@@ -32,4 +26,10 @@
         pagination: true
     });
     -->
-</script>
+      </script>
+
+</div>
+<div class="container">
+<div class="row">
+
+

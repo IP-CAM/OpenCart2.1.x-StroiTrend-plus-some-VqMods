@@ -103,6 +103,9 @@ a:focus {
 .froboto {
     font-family: 'Roboto', sans-serif;
 }
+.fplay{
+    font-family: 'Playfair Display', serif;
+}
 
 .froboto a {
    
@@ -144,6 +147,14 @@ a:focus {
     font-size: 13pt !important;
     padding-left: 6px;
     padding-right: 6px;
+}
+.grey
+{
+    color:#666;
+}
+.lightgrey
+{
+   color: #C2C2C2;
 }
 
 .upsite {
@@ -392,3 +403,7 @@ width: 100%;
 
 
 
+
+.fsize8 {
+    font-size: 8px;
+}

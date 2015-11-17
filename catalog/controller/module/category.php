@@ -72,6 +72,7 @@ $banner_child = array();
                                         {
                                             $data['banners'][] = array
                                             (
+                                                'name' =>$result['name'],
                                                 'title' => $result['title'],
                                                 'link'  => $result['link'],
                                                 'image' => $this->model_tool_image->resize($result['image'], 23, 23),

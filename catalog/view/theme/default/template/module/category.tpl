@@ -21,8 +21,16 @@
                                                     <?php foreach ($category['children'] as $child) { ?>
                                                         <div class="col-md-3 list-unstyled ">
                                                             <div class="box"><li>
-                                                                <p>
-                                                                    <?php echo $child['name']; ?>
+                                                                <p class="fplay fsize16 grey">
+                                                                <?php echo $child['name']; ?>
+<?php foreach ($banners as $banner) { 
+ {?>
+                                                                <br /><i class="froboto fsize11 lightgrey">
+ <?php echo $banner['name']; ?>
+                                                                </i>
+                                                                <?php break; ?>
+                                                                
+  <?php  }}?>
                                                                 </p>
                                                                 <div class="text-center inl-block mra">
                                                                     <img src="<?php echo $child['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" />
@@ -35,9 +43,7 @@
 
             <?php foreach ($banners as $banner) { 
 if($banner['category_child']==$child['category_id']) {?>
-
-
-                
+      
                    <div class="row rowp10" >
                    <div class="col-md-3 col-md-offset-1" >
                    
