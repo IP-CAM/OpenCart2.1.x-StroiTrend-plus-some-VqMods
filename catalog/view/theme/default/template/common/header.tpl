@@ -24,6 +24,7 @@
                     <link href="catalog/view/theme/default/stylesheet/style.css" rel="stylesheet">
 
                     <link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+                    <link href="catalog/view/theme/default/stylesheet/style.css" rel="stylesheet">
                     <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
                     <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
                     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
@@ -52,34 +53,63 @@
 </head>
 
 <body class="<?php echo $class; ?>">
-    <header>
-        <nav id="top">
-            <div class="topH">
-                <nav id="menu" class="navbar">
-
-                    <div class="navbar navbar-header froboto"><span id="category" class="visible-xs uppcase" style="color:black;"> <?php if ($logo) { ?>
-                                            <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" style="
-    display: inline-flex;"/></a>
-                                            <?php } else { ?>
-                                                <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
-                                                <?php } ?></span>
-                        <button type="button" class="buttonbl navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+    <header id="top" name="top">
+        <div class="topH">
+            <div class="container">
+                <div class="row">
+                  <!-- LOGO -->
+                  <div class="logo-block">
+                   <?php if ($logo) { ?>
+                        <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>"/></a>
+                        <?php } else { ?>
+                        <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
+                    <?php } ?>
                     </div>
-                    <div class="container">
-
-
+                    <!-- CONTACTS -->
+                    <div class="contacts-block">
+                        <ul class="list-unstyled ulp">
+                            <li>
+                                <div>
+                                    <a class="contact-btn buttonbl">Заказать звонок</a>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="froboto uppcase">
+                                    <a class="froboto uppcase" href="<?php echo $contact; ?>"><?php echo $telephone; ?></a>
+                                </div>
+                            </li>
+                            <?php if ($logged) { ?>
+                            <li>
+                                <div>
+                                    <a class="buttonbl" href="<?php echo $account; ?>">
+                                        <?php echo $text_account; ?>
+                                    </a>
+                                </div>
+                            </li>
+                            <?php } else { ?>
+                            <li>
+                                <div>
+                                    <a class="buttonbl" href="<?php echo $login; ?>">
+                                        <?php echo $text_login; ?>
+                                    </a>
+                                </div>
+                                <?php } ?>
+                            </li>
+                            <li>
+                                <div>
+                                    <?php echo $cart; ?>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- MENU -->
+                    <nav id="menu" class="navbar">
+                        <div class="navbar navbar-header froboto">
+                            <button type="button" class="buttonbl navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+                        
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav">
-                                <li>
-                                    <div name="top" id="logo" class="inl-block hide-sm">
-                                        <?php if ($logo) { ?>
-                                            <a href="<?php echo $home; ?>"><img src="<?php echo $logo; ?>" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="img-responsive" /></a>
-                                            <?php } else { ?>
-                                                <h1><a href="<?php echo $home; ?>"><?php echo $name; ?></a></h1>
-                                                <?php } ?>
-                                    </div>
-
-                                </li>
                                 <li>
                                     <div class="froboto uppcase">
                                         <div>
@@ -88,86 +118,42 @@
                                     </div>
                                 </li>
                                 <?php foreach ($categories as $category) { ?>
-                                    <?php if ($category['children']) { ?>
-                                        <li>
-                                            <div class="froboto uppcase">
-                                                <a data-toggle="collapse" data-target="#categ">
-                                                    <?php echo $category['name']; ?>
-
-                                                </a>
-                                            </div>
-                                            <li>
-                                                <div class="froboto uppcase">
-                                                    <div>
-                                                        <a href="">Статьи</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="froboto uppcase">
-                                                    <div>
-
-
-
-
-
-
-
-                                                        <a href="<?php echo $AboutUs; ?>">О Компании</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="froboto uppcase">
-                                                    <div>
-                                                        <a href="<?php echo $contact; ?>">Контакты</a>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li></li>
-                                            <li>
-                                                <div>
-
-                                                    <a class="contact-btn buttonbl">
-                                               Заказать звонок</a>
-
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="froboto uppcase">
-                                                    <a class="froboto uppcase" href="<?php echo $contact; ?>">
-                                                        <?php echo $telephone; ?>
-                                                    </a>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <?php if ($logged) { ?>
-                                                    <div >
-                                                        <a class="buttonbl" href="<?php echo $account; ?>">
-                                                            <?php echo $text_account; ?>
-                                                        </a>
-                                                    </div>
-                                                    <?php } else { ?>
-                                                        <div >
-                                                            <a class="buttonbl" href="<?php echo $login; ?>">
-                                                                <?php echo $text_login; ?>
-                                                            </a>
-                                                        </div>
-                                                        <?php } ?>
-
-                                            </li>
-                                            <li>
-                                                <div>
-                                                    <?php echo $cart; ?>
-                                                </div>
-                                            </li>
+                                <?php if ($category['children']) { ?>
+                                <li>
+                                <div class="froboto uppcase">
+                                    <a data-toggle="collapse" data-target="#categ">
+                                        <?php echo $category['name']; ?>
+                                    </a>
+                                </div>
+                                <li>
+                                    <div class="froboto uppcase">
+                                        <div>
+                                            <a href="">Статьи</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="froboto uppcase">
+                                        <div>
+                                            <a href="<?php echo $AboutUs; ?>">О Компании</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="froboto uppcase">
+                                        <div>
+                                            <a href="<?php echo $contact; ?>">Контакты</a>
+                                        </div>
+                                    </div>
+                                </li>
                             </ul>
                         </div>
-                    </div>
-                </nav>
+                    </nav>
+                </div>
             </div>
-        </nav>
-        <div class="topH">
+        </div>
+        
+        <div class="topH green-bg">
             <div class="container">
                 <div id="categ" class="collapse">
 

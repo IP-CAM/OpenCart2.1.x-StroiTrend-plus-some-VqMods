@@ -32,7 +32,6 @@
     background-color: #00562f;
 }
 
-
 .buttinv {
     color: #ffffff;
     background: #00562f;
@@ -68,22 +67,8 @@
     background-color: #ffffff;
 }
 
-
-
 .inl-block {
     display: inline-block;
-}
-
-.topH {
-    background-color: #00562f;
-}
-
-.topH li {
-    min-height: 90px;
-}
-
-.topH div ul li a {
-    line-height: 90px;
 }
 
 .topH li>a {
@@ -111,7 +96,7 @@ a:focus {
    
     border: 0px !important;
     color: black;
-    padding-bottom: 8px ;
+    padding: 20px 0 ;
 }
 
 .froboto a:hover,
@@ -121,7 +106,32 @@ a:focus {
     border-bottom: 2px solid rgba(177, 177, 177, 0.63) !important;
     transition: all 0.0s ease !important;
 }
-
+/*logo*/
+.logo-block {
+    float: left;
+    width: 60px;
+}
+.logo-block img {
+    display: block;
+    width:60px;
+    height:60px;
+}
+/*contacts*/
+.contacts-block {
+    float: right;
+}
+header .buttonbl {
+    margin-top: 8px;
+}
+/*MENU*/
+.navbar {
+    min-height: 0;
+    margin-bottom: 0; 
+    border: none;
+}
+#menu {
+    float: left;
+}
 .uppcase {
     text-transform: uppercase;
 }
@@ -344,14 +354,12 @@ width: 100%;
 {
     min-height: 150px;
 }
-
-
-
-
-
-
-
-
+@media (max-width: 767px){
+    #menu {
+        float: none;
+        clear: both;
+    }
+}
 @media screen and (min-width:480px) and (max-width:800px) {
 .topH li {
     min-height: 30px;
@@ -366,9 +374,6 @@ width: 100%;
             
     }
 
-.topH div ul li a {
-    line-height: 30px;
-}
     .hide-sm
     {
         display: none !important;
@@ -384,26 +389,25 @@ width: 100%;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .fsize8 {
     font-size: 8px;
+}
+
+
+.ulp {
+    float: left;
+    width: 100%;
+    margin: 0;
+}
+.ulp > li {
+    padding-left: 5px;
+    padding-right: 5px;
+    float: left;
+    display: block;
+}
+.ulp > li a, nav li a {
+    display: block;
+}
+.green-bg {
+    background-color: #00562f;
 }
