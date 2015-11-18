@@ -3,8 +3,8 @@
     <?php echo $heading_title; ?>
 </div>
 <div class="row mr">
-    <?php $i=0;foreach (array_reverse($all_articles) as $articles) { $i++;
-        if($i==8){break;}
+    <?php $i=0;foreach ($all_articles as $articles) { $i++;
+        if($i>9){break;}
         ?>
 
         <div class="col-md-4 mr">

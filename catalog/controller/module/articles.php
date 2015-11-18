@@ -6,7 +6,7 @@ class ControllerModuleArticles extends Controller {
 		
 		$filter_data = array(
 			'page' => 1,
-			'limit' => 5,
+			'limit' => 9,
 			'start' => 0,
 		);
 	 
