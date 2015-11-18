@@ -15,14 +15,14 @@
         </div>
 
 
-        <?php } ?>
+        <?php } $i=0; ?>
 </div>
 
-<?php foreach ($banners as $banner) { ?>
+<?php foreach ($banners as $banner) { $i++; ?>
   
 
 <div class="popup-preview">
- <a onClick="slideshow<?php echo $module; ?>', <?php echo $i-1; ?>)"><img src="<?php echo $banner['preview']; ?>" alt=""></a>       
+ <a onClick="$('#slideshow<?php echo $module; ?>').trigger('to.owl.carousel',<?php echo $i ?>)"><img src="<?php echo $banner['preview']; ?>" alt="" href></a>       
  </div>
  <?php } ?>
 

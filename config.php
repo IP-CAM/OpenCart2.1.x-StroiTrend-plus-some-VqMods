@@ -1,9 +1,9 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://127.0.0.1/OpenCart21-StroiTrend/');
+define('HTTP_SERVER', 'http://192.168.2.86/OpenCart21-StroiTrend/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://127.0.0.1/OpenCart21-StroiTrend/');
+define('HTTPS_SERVER', 'http://192.168.2.86/OpenCart21-StroiTrend/');
 
 // DIR
 define('DIR_APPLICATION', 'C:/xampp/htdocs/OpenCart21-StroiTrend/catalog/');
