@@ -19,9 +19,10 @@
 
                                                 <ul style="padding-left: 0px;">
                                                     <?php foreach ($category['children'] as $child) { ?>
-                                                        <div class="col-md-3 list-unstyled ">
+                                                        <div class="col-md-3 list-unstyled " style="margin-bottom:10px;">
                                                             <div class="box">
                                                                 <li>
+                                                                   
                                                                     <p class="fplay fsize16 grey">
                                                                         <?php echo $child['name']; ?>
                                                                             <?php foreach ($banners as $banner) { 
@@ -33,9 +34,11 @@
 
                                                                                     <?php  }}?>
                                                                     </p>
-                                                                    <div class="text-center inl-block mra">
-                                                                        <img src="<?php echo $child['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" />
-                                                                    </div>
+                                                                   
+                            <div class="text-center mra">
+<div class="img-container">      
+    <img src="<?php echo $child['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" /> </div>
+                            </div>
 
 
 
@@ -45,19 +48,19 @@
                                                                     <?php foreach ($banners as $banner) { 
 if($banner['category_child']==$child['category_id']) {?>
 
-                                                                        <div class="row rowp10">
-                                                                            <div class="col-md-3 col-md-offset-1">
+<div class="row rowp10" >
+        <div class="col-md-3 col-md-offset-1">
 
-                                                                                <img src="<?php echo $banner['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" />
-                                                                            </div>
-                                                                            <div class="col-md-8" style="padding-left:0px;vertical-align:middle;">
-                                                                                <div class="inl-block mra"> <span>
-<?php echo $banner['title']; ?>
-</span> </div>
-                                                                            </div>
+        <img src="<?php echo $banner['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" />
+        </div>
+        <div class="col-md-7 col-md-offset-1" style="padding-left:0px;vertical-align:middle; margin:auto;">
+            <div class="inl-block mra"> <span>
+            <?php echo $banner['title']; ?>
+            </span> </div>
+        </div>
 
 
-                                                                        </div>
+</div>
                                                                         <?php  }}?>
 
                                                                             <div class="froboto text-center">

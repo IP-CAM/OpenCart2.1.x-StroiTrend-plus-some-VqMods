@@ -411,8 +411,11 @@ hr
     width: 30%
         
 }
-
-
+.img-container >img
+{
+    width: 100%;
+    height: auto;
+}
 
 
 /*MEDIA*/
@@ -454,10 +457,27 @@ hr
         float: none;
         clear: both;
     }
+    .rowp10
+{
+  margin-left: 10%;
+    margin-right: 10%;
+}
+    .list-unstyled
+    {
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+    
+    
+    
 }
 /* Landscape phones and down */
 @media (max-width: 480px) { 
-
+.rowp10
+{
+  margin-left: 10%;
+    margin-right: 10%;
+}
 }
 
 
@@ -467,7 +487,11 @@ hr
         top: -140px;
     position: relative;
     z-index: 9;
-    border-bottom: 1px solid white;
+    
+}
+.popup-preview >div>div
+{
+    border: 1px solid white;
 }
 
 .valc {

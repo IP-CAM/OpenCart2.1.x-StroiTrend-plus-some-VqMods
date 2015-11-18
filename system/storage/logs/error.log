@@ -222,3 +222,4 @@
 2015-11-18 11:13:57 - PHP Notice:  Undefined variable: i in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\slideshow.tpl on line 25
 2015-11-18 11:13:57 - PHP Notice:  Undefined variable: i in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\slideshow.tpl on line 25
 2015-11-18 11:13:57 - PHP Notice:  Undefined variable: i in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\slideshow.tpl on line 25
+2015-11-18 14:09:16 - PHP Notice:  Undefined variable: our_articles in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\information\articles_list.tpl on line 18

@@ -21,15 +21,18 @@
 <div class="popup-preview row">
 <?php foreach ($banners as $banner) { $i++; ?>
   <div class="col-md-3">
-  
+  <div>
                 
                    
-<a onClick="$('#slideshow<?php echo $module; ?>').trigger('to.owl.carousel',<?php echo $i-1 ?>)"><img src="<?php echo $banner['preview']; ?>" alt="" align="middle" href><div class="froboto text-center valc">
+<a onClick="$('#slideshow<?php echo $module; ?>').trigger('to.owl.carousel',<?php echo $i-1 ?>)">
+                <div class="img-container">  <img src="<?php echo $banner['preview']; ?>" alt="" align="middle" href></div> 
+                  <div class="froboto text-center valc">
+                   
                     <span> <?php echo $banner['title']; ?> </span>
                     <hr>
                   </div>  
            </a>       
-           
+       </div>    
 </div>
  <?php } ?>
  </div>

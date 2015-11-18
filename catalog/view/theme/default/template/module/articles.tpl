@@ -14,7 +14,7 @@
                 <?php if ($articles['image']) { ?>
                     <div class="text-center">
                        <a href="<?php echo $articles['view']; ?>">
-                        <img class="mra" src="<?php echo $articles['image']; ?>" alt="<?php echo $heading_title; ?>" />
+                      <div class="img-container">  <img class="mra" src="<?php echo $articles['image']; ?>" alt="<?php echo $heading_title; ?>" /> </div>
                        </a>
                     </div>
                     <?php } ?>
