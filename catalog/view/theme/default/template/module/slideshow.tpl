@@ -8,10 +8,29 @@
     <?php foreach ($banners as $banner) { ?>
         <div class="item">
             <?php if ($banner['link']) { ?>
-                <a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" /></a>
+             <img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" />
                 <?php } else { ?>
                     <img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" />
                     <?php } ?>
+                    <div class="slideshowtxt">
+                    
+                    
+                                                        <div class="titlef fplay">
+                                                                        <p><?php echo $banner['title']; ?></p>
+
+                                                                    </div>
+                                                                    <div class="titles">
+                                                                        <p><?php echo $banner['description']; ?></p>
+
+                                                                    </div>
+
+                                                                    <div class="slideshowbtn">
+                                                                        <a class="buttonbls" href="<?php echo $banner['link']; ?>"> Перейти к статье</a>
+
+                                                                    </div>
+                                                                    </div>
+                                                                    
+                                                                    
         </div>
 
 
@@ -19,14 +38,21 @@
 </div>
 <div class="container" style="position:relative;    margin-bottom: 20px;">
 <div class="popup-preview row">
+
+
+
+
+
+
+
 <?php foreach ($banners as $banner) { $i++; ?>
   <div class="col-md-3">
   <div>
                 
                    
-<a onClick="$('#slideshow<?php echo $module; ?>').trigger('to.owl.carousel',<?php echo $i-1 ?>)">
+            <a onClick="$('#slideshow<?php echo $module; ?>').trigger('to.owl.carousel',<?php echo $i-1 ?>)">
                 <div class="img-container">  <img src="<?php echo $banner['preview']; ?>" alt="" align="middle" href></div> 
-                  <div class="froboto text-center valc">
+                  <div class="frobototh text-center valc">
                    
                     <span> <?php echo $banner['title']; ?> </span>
                     <hr>
