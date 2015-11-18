@@ -159,3 +159,8 @@
 2015-11-16 16:19:21 - PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\model\design\banner.php on line 6
 2015-11-16 16:19:21 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\controller\module\slideshow.php on line 16
 2015-11-17 13:59:57 - PHP Notice:  Undefined variable: class in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\module\slideshow.tpl on line 7
+2015-11-18 10:21:26 - PHP Notice:  Error: Table 'opencartdb.oc_news' doesn't exist<br />Error No: 1146<br />SELECT COUNT(*) AS total FROM oc_news in C:\xampp\htdocs\OpenCart21-StroiTrend\system\library\db\mysqli.php on line 41
+2015-11-18 10:21:26 - PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\extension\news.php on line 86
+2015-11-18 10:21:26 - PHP Notice:  Error: Table 'opencartdb.oc_news' doesn't exist<br />Error No: 1146<br />SELECT * FROM oc_news n LEFT JOIN oc_news_description nd ON n.news_id = nd.news_id WHERE nd.language_id = '1' ORDER BY date_added DESC LIMIT 0,20 in C:\xampp\htdocs\OpenCart21-StroiTrend\system\library\db\mysqli.php on line 41
+2015-11-18 10:21:26 - PHP Notice:  Trying to get property of non-object in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\extension\news.php on line 74
+2015-11-18 10:21:26 - PHP Warning:  Invalid argument supplied for foreach() in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\controller\extension\news.php on line 99
