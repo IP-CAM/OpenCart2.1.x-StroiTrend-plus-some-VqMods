@@ -12,7 +12,7 @@
         <br />
         <div class="row AlignTc">
 
-            <div class="col-md-10 col-md-offset-1 "><a class="uppcase fsize11" href="" title="titles">Главная</a>
+            <div class="col-xs-10 col-xs-offset-1 "><a class="uppcase fsize11" href="" title="titles">Главная</a>
                 <?php foreach ($categories as $category) { ?>
                     <?php if ($category['children']) { ?>
                         <a class="uppcase fsize11" href="<?php echo $category['href']; ?>">
@@ -23,13 +23,16 @@
 
                                 <a class="uppcase fsize11" href="<?php echo $AboutUs; ?>">О&nbsp;Компании</a>
                                 <a class="uppcase fsize11" href="<?php echo $contact; ?>" title="titles">Контакты</a>
+                                
+                                
+        
             </div>
 
-            <div class="col-md-1 upsite" style="float:right">
+            <div class="col-xs-1 upsite" style="float:right">
                 <a href="#top" title="titles">
                     <i class="fa fa-angle-up fsize28"></i>
                 </a>
-            </div>
+       </div>
 
         </div>
         <br>
@@ -65,7 +68,13 @@ Please donate via PayPal to donate@opencart.com
 
 </body>
 
-
+<script>
+ $('a[href^="#top"]').click(function (e) {
+     $('body').animate({
+      scrollTop: $($(this).attr('href')).position().top
+     } , 400);
+    });
+</script>
 
 
 </html>

@@ -108,6 +108,29 @@ a:focus {
     border-bottom: 2px solid rgba(177, 177, 177, 0.63) !important;
     transition: all 0.0s ease !important;
 }
+
+
+.froboto span 
+{  
+    border: 0px !important;
+    color: rgba(255, 255, 255, 0.83);
+    padding: 20px 0 ;
+    border-bottom: 0px!important;
+
+}
+
+.froboto span:hover,
+a:focus {
+    background-color: transparent !important;
+    color: rgba(255, 255, 255, 1);
+    border-bottom: 0px !important;
+    transition: all 0.0s ease !important;
+}
+
+
+
+
+
 /*logo*/
 .logo-block {
     float: left;
@@ -383,7 +406,11 @@ width: 100%;
     background-color: #00562f;
 }
 
-
+hr
+{
+    width: 30%
+        
+}
 
 
 
@@ -413,10 +440,7 @@ width: 100%;
             
     }
 
-    .hide-sm
-    {
-        display: none !important;
-    }
+    
      #menu {
         float: right;
 
@@ -438,3 +462,18 @@ width: 100%;
 
 
 
+
+.popup-preview {
+        top: -140px;
+    position: relative;
+    z-index: 9;
+    border-bottom: 1px solid white;
+}
+
+.valc {
+    position: absolute;
+    top:40%;
+    z-index: 10;
+    font-size: medium;
+    width: 100%;
+}

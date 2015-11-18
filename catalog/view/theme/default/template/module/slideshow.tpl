@@ -4,7 +4,7 @@
  </div>
 
 
-  <div id="slideshow<?php echo $module; ?>" class="owl-carousel collapse" style="opacity: 1;">
+  <div id="slideshow<?php echo $module; ?>" class="owl-carousel collapse" style="opacity: 1; max-height:600px;">
     <?php foreach ($banners as $banner) { ?>
         <div class="item">
             <?php if ($banner['link']) { ?>
@@ -17,27 +17,35 @@
 
         <?php } $i=0; ?>
 </div>
-
+<div class="container" style="position:relative;    margin-bottom: 20px;">
+<div class="popup-preview row">
 <?php foreach ($banners as $banner) { $i++; ?>
+  <div class="col-md-3">
   
-
-<div class="popup-preview">
- <a onClick="$('#slideshow<?php echo $module; ?>').trigger('to.owl.carousel',<?php echo $i ?>)"><img src="<?php echo $banner['preview']; ?>" alt="" href></a>       
- </div>
+                
+                   
+<a onClick="$('#slideshow<?php echo $module; ?>').trigger('to.owl.carousel',<?php echo $i-1 ?>)"><img src="<?php echo $banner['preview']; ?>" alt="" align="middle" href><div class="froboto text-center valc">
+                    <span> <?php echo $banner['title']; ?> </span>
+                    <hr>
+                  </div>  
+           </a>       
+           
+</div>
  <?php } ?>
-
-
+ </div>
+</div>
 
         <script type="text/javascript">
     <!--
     $('#slideshow<?php echo $module; ?>').owlCarousel({
         items: 1,
-        autoPlay: 6000,
-        singleItem: true,
-        navigation: true,
-        navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
-        pagination: true
+        autoplay:true,
+        loop:true,
+        autoplayTimeout:8000,
+        autoplayHoverPause:true
+
     });
+
     -->
       </script>
       
