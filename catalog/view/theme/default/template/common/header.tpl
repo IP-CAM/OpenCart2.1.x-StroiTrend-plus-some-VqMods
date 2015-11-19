@@ -55,7 +55,8 @@
 <body class="<?php echo $class; ?>">
     <header id="top" name="top">
         <div class="topH">
-            <div class="container">
+            <div class="container" style="padding-left: 30px;
+    padding-right: 27px;">
                 <div class="row">
                   <!-- LOGO -->
                   <div class="logo-block">
@@ -70,7 +71,7 @@
                         <ul class="list-unstyled ulp">
                             <li>
                                 <div>
-                                    <a class="contact-btn buttonbl">Заказать звонок</a>
+                                    <a href class="contact-btn buttonbl">Заказать звонок</a>
                                 </div>
                             </li>
                             <li>
@@ -96,7 +97,7 @@
                                 <?php } ?>
                             </li>
                             <li>
-                                <div>
+                                <div style="position: relative;">
                                     <?php echo $cart; ?>
                                 </div>
                             </li>
@@ -121,7 +122,7 @@
                                 <?php if ($category['children']) { ?>
                                 <li>
                                 <div class="froboto uppcase">
-                                    <a data-toggle="collapse" data-target="#categ">
+                                    <a data-toggle="collapse" data-target="#categ" class="hand">
                                         <?php echo $category['name']; ?>
                                     </a>
                                 </div>
@@ -158,7 +159,7 @@
                 <div id="categ" class="collapse">
 
                     <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
-                        <ul class="nav navbar-nav">
+                        <ul class="nav navbar-nav" style="min-height:80px;">
                             <?php foreach ($children as $child) { ?>
                                 <li>
                                     <a href="<?php echo $child['href']; ?>">
@@ -177,8 +178,9 @@
                                 </li>
                                 <?php } ?>
                                     <?php } ?>
+                                    </div>
                 </div>
-            </div>
+ 
         </div>
     </header>
     <?php if ($categories) { ?>

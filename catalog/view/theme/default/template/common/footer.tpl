@@ -69,13 +69,15 @@ Please donate via PayPal to donate@opencart.com
 </body>
 
 <script>
- $('a[href^="#top"]').click(function (e) {
-         e.preventDefault();
-     $('body').animate({
-      scrollTop: $($(this).attr('href')).position().top
-     } , 400);
-    });
-
+ $('a[href^="#"]').click(function (e) {
+ e.preventDefault();
+ var link = $(this).attr('href');
+ if (link.length > 1) {
+  $('body').animate({
+   scrollTop: $(link).position().top
+  } , 400);
+ }
+});
 </script>
 
 

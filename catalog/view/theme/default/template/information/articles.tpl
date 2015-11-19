@@ -18,7 +18,7 @@
       <h1 class="name_news"><?php echo $heading_title; ?></h1>
 	  <?php if ($image) { ?>
 	  <div class="text-center">
-	  <img class="pull-left" src="<?php echo $image; ?>" alt="<?php echo $heading_title; ?>" />
+	  <img class="pull-left" src="<?php echo $image; ?>" alt="<?php echo $heading_title; ?>" style ="width:100%;"/>
 	  </div>
 	  <?php } ?>
 	  <p><?php echo $description; ?></p>

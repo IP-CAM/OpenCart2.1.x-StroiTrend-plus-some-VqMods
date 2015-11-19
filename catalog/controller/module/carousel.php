@@ -5,14 +5,40 @@ class ControllerModuleCarousel extends Controller {
 
 		$this->load->model('design/banner');
 		$this->load->model('tool/image');
-
+     $this->language->load('module/articles');
+		$this->load->model('extension/articles');
 		$this->document->addStyle('catalog/view/javascript/jquery/owl-carousel/owl.carousel.css');
 		$this->document->addScript('catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js');
 
-		$data['banners'] = array();
+	
 
 		$results = $this->model_design_banner->getBanner($setting['banner_id']);
 
+        
+          
+        $data['banners'] = array();
+        $filter_data = array(
+			'page' => 1,
+			'limit' => 10,
+			'start' => 0,
+		);
+        $all_articles = $this->model_extension_articles->getAllArticles($filter_data);
+        foreach ($all_articles as $articles) {
+			$data['banners'][] = array (
+				'title' 		=> html_entity_decode($articles['title'], ENT_QUOTES),
+               
+                'preview'			=> $this->model_tool_image->resize($articles['image'], 300, 98),
+                'description' 	=> (strlen(strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES))) > 50 ?        substr(strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES)), 0, 50) . '...' : strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES))),
+				'link' 			=> $this->url->link('information/articles/articles', 'articles_id=' . $articles['articles_id']),
+				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($articles['date_added']))
+			);
+		}
+        
+        
+        
+        
+        
+        /*
 		foreach ($results as $result) {
 			if (is_file(DIR_IMAGE . $result['image'])) {
 				$data['banners'][] = array(
@@ -22,6 +48,7 @@ class ControllerModuleCarousel extends Controller {
 				);
 			}
 		}
+        */
 
 		$data['module'] = $module++;
 

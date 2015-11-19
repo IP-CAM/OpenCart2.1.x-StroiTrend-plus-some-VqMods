@@ -1,3 +1,5 @@
+/*green  #00562f */
+
 body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -149,7 +151,7 @@ div.required .control-label:before {
 
 #top {
     background-color: #ffffff;
-    padding: 30px 0px;
+    padding-top:20px;
 ;
 }
 
@@ -484,15 +486,21 @@ footer h5 {
 .breadcrumb {
     margin: 0 0 20px 0;
     padding: 8px 0;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(0, 86, 47, 0.71);
+    background-color: #ffffff;
+    border-radius: 0px;
 }
-
+.breadcrumb a
+{
+    color: #2f2f2f;
+        font-family: 'Roboto', sans-serif;
+}
 .breadcrumb i {
     font-size: 15px;
 }
 
 .breadcrumb > li {
-    text-shadow: 0 1px 0 #FFF;
+
     padding: 0 20px;
     position: relative;
     white-space: nowrap;
@@ -511,8 +519,8 @@ footer h5 {
     right: -5px;
     width: 26px;
     height: 26px;
-    border-right: 1px solid #DDD;
-    border-bottom: 1px solid #DDD;
+    border-right: 1px solid rgba(0, 86, 47, 0.71);
+    border-bottom: 1px solid rgba(0, 86, 47, 0.71);
     -webkit-transform: rotate(-45deg);
     -moz-transform: rotate(-45deg);
     -o-transform: rotate(-45deg);
@@ -710,10 +718,11 @@ footer h5 {
 .list-group a.active,
 .list-group a.active:hover,
 .list-group a:hover {
-    color: #444444;
-    background: #eeeeee;
-    border: 1px solid #DDDDDD;
+    color: #ffffff;
+    background: #ffffff;
+    border: 0px solid #DDDDDD;
     text-shadow: 0 1px 0 #FFF;
+    font-style: italic;
 }
 
 

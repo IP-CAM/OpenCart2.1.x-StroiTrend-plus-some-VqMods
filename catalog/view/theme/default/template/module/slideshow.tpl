@@ -4,7 +4,7 @@
  </div>
 
 
-  <div id="slideshow<?php echo $module; ?>" class="owl-carousel collapse" style="opacity: 1; max-height:600px;">
+  <div id="slideshow<?php echo $module; ?>" class="owl-carousel collapse" style="opacity: 1; ">
     <?php foreach ($banners as $banner) { ?>
         <div class="item">
             <?php if ($banner['link']) { ?>
@@ -50,8 +50,8 @@
   <div>
                 
                    
-            <a onClick="$('#slideshow<?php echo $module; ?>').trigger('to.owl.carousel',<?php echo $i-1 ?>)">
-                <div class="img-container">  <img src="<?php echo $banner['preview']; ?>" alt="" align="middle" href></div> 
+            <a onClick="$('#slideshow<?php echo $module; ?>').trigger('to.owl.carousel',<?php echo $i-1 ?>)" href="#">
+                <div class="img-container" style="background:black;">  <img src="<?php echo $banner['preview']; ?>" alt="" align="middle" href style="opacity:0.8;"></div> 
                   <div class="frobototh text-center valc">
                    
                     <span> <?php echo $banner['title']; ?> </span>
