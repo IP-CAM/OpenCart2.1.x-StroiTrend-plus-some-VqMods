@@ -887,7 +887,7 @@ h2.price {
 }
 
 .product-thumb .button-group button + button {
-    width: 20%;
+    width: 40%;
     border-left: 1px solid #ddd;
 }
 
