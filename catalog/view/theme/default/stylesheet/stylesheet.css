@@ -858,13 +858,13 @@ h2.price {
 }
 
 .product-thumb .button-group {
-    border-top: 1px solid #ddd;
-    background-color: #eee;
+ /*   border-top: 1px solid #ddd;
+    background-color: #eee;*/
     overflow: auto;
 }
 
 .product-list .product-thumb .button-group {
-    border-left: 1px solid #ddd;
+   /* border-left: 1px solid #ddd;*/
 }
 
 @media (max-width: 768px) {
@@ -874,7 +874,7 @@ h2.price {
 }
 
 .product-thumb .button-group button {
-    width: 60%;
+    width: 57%;
     border: none;
     display: inline-block;
     float: left;

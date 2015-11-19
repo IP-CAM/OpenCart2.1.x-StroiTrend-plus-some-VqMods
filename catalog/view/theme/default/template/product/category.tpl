@@ -56,13 +56,15 @@
     <?php } ?>
         <?php } ?>
             <?php if ($products) { ?>
-                <p>
+             
+                  <div class="col-md-2">
+                           <p>
                     <a href="<?php echo $compare; ?>" id="compare-total">
                         <?php echo $text_compare; ?>
                     </a>
                 </p>
               
-                 
+                    </div>
                  
                  
                     <div class="col-md-2 text-right">
@@ -145,9 +147,9 @@
                                     </div>
                                     <div class="button-group">
                                        
-    <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span></button>
+    <button type="button" class="buttoncard" onclick="cart.add('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span></button>
    
-    <button type="button" data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>
+    <button type="button" class="buttoncardinverse"  data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +209,7 @@
 <div class="row">
 
 <?php if ($description) { ?>
-    <div class="col-sm-10 col-sm-offset-3">
+    <div class="col-sm-9 col-sm-offset-3">
         <?php echo $description; ?>
     </div>
     <?php } ?>
