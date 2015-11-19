@@ -21,19 +21,7 @@
 <div id="content" class="<?php echo $class; ?>">
 <?php echo $content_top; ?>
 <h2><?php echo $heading_title; ?></h2>
-<?php if ($thumb || $description) { ?>
-<div class="row">
-<?php if ($thumb) { ?>
-<div class="col-sm-2"><img src="<?php echo $thumb; ?>" alt="<?php echo $heading_title; ?>" title="<?php echo $heading_title; ?>" class="img-thumbnail" /></div>
-<?php } ?>
-<?php if ($description) { ?>
-    <div class="col-sm-10">
-        <?php echo $description; ?>
-    </div>
-    <?php } ?>
-</div>
-<hr>
-<?php } ?>
+<!--image category -->
 <?php if ($categories) { ?>
 <h3><?php echo $text_refine; ?></h3>
 <?php if (count($categories) <= 5) { ?>
@@ -43,7 +31,8 @@
 <?php foreach ($categories as $category) { ?>
     <li><a href="<?php echo $category['href']; ?>">
         <img src="<?php echo $category['image']; ?>" alt="<?php echo $category['name']; ?>" title="<?php echo $category['name']; ?>" class="img-responsive" />
-<?php echo $category['name']; ?></a></li>
+<?php echo $category['name']; ?></a>
+   </li>
     <?php } ?>
         </ul>
     </div>
@@ -72,14 +61,10 @@
                         <?php echo $text_compare; ?>
                     </a>
                 </p>
-                <div class="row">
-                    <div class="col-md-4">
-                       <!-- <div class="btn-group hidden-xs">
-                            <button type="button" id="list-view" class="btn btn-default" data-toggle="tooltip" title="<?php echo $button_list; ?>"><i class="fa fa-th-list"></i></button>
-                            <button type="button" id="grid-view" class="btn btn-default" data-toggle="tooltip" title="<?php echo $button_grid; ?>"><i class="fa fa-th"></i></button>
-                            -->
-                        </div>
-                    </div>
+              
+                 
+                 
+                 
                     <div class="col-md-2 text-right">
                         <label class="control-label" for="input-sort">
                             <?php echo $text_sort; ?>
@@ -100,6 +85,8 @@
                                             <?php } ?>
                         </select>
                     </div>
+                    
+                    
                     <div class="col-md-1 text-right">
                         <label class="control-label" for="input-limit">
                             <?php echo $text_limit; ?>
@@ -120,11 +107,10 @@
                                             <?php } ?>
                         </select>
                     </div>
-                </div>
-                <br />
-                <div class="row">
+                  <!-- єто продукты с правой части  -->
+                   <div class="row">
                     <?php foreach ($products as $product) { ?>
-                        <div class="product-layout product-list col-xs-12">
+                        <div class="product-layout product-list col-sm-12">
                             <div class="product-thumb">
                                 <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
                                 <div>
@@ -168,6 +154,23 @@
                         </div>
                         <?php } ?>
                 </div>
+                    <!-- єто продукты с правой части  -->
+                   
+                   
+                   
+                   
+                 
+                    
+                    
+                    
+                    
+                </div>
+                <br />
+                
+                
+                
+                
+                
                 <div class="row">
                     <div class="col-sm-6 text-left">
                         <?php echo $pagination; ?>
@@ -192,6 +195,26 @@
                             <?php echo $content_bottom; ?>
 </div>
 <?php echo $column_right; ?>
+</div>
+</div>
+
+
+<!--  img category -->
+<div class="container">
+<div class="row">
+  
+    <?php if ($thumb || $description) { ?>
+<div class="row">
+
+<?php if ($description) { ?>
+    <div class="col-sm-10 col-sm-offset-3">
+        <?php echo $description; ?>
+    </div>
+    <?php } ?>
+</div>
+<hr>
+<?php } ?>
+    
 </div>
 </div>
 <?php echo $footer; ?>

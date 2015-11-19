@@ -226,3 +226,6 @@
 2015-11-19 9:53:35 - PHP Notice:  Undefined index: category_id in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\controller\catalog\category.php on line 559
 2015-11-19 12:10:51 - PHP Notice:  Undefined variable: our_articles in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\information\articles_list.tpl on line 18
 2015-11-19 14:23:43 - PHP Notice:  Undefined variable: our_articles in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\information\articles_list.tpl on line 18
+2015-11-19 15:16:59 - PHP Notice:  Undefined variable: bigimage in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\controller\product\category.php on line 233
+2015-11-19 15:16:59 - PHP Notice:  Undefined variable: bigimage in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\controller\product\category.php on line 233
+2015-11-19 15:18:55 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\controller\product\category.php on line 126
