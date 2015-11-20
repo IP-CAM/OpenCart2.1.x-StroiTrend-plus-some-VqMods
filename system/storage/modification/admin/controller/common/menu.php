@@ -129,9 +129,6 @@ class ControllerCommonMenu extends Controller {
 		$data['error_log'] = $this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL');
 		$data['feed'] = $this->url->link('extension/feed', 'token=' . $this->session->data['token'], 'SSL');
 
-				$data['news'] = $this->url->link('extension/news', 'token=' . $this->session->data['token'], 'SSL');	
-			
-
 				$data['articles'] = $this->url->link('extension/articles', 'token=' . $this->session->data['token'], 'SSL');	
 			
 		$data['filter'] = $this->url->link('catalog/filter', 'token=' . $this->session->data['token'], 'SSL');

@@ -2,9 +2,6 @@
 // Text
 $_['text_information']  = 'Информация';
 
-				$_['text_news'] = 'Our News';
-			
-
 				$_['text_articles'] = 'Our articles';
 			
 $_['text_service']      = 'Служба поддержки';
