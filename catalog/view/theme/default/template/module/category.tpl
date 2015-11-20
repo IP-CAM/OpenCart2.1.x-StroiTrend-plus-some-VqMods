@@ -2,7 +2,7 @@
     <?php foreach ($categories as $category) { ?>
         <?php if ($category['category_id'] == $category_id) { ?>
             <a href="<?php echo $category['href']; ?>" class="list-group-item active">
-              <b>  <?php echo $category['name']; ?> </b>
+                <?php echo $category['name']; ?>
             </a>
             <?php if ($category['children']) { ?>
                 <?php foreach ($category['children'] as $child) { ?>
