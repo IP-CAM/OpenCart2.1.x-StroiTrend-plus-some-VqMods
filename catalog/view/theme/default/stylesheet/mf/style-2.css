@@ -1,0 +1,22 @@
+
+			.mfilter-counter {
+				background: #00562f;
+				color: #fff;
+			}
+			.mfilter-counter:after {
+				border-right-color: #00562f;
+			}
+		
+				.mfilter-search #mfilter-opts-search_button {
+					background-color: #00562f;
+				}
+			
+				.mfilter-slider-slider .ui-slider-range,
+				#mfilter-price-slider .ui-slider-range {
+					background: #00562f !important;
+				}
+			
+				.mfilter-opts-container {
+					border-top-color: #00562f;
+				}
+			
