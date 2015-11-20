@@ -161,7 +161,18 @@
                    
                    
                    
-                 
+                     <?php if ($thumb || $description) { ?>
+
+
+<?php if ($description) { ?>
+    <div class="col-sm-12">
+        <?php echo $description; ?>
+    </div>
+    <?php } ?>
+
+<hr>
+<?php } ?>
+    
                     
                     
                     
@@ -202,21 +213,5 @@
 
 
 <!--  img category -->
-<div class="container">
-<div class="row">
-  
-    <?php if ($thumb || $description) { ?>
-<div class="row">
 
-<?php if ($description) { ?>
-    <div class="col-sm-9 col-sm-offset-3">
-        <?php echo $description; ?>
-    </div>
-    <?php } ?>
-</div>
-<hr>
-<?php } ?>
-    
-</div>
-</div>
 <?php echo $footer; ?>

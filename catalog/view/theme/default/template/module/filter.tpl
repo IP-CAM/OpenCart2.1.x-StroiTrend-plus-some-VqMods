@@ -1,8 +1,10 @@
-<div class="panel panel-default">
-  <div class="panel-heading"><?php echo $heading_title; ?></div>
-  <div class="list-group">
+<div class="">
+  <div class="panel-heading"> <b>  <?php echo $heading_title; ?>  товаров </b></div>
+  <div class="">
     <?php foreach ($filter_groups as $filter_group) { ?>
-    <a class="list-group-item"><?php echo $filter_group['name']; ?></a>
+    <a class="list-group-item"> 
+    <b> <?php echo $filter_group['name']; ?> </b> 
+    </a>
     <div class="list-group-item">
       <div id="filter-group<?php echo $filter_group['filter_group_id']; ?>">
         <?php foreach ($filter_group['filter'] as $filter) { ?>
@@ -22,8 +24,8 @@
     </div>
     <?php } ?>
   </div>
-  <div class="panel-footer text-right">
-    <button type="button" id="button-filter" class="btn btn-primary"><?php echo $button_filter; ?></button>
+  <div class="text-right" style="margin-bottom:20px;margin-top:20px;">
+    <button type="button" id="button-filter" class="buttoncard"><?php echo $button_filter; ?></button>
   </div>
 </div>
 <script type="text/javascript"><!--

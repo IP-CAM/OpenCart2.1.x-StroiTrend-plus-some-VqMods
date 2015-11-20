@@ -603,8 +603,18 @@ hr {
 
 
 
+.list-group-item
+{
+ 
+    border: 1px solid rgba(0, 86, 47, 0.6);
+}
 
-
+a.list-group-item:hover
+{
+    color: #555;
+    text-decoration: none;
+    background-color: #ffffff;
+}
 
 
 
