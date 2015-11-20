@@ -20,7 +20,7 @@ class Config {
 		if (file_exists($file)) {
 			$_ = array();
 
-			require(VQMod::modCheck(modification($file), $file));
+			require(VQMod::modCheck(VQMod::modCheck(modification($file)), $file));
 
 			$this->data = array_merge($this->data, $_);
 		} else {

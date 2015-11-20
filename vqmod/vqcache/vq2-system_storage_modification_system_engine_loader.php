@@ -17,7 +17,7 @@ final class Loader {
 			$class = 'Controller' . preg_replace('/[^a-zA-Z0-9]/', '', implode('/', $parts));
 
 			if (is_file($file)) {
-				include_once(VQMod::modCheck(modification($file), $file));
+				include_once(VQMod::modCheck(VQMod::modCheck(modification($file)), $file));
 
 				break;
 			} else {
@@ -56,7 +56,7 @@ final class Loader {
 		$class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', $model);
 
 		if (file_exists($file)) {
-			include_once(VQMod::modCheck(modification($file), $file));
+			include_once(VQMod::modCheck(VQMod::modCheck(modification($file)), $file));
 
 			$this->registry->set('model_' . str_replace('/', '_', $model), new $class($this->registry));
 		} else {
@@ -77,7 +77,7 @@ final class Loader {
 
 			ob_start();
 
-			require(VQMod::modCheck(modification($file), $file));
+			require(VQMod::modCheck(VQMod::modCheck(modification($file)), $file));
 
 			$output = ob_get_contents();
 
@@ -96,7 +96,7 @@ final class Loader {
 		$file = DIR_SYSTEM . 'helper/' . str_replace('../', '', (string)$helper) . '.php';
 
 		if (file_exists($file)) {
-			include_once(VQMod::modCheck(modification($file), $file));
+			include_once(VQMod::modCheck(VQMod::modCheck(modification($file)), $file));
 		} else {
 			trigger_error('Error: Could not load helper ' . $file . '!');
 			exit();

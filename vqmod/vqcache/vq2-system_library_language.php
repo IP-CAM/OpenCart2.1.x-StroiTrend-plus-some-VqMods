@@ -22,13 +22,13 @@ class Language {
 		$file = DIR_LANGUAGE . $this->default . '/' . $filename . '.php';
 
 		if (file_exists($file)) {
-			require(VQMod::modCheck(modification($file), $file));
+			require(VQMod::modCheck($file));
 		}
 
 		$file = DIR_LANGUAGE . $this->directory . '/' . $filename . '.php';
 
 		if (file_exists($file)) {
-			require(VQMod::modCheck(modification($file), $file));
+			require(VQMod::modCheck($file));
 		}
 
 		$this->data = array_merge($this->data, $_);
