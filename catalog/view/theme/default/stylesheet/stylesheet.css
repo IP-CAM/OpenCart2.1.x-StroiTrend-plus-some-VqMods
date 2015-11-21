@@ -749,7 +749,7 @@ footer h5 {
 .product-thumb {
     border: 1px solid #ddd;
     margin-bottom: 20px;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .product-thumb .image {
