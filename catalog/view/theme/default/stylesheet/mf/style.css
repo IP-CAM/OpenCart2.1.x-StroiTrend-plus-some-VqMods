@@ -244,7 +244,7 @@
 /* // HEADING /////////////////////////////////////////////////////////////// */
 .mfilter-heading {
 	cursor: pointer;
-	background: #eaeaea;
+	background: rgba(0, 86, 47, 0.15);
 	font-size: 13px;
 	border-top: 1px solid #fff;
 }
@@ -640,7 +640,7 @@ a.mfilter-button-more {
 	margin-left: -238px;
 	display: none;
 	background: #fff;
-	border: 1px solid #ccc;
+	
 	z-index: 99999;
 	padding: 0 8px;
 }
@@ -671,8 +671,9 @@ a.mfilter-button-more {
 }
 
 .mfilter-content {
-	border: 1px solid #dddddd;
+/*	border: 1px solid #dddddd;
 	border-radius: 3px;
+    */
 }
 
 .mfilter-category-tree a {

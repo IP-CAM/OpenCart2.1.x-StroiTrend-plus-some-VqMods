@@ -718,11 +718,11 @@ footer h5 {
 .list-group a.active,
 .list-group a.active:hover,
 .list-group a:hover {
-    color: #ffffff;
+    color: #555;
     background: #ffffff;
     border: 0px solid #DDDDDD;
     text-shadow: 0 1px 0 #FFF;
-    font-style: italic;
+
 }
 
 

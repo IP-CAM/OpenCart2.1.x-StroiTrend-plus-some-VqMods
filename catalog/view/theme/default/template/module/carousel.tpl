@@ -1,4 +1,9 @@
-<div id="carousel<?php echo $module; ?>" class="owl-carousel">
+   
+   <div class="mfilter-box">
+   <h3 class="box-heading">Последние статьи</h3>
+   
+
+   <div id="carousel<?php echo $module; ?>" class="owl-carousel">
     <?php foreach ($banners as $banner) { ?>
         <div class="item text-center">
             <?php if ($banner['link']) { ?>
@@ -22,6 +27,7 @@
                     <?php } ?>
         </div>
         <?php } ?>
+</div>
 </div>
 <script type="text/javascript">
     <!--

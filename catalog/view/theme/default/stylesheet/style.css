@@ -586,22 +586,55 @@ hr {
 
 /*категория левый баннер*/
 .list-group a {
-    border: 1px solid white !important ;
-    color: #00562f !important;
+    border: 1px solid rgba(0, 86, 47, 0.22) !important ;
+    color: #555 ;
+}
+.list-group a:hover {
+    color: #000000 !important;
 }
 
 .list-group-item:first-child
 {
     border-radius: 0px;
+    background: #00562f;
 }
+
 .list-group-item:last-child
 {
     border-radius: 0px;
 }
 
 
+/*mega filter pro*/
+.box-heading
+{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 10pt !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 10px !important;
+    background: #00562f;
+    color: white !important;
+    /*  border: 1px solid rgba(0, 86, 47, 0.22) !important;*/
+    
+        
+}
+.mfilter-box
+{
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    border: 1px solid rgba(0, 86, 47, 0.22) !important;
+}
 
-
+.form-control
+{
+    border-radius: 0px;
+}
+.product-thumb
+{ border: 1px solid rgba(0, 86, 47, 0.22) !important;
+    
+}
 
 
 
@@ -775,4 +808,18 @@ hr {
 }
 .hand {
     cursor: pointer;
+}
+
+.headerscat {
+    background: #ffffff;
+    color: #555 !important;
+}
+.headerscat :hover{
+    background: #00562f;
+    color: #555 !important;
+  
+}
+
+.control-label {
+        padding: 6px 12px;
 }

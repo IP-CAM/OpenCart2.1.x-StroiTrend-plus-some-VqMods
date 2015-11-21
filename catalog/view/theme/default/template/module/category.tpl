@@ -1,7 +1,8 @@
 <div class="list-group">
     <?php foreach ($categories as $category) { ?>
         <?php if ($category['category_id'] == $category_id) { ?>
-            <a href="<?php echo $category['href']; ?>" class="list-group-item active">
+           <h3 class="box-heading">Категории товаров</h3>
+            <a href="<?php echo $category['href']; ?>" class="list-group-item headerscat">
                 <?php echo $category['name']; ?>
             </a>
             <?php if ($category['children']) { ?>
@@ -21,6 +22,9 @@
                                                     <?php foreach ($category['children'] as $child) { ?>
                                                         <div class="col-md-3 list-unstyled " style="margin-bottom:10px;">
                                                             <div class="box">
+                                                            
+
+
                                                                 <li>
                                                                    
                                                                     <p class="fplay fsize16 grey">
@@ -43,12 +47,11 @@
 
 
 
-
-
                                                                     <?php foreach ($banners as $banner) { 
 if($banner['category_child']==$child['category_id']) {?>
 
 <div class="row rowp10" >
+       
         <div class="col-md-3 col-md-offset-1">
 
         <img src="<?php echo $banner['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" />

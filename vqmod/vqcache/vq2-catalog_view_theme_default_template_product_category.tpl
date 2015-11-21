@@ -144,6 +144,11 @@
                                                                             <?php } ?>
                                                     </p>
                                                     <?php } ?>
+                                                    
+                                                  
+                                                    
+                                                    
+                                                    
                                     </div>
                                     <div class="button-group">
                                        
@@ -152,7 +157,56 @@
     <button type="button" class="buttoncardinverse"  data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>
                                     </div>
                                 </div>
+                               
+                                
+    <div style="    margin-top: 60px;" >
+                                    
+                                    
+                               
+                                                    <!-- child-->
+                                                    
+                                             <?php foreach ($products_child as $ch) { 
+                                             
+                                             if($ch['product_id']!=$product['product_id'])
+                                             {
+                                             
+                                              if($ch['sku']==$product['sku']) {
+                                             ?>
+                                             
+                                              
+                                <div class="row" style="   padding-top:3px;padding-bottom:3px;">
+                                    
+                                    
+                               
+                                <div class="col-md-6 col-md-offset-1">         <a href="<?php echo $ch['href']; ?>"> <?php echo $ch['name']; ?></a> </div>  
+                                <div class="col-md-2">          <span class="price">
+                                                        <?php if (!$ch['special']) { ?>
+                                                            <?php echo $ch['price']; ?>
+                                                                <?php } else { ?>
+                                                                    <span class="price-new"><?php echo $ch['special']; ?></span> <span class="price-old"><?php echo $ch['price']; ?></span>
+                                                                    <?php } ?>
+                                                                        <?php if ($ch['tax']) { ?>
+                                                                            <span class="price-tax"><?php echo $text_tax; ?> <?php echo $ch['tax']; ?></span>
+                                                                            <?php } ?>
+                                                    </span>
+                                                    </div>     
+                                               
+            <div class="col-md-2">                                 
+                                               
+   <a onclick="cart.add('<?php echo $ch['product_id']; ?>', '<?php echo $ch['minimum']; ?>');" class="buttoncard hand " style="    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+   ">Купить</a>  </div>  
+                                            
+                                              </div>
+                                              <?php  } } }?>       
+                          
+                                 </div>
                             </div>
+                            
+                              
+                            
+                            
+                            
                         </div>
                         <?php } ?>
                 </div>
@@ -161,7 +215,7 @@
                    
                    
                    
-            <pre>   <?php var_dump($g); ?> </pre>  
+                 
                     
                     
                     

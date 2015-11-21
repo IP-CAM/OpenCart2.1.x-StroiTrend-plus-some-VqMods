@@ -56,14 +56,15 @@
     <?php } ?>
         <?php } ?>
             <?php if ($products) { ?>
-             
-                  <div class="col-md-2">
+   <div class="row" style="margin-bottom:10px;">          
+                  <div class="col-md-4 control-label" >
+                     <div style="display:inline-block">     
                            <p>
                     <a href="<?php echo $compare; ?>" id="compare-total">
                         <?php echo $text_compare; ?>
                     </a>
                 </p>
-              
+              </div>
                     </div>
                  
                  
@@ -94,7 +95,7 @@
                             <?php echo $text_limit; ?>
                         </label>
                     </div>
-                    <div class="col-md-2 text-right">
+                    <div class="col-md-2 text-right" >
                         <select id="input-limit" class="form-control" onchange="location = this.value;">
                             <?php foreach ($limits as $limits) { ?>
                                 <?php if ($limits['value'] == $limit) { ?>
@@ -109,6 +110,8 @@
                                             <?php } ?>
                         </select>
                     </div>
+    </div>
+                 <div class="clearfix"></div>
                   <!-- єто продукты с правой части  -->
                    <div class="row">
                     <?php foreach ($products as $product) { ?>
@@ -170,7 +173,7 @@
                                              if($ch['product_id']!=$product['product_id'])
                                              {
                                              
-                                              if($ch['sku']!=$product['sku']) {
+                                              if($ch['sku']==$product['sku']) {
                                              ?>
                                              
                                               
