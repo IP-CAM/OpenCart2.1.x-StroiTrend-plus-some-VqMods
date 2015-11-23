@@ -509,3 +509,6 @@
 2015-11-21 13:27:26 - PHP Notice:  Undefined index: minimum in C:\xampp\htdocs\OpenCart21-StroiTrend\system\storage\modification\catalog\controller\product\category.php on line 333
 2015-11-21 13:27:26 - PHP Notice:  Undefined index: rating in C:\xampp\htdocs\OpenCart21-StroiTrend\system\storage\modification\catalog\controller\product\category.php on line 334
 2015-11-21 13:27:26 - PHP Notice:  Undefined index: product_id in C:\xampp\htdocs\OpenCart21-StroiTrend\system\storage\modification\catalog\controller\product\category.php on line 335
+2015-11-23 9:34:18 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 20
+2015-11-23 9:34:18 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 26
+2015-11-23 9:34:18 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 35

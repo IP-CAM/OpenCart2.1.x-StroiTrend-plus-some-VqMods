@@ -821,5 +821,13 @@ hr {
 }
 
 .control-label {
-        padding: 6px 12px;
+        padding: 6px 0px;
+}
+#mfilter-content-container >h2
+{
+    margin-top: 0px;
+}
+#compare-total
+{
+    padding-left: 16px;
 }
