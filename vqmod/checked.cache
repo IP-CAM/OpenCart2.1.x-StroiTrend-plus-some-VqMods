@@ -401,3 +401,8 @@ catalog\controller\information\information.php
 catalog\language\english\information\information.php
 catalog\language\russian\information\information.php
 catalog\view\theme\default\template\information\information.tpl
+admin\controller\extension\articles.php
+admin\language\english\extension\articles.php
+admin\model\extension\articles.php
+admin\view\template\extension\articles_list.tpl
+admin\view\template\extension\articles_form.tpl

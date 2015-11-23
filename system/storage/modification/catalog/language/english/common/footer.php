@@ -3,6 +3,9 @@
 $_['text_information']  = 'Information';
 
 				$_['text_articles'] = 'Our articles';
+
+				$_['text_articles'] = 'Our Articles';
+			
 			
 $_['text_service']      = 'Customer Service';
 $_['text_extra']        = 'Extras';

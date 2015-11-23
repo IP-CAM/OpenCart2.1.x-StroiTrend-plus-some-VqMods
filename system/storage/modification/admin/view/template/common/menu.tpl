@@ -32,6 +32,9 @@
 
       <li><a href="<?php echo $feed; ?>"><?php echo $text_feed; ?></a></li>
 
+				<li><a href="<?php echo $articles; ?>">Articles</a></li>
+			
+
 				<li><a href="<?php echo $articles; ?>">articles</a></li>
 			
       <li><a href="<?php echo $analytics; ?>"><?php echo $text_analytics; ?></a></li>

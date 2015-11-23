@@ -4,7 +4,7 @@ $_['heading_title']     		= 'Статьи';
 
 // Text
 $_['text_image']			= 'Изображение';
-//$_['text_edit']				= 'Редактировать';
+$_['text_edit']				= 'Редактировать';
 $_['text_title']				= 'Название';
 $_['text_list']				= 'Список статей';
 $_['text_description']			= 'Содержание';

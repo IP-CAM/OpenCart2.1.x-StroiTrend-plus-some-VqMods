@@ -1,16 +1,18 @@
 <?php
 // Heading 
-$_['heading_title']     		= 'Articles';
+$_['heading_title']     		= 'Статьи';
 
 // Text
+$_['text_articles']='Статьи';
+$_['text_list']				= 'Список статей';
 $_['text_image']				= 'Image';
-$_['text_edit']				= 'Edit';
-$_['text_title']				= 'Title';
-$_['text_description']			= 'Description';
-$_['text_short_description']	= 'Short Description';
-$_['text_date']					= 'Date Added';
-$_['text_action']				= 'Action';
-$_['text_status']				= 'Status';
+$_['text_edit']				     = 'Изменить';
+$_['text_title']				= 'Название';
+$_['text_description']			= 'Описание';
+$_['text_short_description']	= 'Краткое описание';
+$_['text_date']					= 'Дата добавления';
+$_['text_action']				= 'Действие';
+$_['text_status']				= 'Статус';
 $_['text_keyword']				= 'SEO Keyword';
 $_['text_no_results']			= 'There are no results to list.';
 $_['text_browse']				= 'Browse';
