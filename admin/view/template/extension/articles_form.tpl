@@ -24,6 +24,7 @@
         <h3 class="panel-title"><i class="fa fa-pencil"></i> <?php echo $heading_title; ?></h3>
       </div>
       <div class="panel-body">
+       
         <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data" id="form-articles" class="form-horizontal">
           <ul class="nav nav-tabs" id="language">
 			<?php foreach ($languages as $language) { ?>
@@ -81,6 +82,21 @@
 			  </select>
 			</div>
 		  </div>
+      
+       <div class="form-group">
+             <label class="col-sm-2 control-label" for="input-status">Имя кнопки</label>
+             <div class="col-md-10">
+             <input type="text" name="button" value="<?php echo $button; ?>" placeholder="Имя кнопки" id="input-button" class="form-control">
+             </div>
+            </div>
+             <div class="form-group">
+             <label class="col-sm-2 control-label" for="input-status">Ссылка кнопки</label>
+             <div class="col-md-10">
+              <input type="text" name="button_link" value="<?php echo $button_link; ?>" placeholder="Ссылка кнопки" id="input-link-button" class="form-control">
+             </div> 
+            </div>
+            
+            
         </form>
       </div>
     </div>

@@ -123,7 +123,9 @@ class ControllerInformationArticles extends Controller {
  
 			$data['heading_title'] = html_entity_decode($articles['title'], ENT_QUOTES);
 			$data['description'] = html_entity_decode($articles['description'], ENT_QUOTES);
-	 
+            $data['button']=html_entity_decode($articles['button'], ENT_QUOTES);
+	        $data['button_link']=html_entity_decode($articles['button_link'], ENT_QUOTES);
+            
 			$data['column_left'] = $this->load->controller('common/column_left');
 			$data['column_right'] = $this->load->controller('common/column_right');
 			$data['content_top'] = $this->load->controller('common/content_top');

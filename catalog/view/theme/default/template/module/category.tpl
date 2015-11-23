@@ -67,7 +67,7 @@ if($banner['category_child']==$child['category_id']) {?>
                                                                         <?php  }}?>
 
                                                                             <div class="froboto text-center">
-                                                                                <a href="<?php echo $child['href']; ?>"> Подробнее </a>
+                                                                                <a href="<?php echo $child['href']; ?>" style="border: none !important;"> Подробнее </a>
                                                                             </div>
                                                                 </li>
                                                             </div>

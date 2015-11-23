@@ -1,6 +1,6 @@
 <?php
 // Heading
-$_['heading_title']    = 'Саттьи';
+$_['heading_title']    = 'Статьи';
 
 $_['text_module']      = 'Modules';
 $_['text_success']     = 'Success: You have modified Articles module!';

@@ -1,12 +1,26 @@
 <?php
 class ModelExtensionArticles extends Model {
 	public function addArticles($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "articles SET image = '" . $this->db->escape($data['image']) . "', date_added = NOW(), status = '" . (int)$data['status'] . "'");
+
+        
+        
+		$this->db->query("INSERT INTO " . DB_PREFIX . "articles SET image = '" . $this->db->escape($data['image']) . "', date_added = NOW(), status = '" . (int)$data['status'] . "'
+        , button ='". $this->db->escape($data['button']) .  "' 
+         , button_link ='". $this->db->escape($data['button_link']) .  "'
+        ");
 		
 		$articles_id = $this->db->getLastId();
 		
 		foreach ($data['articles'] as $key => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX ."articles_description SET articles_id = '" . (int)$articles_id . "', language_id = '" . (int)$key . "', title = '" . $this->db->escape($value['title']) . "', description = '" . $this->db->escape($value['description']) . "', short_description = '" . $this->db->escape($value['short_description']) . "'");
+			$this->db->query("INSERT INTO " . DB_PREFIX ."articles_description SET articles_id = '" 
+                             . (int)$articles_id .
+                             "', language_id = '" .
+                             (int)$key . 
+                              "', language_id = '" .
+                             (int)$key . 
+                             "', title = '" . 
+                             $this->db->escape($value['title']) .
+                             "', description = '" . $this->db->escape($value['description']) . "', short_description = '" . $this->db->escape($value['short_description']) . "'");
 		}
 		
 		if ($data['keyword']) {
@@ -15,12 +29,16 @@ class ModelExtensionArticles extends Model {
 	}
 	
 	public function editArticles($articles_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "articles SET image = '" . $this->db->escape($data['image']) . "', status = '" . (int)$data['status'] . "' WHERE articles_id = '" . (int)$articles_id . "'");
+        
+		$this->db->query("UPDATE " . DB_PREFIX . "articles SET image = '" . $this->db->escape($data['image']) . "', status = '" . (int)$data['status'] . "'
+        , button ='". $this->db->escape($data['button']) .  "' 
+       , button_link ='". $this->db->escape($data['button_link']) .   "' WHERE articles_id = '" . (int)$articles_id . "'");
 		
 		$this->db->query("DELETE FROM " . DB_PREFIX . "articles_description WHERE articles_id = '" . (int)$articles_id. "'");
 		
 		foreach ($data['articles'] as $key => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX ."articles_description SET articles_id = '" . (int)$articles_id . "', language_id = '" . (int)$key . "', title = '" . $this->db->escape($value['title']) . "', description = '" . $this->db->escape($value['description']) . "', short_description = '" . $this->db->escape($value['short_description']) . "'");
+			$this->db->query(
+                "INSERT INTO " . DB_PREFIX ."articles_description SET articles_id = '" . (int)$articles_id . "', language_id = '" . (int)$key . "', title = '" . $this->db->escape($value['title']) . "', description = '" . $this->db->escape($value['description']) . "', short_description = '" . $this->db->escape($value['short_description']) . "'");
 		}
 		
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'articles_id=" . (int)$articles_id. "'");

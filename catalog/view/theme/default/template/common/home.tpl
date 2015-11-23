@@ -55,7 +55,7 @@
     <div class="container">
         <?php echo $content_bottom; ?>
     </div>
-    <?phpecho $column_right; ?>
+
         </div>
     </div>
     

@@ -21,7 +21,14 @@
 	  <img class="pull-left" src="<?php echo $image; ?>" alt="<?php echo $heading_title; ?>" style ="width:100%;"/>
 	  </div>
 	  <?php } ?>
+	 
 	  <p><?php echo $description; ?></p>
+	   <?php  if($button && $button_link) {?>
+	  <div class="col-xs-12 text-center">
+	      <a class="buttonbl" href="<?php echo $button_link; ?>"><?php echo $button; ?></a>
+	  </div>
+	  <?php } ?>
+	  
 	  <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?>
   </div>

@@ -98,11 +98,13 @@ class ControllerExtensionArticles extends Controller {
 		
 		foreach ($all_articles as $articles) {
 			$data['all_articles'][] = array (
-				'articles_id' 			=> $articles['articles_id'],
+				'articles_id' 		=> $articles['articles_id'],
 				'title' 			=> $articles['title'],
 				'short_description'	=> $articles['short_description'],
 				'date_added' 		=> date($this->language->get('date_format_short'), strtotime($articles['date_added'])),
-				'edit' 				=> $this->url->link('extension/articles/edit', 'articles_id=' . $articles['articles_id'] . '&token=' . $this->session->data['token'] . $url, 'SSL')
+				'edit' 				=> $this->url->link('extension/articles/edit', 'articles_id=' . $articles['articles_id'] . '&token=' . $this->session->data['token'] . $url, 'SSL'),
+                'button' 			=> $articles['button'],
+                'button_link' 			=> $articles['button_link']
 			);
 		}
 		
@@ -112,6 +114,12 @@ class ControllerExtensionArticles extends Controller {
 
 		$this->response->setOutput($this->load->view('extension/articles_list.tpl', $data));	
 	}
+    
+    
+    
+    
+    
+    
 	
 	public function edit() {
 		$this->language->load('extension/articles');
@@ -254,12 +262,32 @@ class ControllerExtensionArticles extends Controller {
 		} else {
 			$data['status'] = '';
 		}
+        
+        
+        //button
+        if (isset($this->request->post['button'])) {
+			$data['button'] = $this->request->post['button'];
+		} elseif (!empty($articles)) {
+			$data['button'] = $articles['button'];
+		} else {
+			$data['button'] = '';
+		}
+        //button-link
+        if (isset($this->request->post['button_link'])) {
+			$data['button_link'] = $this->request->post['button_link'];
+		} elseif (!empty($articles)) {
+			$data['button_link'] = $articles['button_link'];
+		} else {
+			$data['button_link'] = '';
+		}
+        
+        
 		
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
-		$this->response->setOutput($this->load->view('extension/articles_form.tpl', $data));
+		                                                                                                             $this->response->setOutput($this->load->view('extension/articles_form.tpl', $data));
 	}
 	
 	public function delete() {
