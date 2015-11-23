@@ -63,7 +63,7 @@ class ControllerInformationArticles extends Controller {
 		foreach ($all_articles as $articles) {
 			$data['all_articles'][] = array (
 				'title' 		=> html_entity_decode($articles['title'], ENT_QUOTES),
-				'image'			=> $this->model_tool_image->resize($articles['image'], 100, 100),
+				'image'			=> $this->model_tool_image->resize($articles['image'], 280, 100),
 				'description' 	=> (strlen(strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES))) > 50 ? substr(strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES)), 0, 50) . '...' : strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES))),
 				'view' 			=> $this->url->link('information/articles/articles', 'articles_id=' . $articles['articles_id']),
 				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($articles['date_added']))

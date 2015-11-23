@@ -512,3 +512,6 @@
 2015-11-23 9:34:18 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 20
 2015-11-23 9:34:18 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 26
 2015-11-23 9:34:18 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 35
+2015-11-23 10:41:45 - PHP Notice:  Undefined variable: our_articles in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\information\articles_list.tpl on line 18
+2015-11-23 10:42:37 - PHP Notice:  Undefined variable: our_articles in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\information\articles_list.tpl on line 18
+2015-11-23 10:43:02 - PHP Notice:  Undefined variable: our_articles in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\information\articles_list.tpl on line 18

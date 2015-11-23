@@ -589,7 +589,7 @@ footer h5 {
 .btn-primary {
    color: #000000;
     background: rgba(247, 40, 44, 0);
-    padding: 11px 16px;
+    padding: 6px 6px;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
@@ -602,7 +602,7 @@ footer h5 {
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    padding-top: 11px;
+   
     font-family: 'Roboto', sans-serif;
     margin-left: 2px;
     white-space: nowrap;
@@ -642,10 +642,11 @@ footer h5 {
 }
 
 .btn-danger {
+    margin-left: 2px !important;
     color: #ffffff;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     background-color: #da4f49;
-    background-image: linear-gradient(to bottom, #ee5f5b, #bd362f);
+    
     background-repeat: repeat-x;
     border-color: #bd362f #bd362f #802420;
 }

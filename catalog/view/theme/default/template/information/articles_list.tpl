@@ -15,12 +15,12 @@
     <?php } ?>
    <div class="news_list_style">
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
-      <h1><?php echo $our_articles; ?></h1>
-      <table class="table table-bordered table-striped table-hover">
+      <h1>Применение фанеры</h1>
+      <table class="table bordergr table-bordered table-striped table-hover">
 		<tbody>
 		<?php foreach ($all_articles as $articles) { ?>
 		  <tr>
-		   <td style="vertical-align:middle" class="text-center"><img src="<?php echo $articles['image']; ?>" /></td>
+		   <td style="vertical-align:middle; padding:0px;" class="text-center" ><img style="width:100%;" src="<?php echo $articles['image']; ?>" /></td>
 		   <!--<td style="vertical-align:middle"><?php echo $articles['title']; ?></td>-->
 		   <td  class="news_text_size" style="vertical-align:middle"><?php echo $articles['description']; ?></td>
 		   <td  class="news_text_size" style="vertical-align:middle"><?php echo $articles['date_added']; ?></td>

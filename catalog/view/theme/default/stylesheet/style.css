@@ -38,7 +38,7 @@
 .buttoncardinverse {
     color: #00562f !important;
     background: #ffffff !important;
-    padding: 11px 16px !important;
+    padding: 11px 16px;
     -webkit-border-radius: 0 !important;
     -moz-border-radius: 0 !important;
     border-radius: 0 !important;
@@ -51,7 +51,7 @@
     -moz-transition: all 0.3s ease !important;
     -o-transition: all 0.3s ease !important;
     transition: all 0.3s ease !important;
-    padding-top: 11px !important;
+    padding-top: 11px ;
     font-family: 'Roboto', sans-serif !important;
     margin-left: 2px !important;
     white-space: nowrap !important;
@@ -637,8 +637,19 @@ hr {
 }
 
 
-
-
+.img-thumbnail
+{
+    border-radius: 0px;
+    border: 1px solid rgba(0, 86, 47, 0.22) !important;
+}
+.bordergr
+{
+     border: 1px solid #C7DAD1 !important;
+}
+.bordergr td
+{
+     border: 1px solid #C7DAD1 !important;
+}
 
 
 
@@ -830,4 +841,9 @@ hr {
 #compare-total
 {
     padding-left: 16px;
+}
+
+.ulstylecart {
+      border: 1px solid rgba(0, 86, 47, 0.22) !important ;
+    border-radius: 0px;
 }

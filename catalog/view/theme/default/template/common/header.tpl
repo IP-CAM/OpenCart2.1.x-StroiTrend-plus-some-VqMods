@@ -129,7 +129,7 @@
                                 <li>
                                     <div class="froboto uppcase">
                                         <div>
-                                            <a href="">Статьи</a>
+                                            <a href="index.php?route=information/articles">Статьи</a>
                                         </div>
                                     </div>
                                 </li>
