@@ -587,12 +587,26 @@ footer h5 {
 }
 
 .btn-primary {
-    color: #ffffff;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-    background-color: #229ac8;
-    background-image: linear-gradient(to bottom, #23a1d1, #1f90bb);
-    background-repeat: repeat-x;
-    border-color: #1f90bb #1f90bb #145e7a;
+   color: #000000;
+    background: rgba(247, 40, 44, 0);
+    padding: 11px 16px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    text-shadow: none;
+    border: 1px solid #00562f;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    padding-top: 11px;
+    font-family: 'Roboto', sans-serif;
+    margin-left: 2px;
+    white-space: nowrap;
+    line-height: 20px;
 }
 
 .btn-primary:hover,
@@ -600,8 +614,14 @@ footer h5 {
 .btn-primary.active,
 .btn-primary.disabled,
 .btn-primary[disabled] {
-    background-color: #1f90bb;
-    background-position: 0 -15px;
+    border-bottom: 1px solid #00562f;
+    color: #ffffff;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    background-color: #00562f;
 }
 
 .btn-warning {

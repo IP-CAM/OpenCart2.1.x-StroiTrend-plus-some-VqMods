@@ -181,8 +181,8 @@
                                     
                                     
                                
-                                <div class="col-md-6 col-md-offset-1">         <a href="<?php echo $ch['href']; ?>"> <?php echo $ch['name']; ?></a> </div>  
-                                <div class="col-md-2">          <span class="price">
+                                <div class="col-xs-6 col-xs-offset-1">         <a href="<?php echo $ch['href']; ?>"> <?php echo $ch['name']; ?></a> </div>  
+                                <div class="col-xs-2">          <span class="price">
                                                         <?php if (!$ch['special']) { ?>
                                                             <?php echo $ch['price']; ?>
                                                                 <?php } else { ?>
@@ -194,7 +194,7 @@
                                                     </span>
                                                     </div>     
                                                
-            <div class="col-md-2">                                 
+            <div class="col-xs-2">                                 
                                                
    <a onclick="cart.add('<?php echo $ch['product_id']; ?>', '<?php echo $ch['minimum']; ?>');" class="buttoncard hand " style="    padding-top: 2px !important;
     padding-bottom: 2px !important;

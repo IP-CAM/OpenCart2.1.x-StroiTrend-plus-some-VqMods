@@ -480,9 +480,9 @@ a.mfilter-button-more {
 	border-top: 2px solid #ccc;
 }
 #mfilter-opts-price-min, #mfilter-opts-price-max {
-	width: 104px;
-	min-width: 104px;
-	max-width: 104px;
+	width: 114px;
+	min-width: 114px;
+	max-width: 114px;
 	display: inline-block;
 }
 /* // IMAGE ///////////////////////////////////////////////////////////////// */
