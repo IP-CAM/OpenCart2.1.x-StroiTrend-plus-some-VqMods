@@ -446,3 +446,8 @@ admin\view\template\extension\shipping.tpl
 admin\controller\shipping\novaposhta.php
 admin\model\localisation\geo_zone.php
 admin\view\template\shipping\novaposhta.tpl
+admin\controller\design\banner.php
+admin\language\english\design\banner.php
+admin\language\russian\design\banner.php
+admin\view\template\design\banner_list.tpl
+system\storage\modification\admin\view\template\design\banner_form.tpl

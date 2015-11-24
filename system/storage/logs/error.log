@@ -544,3 +544,9 @@
 2015-11-24 10:29:41 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 20
 2015-11-24 10:29:41 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 26
 2015-11-24 10:29:41 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 35
+2015-11-24 12:20:56 - PHP Notice:  Undefined variable: discount in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\product\product.tpl on line 168
+2015-11-24 12:20:56 - PHP Notice:  Undefined variable: discount in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\product\product.tpl on line 168
+2015-11-24 12:42:34 - PHP Notice:  Undefined variable: module in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\product\product.tpl on line 28
+2015-11-24 12:43:49 - PHP Notice:  Undefined variable: module in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\product\product.tpl on line 28
+2015-11-24 12:45:35 - PHP Notice:  Undefined variable: module in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\product\product.tpl on line 28
+2015-11-24 12:46:30 - PHP Notice:  Undefined variable: module in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\product\product.tpl on line 28
