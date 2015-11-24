@@ -2,7 +2,7 @@
 .buttoncard {
     color: #ffffff !important;
     background: #00562f !important;
-    padding: 11px 16px !important;
+    padding: 7px 16px !important;
     -webkit-border-radius: 0 !important;
     -moz-border-radius: 0 !important;
     border-radius: 0 !important;
@@ -15,7 +15,6 @@
     -moz-transition: all 0.3s ease !important;
     -o-transition: all 0.3s ease !important;
     transition: all 0.3s ease !important;
-    padding-top: 11px !important;
     font-family: 'Roboto', sans-serif !important;
     margin-left: 2px !important;
     white-space: nowrap !important;
@@ -38,7 +37,7 @@
 .buttoncardinverse {
     color: #00562f !important;
     background: #ffffff !important;
-    padding: 11px 16px;
+    padding: 7px 16px;
     -webkit-border-radius: 0 !important;
     -moz-border-radius: 0 !important;
     border-radius: 0 !important;
@@ -51,7 +50,7 @@
     -moz-transition: all 0.3s ease !important;
     -o-transition: all 0.3s ease !important;
     transition: all 0.3s ease !important;
-    padding-top: 11px ;
+
     font-family: 'Roboto', sans-serif !important;
     margin-left: 2px !important;
     white-space: nowrap !important;
@@ -415,6 +414,14 @@ header .buttonbl {
     transition: all 0.3s ease;
 }
 
+
+.thumbnail
+{
+    border: 1px solid #C7DAD1;
+    border-radius: 0px;
+}
+
+
 .magnifier:hover:after {
     opacity: 0.6;
 }
@@ -610,6 +617,21 @@ hr {
     border-radius: 0px;
 }
 
+.table-bordered thead
+{
+    background: #00562f;
+    color: white ;
+    
+}
+.table-bordered 
+{
+    border: 1px solid #C7DAD1 !important;
+    
+}
+.table-bordered td
+{
+       border: 1px solid #C7DAD1 !important;
+}
 
 /*mega filter pro*/
 .box-heading

@@ -153,7 +153,7 @@
                                                     
                                                     
                                     </div>
-                                    <div class="button-group">
+                                    <div class="button-group col-md-5 col-md-offset-6">
               <button type="button" class="buttoncardinverse"  data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>
                                         
     <button type="button" class="buttoncard" onclick="cart.add('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span></button>

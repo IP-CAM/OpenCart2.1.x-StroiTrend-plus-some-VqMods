@@ -895,7 +895,7 @@ h2.price {
 }
 
 .product-thumb .button-group button {
-    width: 57%;
+    width: 49%;
     border: none;
     display: inline-block;
     float: left;
@@ -908,7 +908,7 @@ h2.price {
 }
 
 .product-thumb .button-group button + button {
-    width: 40%;
+    width: 49%;
     border-left: 1px solid #ddd;
 }
 

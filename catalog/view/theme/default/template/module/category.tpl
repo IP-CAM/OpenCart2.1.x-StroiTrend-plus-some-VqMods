@@ -33,7 +33,7 @@
                                                                     </p>
                                                                     <div class="text-center mra">
                                                                         <div class="img-container">
-                                                                            <img src="<?php echo $child['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" /> </div>
+        <img src="<?php echo $child['image']; ?>" alt="<?php echo $child['name']; ?>" title="<?php echo $child['name']; ?>" class="img-responsive" /> </div>
                                                                     </div>
 
 

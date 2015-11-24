@@ -46,7 +46,7 @@
        
          
           
-          <h1><?php echo $heading_title; ?></h1>
+          <h1 style="margin:0px;"><?php echo $heading_title; ?></h1>
                                   <!-- Атрибуты вывод -->
                                     <?php if ($attribute_groups) { ?>
                                  <h4><?php echo $tab_attribute; ?></h4>
@@ -110,7 +110,7 @@
                                     <div class="col-sm-4">
                                        
                                           <?php if ($price) { ?>
-                                                      <ul class="list-unstyled">
+                                                      <ul class="list-unstyled" style="float:right;">
                                                         <?php if (!$special) { ?>
                                                         <li>
                                                           <h2 style="margin:0;"><?php echo $price; ?></h2>
@@ -143,7 +143,7 @@
 <div class="form-group">
 <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
 
-<button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary btn-lg btn-block"><?php echo $button_cart; ?></button>
+<button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn buttoncard btn-lg btn-block"><?php echo $button_cart; ?></button>
 </div>
 </div>
                                </div>
@@ -295,7 +295,7 @@
 
 <div class="row">
             <?php if ($review_status) { ?>
-             <div class="col-sm-2">
+        <div class="col-sm-2">
           <div class="rating">
             <p>
               <?php for ($i = 1; $i <= 5; $i++) { ?>
@@ -306,14 +306,15 @@
               <?php } ?>
               <?php } ?>
               </p>
-              </div> </div>
-<div class="col-sm-4">
+              </div> 
+        </div>
+<div class="col-sm-3">
     
     <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $reviews; ?></a> / <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $text_write; ?></a>
 </div>
          
           
-            <div class="col-sm-4">
+            <div class="col-sm-5">
          
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
@@ -340,6 +341,14 @@
          
 
           
+         
+      </div>
+      
+ 
+      
+      
+      
+    <?php echo $column_right; ?></div></div>
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-description" data-toggle="tab"><?php echo $tab_description; ?></a></li>
      
@@ -353,7 +362,7 @@
             <div class="tab-pane" id="tab-specification">
               <table class="table table-bordered">
                 <?php foreach ($attribute_groups as $attribute_group) { ?>
-                <thead>
+                <thead style=" background: #00562f;color:white">
                   <tr>
                     <td colspan="2"><strong><?php echo $attribute_group['name']; ?></strong></td>
                   </tr>
@@ -497,20 +506,14 @@
       </p>
       <?php } ?>
       <?php echo $content_bottom; ?>
-      </div>
       
       
       
       
       
       
-      
-      
-      
-      
-      
-    <?php echo $column_right; ?></div>
-</div>
+  
+
 
 <script type="text/javascript"><!--
 $('select[name=\'recurring_id\'], input[name="quantity"]').change(function(){

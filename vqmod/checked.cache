@@ -451,3 +451,10 @@ admin\language\english\design\banner.php
 admin\language\russian\design\banner.php
 admin\view\template\design\banner_list.tpl
 system\storage\modification\admin\view\template\design\banner_form.tpl
+admin\controller\localisation\zone.php
+admin\language\english\localisation\zone.php
+admin\language\russian\localisation\zone.php
+admin\view\template\localisation\zone_list.tpl
+admin\language\english\localisation\country.php
+admin\language\russian\localisation\country.php
+admin\view\template\localisation\country_list.tpl
