@@ -16,7 +16,7 @@
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
       <div class="row">
         <?php if ($column_left || $column_right) { ?>
-        <?php $class = 'col-sm-6'; ?>
+        <?php $class = 'col-sm-5'; ?>
         <?php } else { ?>
         <?php $class = 'col-sm-6'; ?>
         <?php } ?>
@@ -36,7 +36,11 @@
           <?php } ?>
           
      </div>
-         
+         <?php if ($column_left || $column_right) { ?>
+        <?php $class = 'col-sm-7'; ?>
+        <?php } else { ?>
+        <?php $class = 'col-sm-6'; ?>
+        <?php } ?>
                <!-- правая сторона -->
           <div class="<?php echo $class; ?>">
        
@@ -273,11 +277,25 @@
             <?php } ?>
             <?php } ?>
 
+           
+                  
+           
             <?php if ($minimum > 1) { ?>
             <div class="alert alert-info"><i class="fa fa-info-circle"></i> <?php echo $text_minimum; ?></div>
             <?php } ?>
           </div>
-          <?php if ($review_status) { ?>
+  
+        </div>
+          <!-- slideshow product -->
+          
+          
+          
+          
+ <div class="col-sm-12">
+
+<div class="row">
+            <?php if ($review_status) { ?>
+             <div class="col-sm-2">
           <div class="rating">
             <p>
               <?php for ($i = 1; $i <= 5; $i++) { ?>
@@ -287,36 +305,44 @@
               <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
               <?php } ?>
               <?php } ?>
-              <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $reviews; ?></a> / <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $text_write; ?></a></p>
-            <hr>
+              </p>
+              </div> </div>
+<div class="col-sm-4">
+    
+    <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $reviews; ?></a> / <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $text_write; ?></a>
+</div>
+         
+          
+            <div class="col-sm-4">
+         
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
             <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
             <!-- AddThis Button END -->
+           
+          </div>
+          <div class="col-sm-2">
+            <a href="<?php echo $contact; ?>" style="float:right;">
+                
+                 Задать вопрос
+            </a> 
           </div>
           <?php } ?>
-        </div>
-          <!-- slideshow product -->
           
           
+    </div>     
           
-          
- <div class="<?php echo $class; ?>">
-
 
      
           
    
           
          
-          
-          
+
           
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-description" data-toggle="tab"><?php echo $tab_description; ?></a></li>
-            <?php if ($attribute_groups) { ?>
-            <li><a href="#tab-specification" data-toggle="tab"><?php echo $tab_attribute; ?></a></li>
-            <?php } ?>
+     
             <?php if ($review_status) { ?>
             <li><a href="#tab-review" data-toggle="tab"><?php echo $tab_review; ?></a></li>
             <?php } ?>
@@ -470,7 +496,19 @@
         <?php } ?>
       </p>
       <?php } ?>
-      <?php echo $content_bottom; ?></div>
+      <?php echo $content_bottom; ?>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
     <?php echo $column_right; ?></div>
 </div>
 

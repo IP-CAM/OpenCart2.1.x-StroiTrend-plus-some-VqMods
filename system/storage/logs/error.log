@@ -550,3 +550,4 @@
 2015-11-24 12:43:49 - PHP Notice:  Undefined variable: module in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\product\product.tpl on line 28
 2015-11-24 12:45:35 - PHP Notice:  Undefined variable: module in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\product\product.tpl on line 28
 2015-11-24 12:46:30 - PHP Notice:  Undefined variable: module in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\product\product.tpl on line 28
+2015-11-24 15:31:48 - PHP Notice:  Undefined variable: contact in C:\xampp\htdocs\OpenCart21-StroiTrend\catalog\view\theme\default\template\product\product.tpl on line 321
