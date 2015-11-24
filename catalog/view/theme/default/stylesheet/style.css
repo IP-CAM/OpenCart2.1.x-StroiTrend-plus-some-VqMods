@@ -182,7 +182,12 @@
 .topH li>a:hover,
 a:focus {
     background-color: rgba(255, 255, 255, 0) !important;
-    color: white !important;
+    color: #ffffff !important;
+}
+.topH li>div>a:hover,
+a:focus {
+    background-color: rgba(255, 255, 255, 0) !important;
+    color: black !important;
 }
 
 .topH>nav {
@@ -522,8 +527,8 @@ hr {
 }
 
 .popup-preview {
-    top: -140px;
-    position: relative;
+    bottom: 30px;
+    position: absolute;
     z-index: 9;
 }
 
@@ -543,9 +548,10 @@ hr {
 /*slider*/
 
 .slideshowtxt {
-    position: relative;
+       position: absolute;
     z-index: 11;
-    top: -45em;
+    top: 0;
+    width: 100%;
     text-align: center;
 }
 
@@ -660,50 +666,10 @@ hr {
 /*MEDIA*/
 
 
-@media (max-width: 1600px) {
-    #menu {
-        float: left;
-    }
-    /*slider*/
-     /*slideshow*/
-    .slideshowtxt {
-        top: -35em;
-    }
-    .titlef >p {
-        font-size: 40pt !important;
-        color: black;
-        margin-top: 2em;
-        margin-bot: 2em;
-    }
-    .titles >p {
-        font-size: 20pt;
-        color: black;
-        margin-top: 2em;
-        margin-bot: 2em;
-    }
-    .slideshowbtn {
-        margin-top: 2.5em;
-        margin-bot: 2.5em;
-    }
-    #slideshow0, .owl-stage, .owl-stage-outer
-    {
-        max-height: 550px !important;
-    }
-        .popup-preview {
-            top:-175px;
-  
-    }
-}
 
 @media (max-width: 1200px) {
-    #menu {
-        float: left;
-    }
-    /*slider*/
-     /*slideshow*/
-    .slideshowtxt {
-        top: -25em;
-    }
+
+
     .titlef >p {
         font-size: 28pt !important;
         color: black;
@@ -724,10 +690,7 @@ hr {
     {
         max-height: 600px;
     }
-        .popup-preview {
-            top:-40px;
-  
-    }
+       
     #slideshow0, .owl-stage, .owl-stage-outer
     {
         max-height: 600px !important;
@@ -737,7 +700,7 @@ hr {
 
 /* Portrait tablet to landscape and desktop */
 
-@media (min-width: 768px) and (max-width: 979px) {
+@media (min-width: 768px) and (max-width: 991px) {
     .topH li {
         min-height: 30px;
     }
@@ -758,9 +721,7 @@ hr {
         margin-right: 10%;
     }
     /*slideshow*/
-    .slideshowtxt {
-        top: -18em;
-    }
+   
     .titlef >p {
         font-size: 28pt !important;
         color: black;
@@ -847,4 +808,8 @@ hr {
 .ulstylecart {
       border: 1px solid rgba(0, 86, 47, 0.22) !important ;
     border-radius: 0px;
+}
+
+#slideshow {
+    position: relative;
 }

@@ -541,3 +541,6 @@
 2015-11-23 17:30:16 - PHP Notice:  Undefined index: input-link-button in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\controller\extension\articles.php on line 279
 2015-11-23 17:31:52 - PHP Notice:  Undefined index: input-button in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\controller\extension\articles.php on line 271
 2015-11-23 17:31:52 - PHP Notice:  Undefined index: input-link-button in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\controller\extension\articles.php on line 279
+2015-11-24 10:29:41 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 20
+2015-11-24 10:29:41 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 26
+2015-11-24 10:29:41 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 35
