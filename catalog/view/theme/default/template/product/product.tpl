@@ -40,10 +40,7 @@
                <!-- правая сторона -->
           <div class="<?php echo $class; ?>">
        
-          <div class="btn-group">
-  
-            <button type="button" data-toggle="tooltip" class="btn buttoncardinverse" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product_id; ?>');"><i class="fa fa-exchange"></i></button>
-          </div>
+         
           
           <h1><?php echo $heading_title; ?></h1>
                                   <!-- Атрибуты вывод -->
@@ -96,37 +93,60 @@
                                                   <div class="col-sm-3">
                                                                 <input type="text" name="quantity" value="<?php echo $minimum; ?>" size="2" id="input-quantity" class="form-control" />
                                                   </div>      
-                           </div>    
+                           </div>  
+                      <!-- цена -->
+                               <div class="row" style="margin-top:20px;">
+                                    <div class="col-sm-4">
+                                         
+                                     
+<button type="button" data-toggle="tooltip" class="btn btn-primary" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product_id; ?>');" style="width:100%;"><i class="fa fa-exchange"></i></button>
+
+             
+                                     </div>
+                                    <div class="col-sm-4">
+                                       
+                                          <?php if ($price) { ?>
+                                                      <ul class="list-unstyled">
+                                                        <?php if (!$special) { ?>
+                                                        <li>
+                                                          <h2 style="margin:0;"><?php echo $price; ?></h2>
+                                                        </li>
+                                                        <?php } else { ?>
+                                                        <li><span style="text-decoration: line-through;"><?php echo $price; ?></span></li>
+                                                        <li>
+                                                          <h2><?php echo $special; ?></h2>
+                                                        </li>
+                                                        <?php } ?>
+                                                        <?php if ($tax) { ?>
+                                                        <li><?php echo $text_tax; ?> <?php echo $tax; ?></li>
+                                                        <?php } ?>
+                                                        <?php if ($points) { ?>
+                                                        <li><?php echo $text_points; ?> <?php echo $points; ?></li>
+                                                        <?php } ?>
+                                                        <?php if ($discounts) { ?>
+                                                        <li>
+                                                          <hr>
+                                                        </li>
+                                                        <?php foreach ($discounts as $discount) { ?>
+                                                        <li> <?php echo $discount['quantity']; ?><?php echo $text_discount; ?><?php echo $discount['price']; ?></li>
+                                                        <?php } ?>
+                                                        <?php } ?>
+                                                      </ul>
+                                                      <?php } ?>
+                                       
+                                   </div>
+                                    <div class="col-sm-4">
+<div class="form-group">
+<input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
+
+<button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary btn-lg btn-block"><?php echo $button_cart; ?></button>
+</div>
+</div>
+                               </div>
+           
   
       
-          <?php if ($price) { ?>
-          <ul class="list-unstyled">
-            <?php if (!$special) { ?>
-            <li>
-              <h2><?php echo $price; ?></h2>
-            </li>
-            <?php } else { ?>
-            <li><span style="text-decoration: line-through;"><?php echo $price; ?></span></li>
-            <li>
-              <h2><?php echo $special; ?></h2>
-            </li>
-            <?php } ?>
-            <?php if ($tax) { ?>
-            <li><?php echo $text_tax; ?> <?php echo $tax; ?></li>
-            <?php } ?>
-            <?php if ($points) { ?>
-            <li><?php echo $text_points; ?> <?php echo $points; ?></li>
-            <?php } ?>
-            <?php if ($discounts) { ?>
-            <li>
-              <hr>
-            </li>
-            <?php foreach ($discounts as $discount) { ?>
-            <li> <?php echo $discount['quantity']; ?><?php echo $text_discount; ?><?php echo $discount['price']; ?></li>
-            <?php } ?>
-            <?php } ?>
-          </ul>
-          <?php } ?>
+       
           <div id="product">
             <?php if ($options) { ?>
             <hr>
@@ -253,12 +273,6 @@
             <?php } ?>
             <?php } ?>
 
-            <div class="form-group">
-           
-              <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
-              <br />
-              <button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn btn-primary btn-lg btn-block"><?php echo $button_cart; ?></button>
-            </div>
             <?php if ($minimum > 1) { ?>
             <div class="alert alert-info"><i class="fa fa-info-circle"></i> <?php echo $text_minimum; ?></div>
             <?php } ?>
@@ -459,6 +473,7 @@
       <?php echo $content_bottom; ?></div>
     <?php echo $column_right; ?></div>
 </div>
+
 <script type="text/javascript"><!--
 $('select[name=\'recurring_id\'], input[name="quantity"]').change(function(){
 	$.ajax({
