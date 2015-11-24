@@ -1,6 +1,6 @@
    
    <div class="mfilter-box">
-   <h3 class="box-heading">Последние статьи</h3>
+   <h3 class="box-heading" style="margin-bottom:10px;">Последние статьи</h3>
    
 
    <div id="carousel<?php echo $module; ?>" class="owl-carousel">

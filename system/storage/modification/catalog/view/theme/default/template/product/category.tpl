@@ -58,9 +58,9 @@
             <?php if ($products) { ?>
    <div class="row" style="margin-bottom:10px;">          
                   <div class="col-md-4 control-label" >
-                     <div style="display:inline-block">     
+                     <div style="display:inline-block; margin-left:13px;">     
                            <p>
-                    <a href="<?php echo $compare; ?>" id="compare-total">
+                    <a class="buttoncardinverse" href="<?php echo $compare; ?>" id="compare-total">
                         <?php echo $text_compare; ?>
                     </a>
                 </p>
@@ -154,10 +154,11 @@
                                                     
                                     </div>
                                     <div class="button-group">
-                                       
+              <button type="button" class="buttoncardinverse"  data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>
+                                        
     <button type="button" class="buttoncard" onclick="cart.add('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span></button>
    
-    <button type="button" class="buttoncardinverse"  data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>
+   
                                     </div>
                                 </div>
                                
