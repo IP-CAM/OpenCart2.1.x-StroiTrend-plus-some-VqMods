@@ -67,7 +67,7 @@ jQuery(function ($) {
 					}, function () {
 						$('#contact-container .contact-loading').fadeIn(200, function () {
 							$.ajax({
-								url: 'catalog/controller/callback/callback.php',
+								url: 'catalog/controller/question/question.php',
 								data: $('#contact-container form').serialize() + '&action=send',
 								type: 'post',
 								cache: false,

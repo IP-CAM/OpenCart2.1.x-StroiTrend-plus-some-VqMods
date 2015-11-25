@@ -47,6 +47,7 @@ if (empty($action)) {
 }
 else if ($action == "send") {
         $name = isset($_POST["nameq"]) ? $_POST["nameq"] : "";
+        $product_id = isset($_POST["product_id"]) ? $_POST["product_id"] : "";
         $phone = isset($_POST["phoneq"]) ? $_POST["phoneq"] : "";
         $subject = isset($_POST["subject"]) ? $_POST["subject"] : $subject;
 		$message = "";
@@ -81,6 +82,7 @@ function smcf_send($name, $phone, $subject, $message, $cc) {
         $cc = 0; 
         $body = "Имя: $name\n";
 		$body .= "$message";
+    $body.=" ID product ".$product_id;
         $body = wordwrap($body, 70);
 
         $headers = "From: Вопрос\n";
