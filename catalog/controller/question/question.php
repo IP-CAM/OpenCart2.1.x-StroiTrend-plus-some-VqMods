@@ -7,6 +7,8 @@
 $questions = "maxxl2012@gmail.com";
 
 
+
+
 /* Дальше ничего не меняем */
 $subject = "Задать вопрос";
 include "../../language/russian/common/question.php";
@@ -38,6 +40,7 @@ if (empty($action)) {
     font-size: smaller;
     padding: 4px 10px 4px 10px;
 '' />
+             
                         <input type='hidden' name='token' value='" . smcf_token($questions) . "'/>
                 </form>
         </div>
@@ -46,8 +49,9 @@ if (empty($action)) {
         echo $output;
 }
 else if ($action == "send") {
+    $product_name=isset($_GET["namesProduct"]) ? $_GET["namesProduct"] : "";
         $name = isset($_POST["nameq"]) ? $_POST["nameq"] : "";
-        $product_id = isset($_POST["product_id"]) ? $_POST["product_id"] : "";
+      
         $phone = isset($_POST["phoneq"]) ? $_POST["phoneq"] : "";
         $subject = isset($_POST["subject"]) ? $_POST["subject"] : $subject;
 		$message = "";
@@ -55,7 +59,7 @@ else if ($action == "send") {
         $token = isset($_POST["token"]) ? $_POST["token"] : "";
 
         if ($token === smcf_token($questions)) {
-                smcf_send($name, $phone, $subject, $message,  $cc);
+                smcf_send($name, $phone, $subject, $message,  $cc ,  $product_name);
                 echo $ok;
         }
         else {
@@ -73,7 +77,7 @@ function smcf_filter($value) {
         return $value;
 }
 
-function smcf_send($name, $phone, $subject, $message, $cc) {
+function smcf_send($name, $phone, $subject, $message, $cc ,  $product_name) {
         global $questions;
         $name = smcf_filter($name);
         $subject = smcf_filter($subject);
@@ -82,7 +86,7 @@ function smcf_send($name, $phone, $subject, $message, $cc) {
         $cc = 0; 
         $body = "Имя: $name\n";
 		$body .= "$message";
-    $body.=" ID product ".$product_id;
+    $body.=" ID product ".$product_name;
         $body = wordwrap($body, 70);
 
         $headers = "From: Вопрос\n";

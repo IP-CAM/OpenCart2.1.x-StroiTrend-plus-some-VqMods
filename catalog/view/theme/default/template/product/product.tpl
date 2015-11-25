@@ -46,7 +46,7 @@
        
          
           
-          <h1 style="margin:0px;"><?php echo $heading_title; ?></h1>
+          <h1 style="margin:0px;" id="namesProduct"><?php echo $heading_title; ?></h1>
                                   <!-- Атрибуты вывод -->
                                     <?php if ($attribute_groups) { ?>
                                  <h4><?php echo $tab_attribute; ?></h4>
@@ -319,8 +319,8 @@
             <!-- AddThis Button BEGIN -->
             <div class="addthis_toolbox addthis_default_style"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
             <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
-                       <script type="text/javascript" src="catalog/view/javascript/question.js"></script>
-                                                        <script type="text/javascript" src="catalog/view/javascript/jquery.simplemodal.js"></script>
+                      
+                                                        
             <!-- AddThis Button END -->
            
           </div>
@@ -510,7 +510,8 @@
       <?php echo $content_bottom; ?>
       
       
-      
+    <script type="text/javascript" src="catalog/view/javascript/question.js"></script>
+                                                        <script type="text/javascript" src="catalog/view/javascript/jquery.simplemodal.js"></script>  
       
       
       

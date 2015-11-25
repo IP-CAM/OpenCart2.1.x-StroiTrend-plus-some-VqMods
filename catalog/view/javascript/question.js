@@ -2,6 +2,7 @@ jQuery(function ($) {
 	var contact = {
 		message: null,
 		init: function () {
+            
 			$('.contact-btnquestion').click(function (e) {
 				e.preventDefault();
 
@@ -28,7 +29,10 @@ jQuery(function ($) {
 			if ($('#contact-cc').length) {
 				h += 22;
 			}
-
+            
+      
+    
+            
 			var title = $('#contact-container .contact-title').html();
 			$('#contact-container .contact-title').html('Загрузка...');
 			dialog.overlay.fadeIn(200, function () {
@@ -67,7 +71,8 @@ jQuery(function ($) {
 					}, function () {
 						$('#contact-container .contact-loading').fadeIn(200, function () {
 							$.ajax({
-								url: 'catalog/controller/question/question.php',
+								url: 'catalog/controller/question/question.php?namesProduct='+$('#namesProduct').html(),
+                                                             
 								data: $('#contact-container form').serialize() + '&action=send',
 								type: 'post',
 								cache: false,
