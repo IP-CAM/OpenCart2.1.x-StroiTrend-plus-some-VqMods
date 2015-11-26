@@ -30,7 +30,7 @@ if (empty($action)) {
                 <div class='contact-message' style='display:none'></div>
                 <form action='#' style='display:none'>
                   
-                        <input type='text' id='contact-name' placeholder='Представьтесь' class='q2' name='nameq' tabindex='1001' required />
+                        <input type='text' id='contact-name' placeholder='Почта' class='q2' name='nameq' tabindex='1001' required />
                        
                         <textarea type='text-area' id='contact-phone' placeholder='Ваш вопрос' class='q2' name='phoneq' tabindex='1002' required />";
              
@@ -84,9 +84,9 @@ function smcf_send($name, $phone, $subject, $message, $cc ,  $product_name) {
         $phone = smcf_filter($phone);
         $message = "\nВопрос: ".$phone;
         $cc = 0; 
-        $body = "Имя: $name\n";
+        $body = "mail : $name\n";
 		$body .= "$message";
-    $body.=" ID product ".$product_name;
+    $body.="\n Название товара ".$product_name;
         $body = wordwrap($body, 70);
 
         $headers = "From: Вопрос\n";

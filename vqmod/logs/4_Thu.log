@@ -1,0 +1,12 @@
+---------- Date: 2015-11-26 14:20:49 ~ IP : 127.0.0.1 ----------
+REQUEST URI : /OpenCart21-StroiTrend/admin/index.php?route=extension/modification&token=KsrQg3BueH2ETzW7OWska6XSu7W4GFVl
+MOD DETAILS:
+   modFile   : C:\xampp\htdocs\OpenCart21-StroiTrend\vqmod/xml/irs_product_category_export_excel.xml
+   id        : Export Excel Product 
+   version   : 2.0
+   vqmver    : 2.4.1
+   author    : IRSSOFT
+VQModObject::parseMods - Could not resolve path for [admin/language/english/default.php] (SKIPPED)
+----------------------------------------------------------------------
+
+
