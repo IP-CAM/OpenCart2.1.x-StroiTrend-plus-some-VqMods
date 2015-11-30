@@ -38,7 +38,7 @@
 									<% } %>
 									<% _.each(shipping_method.quote, function(quote) { %>
 										<% if (quote.code == model.shipping_method.code) { %>
-											<option  value="<%= quote.code %>" id="<%= quote.code %>" selected="selected" ><%= quote.title %> <span class="price"><%= quote.text %></span></option>
+<option  value="<%= quote.code %>" id="<%= quote.code %>" selected="selected" ><%= quote.title %> <span class="price"><%= quote.text %></span></option>
 										<% } else { %>
 											<option  value="<%= quote.code %>" id="<%= quote.code %>" ><%= quote.title %> <span class="price"><%= quote.text %></span></option>
 										<% } %>
@@ -66,7 +66,13 @@
 									    <% } else { %>
 									      <input type="radio" name="shipping_method" value="<%= quote.code %>" id="<%= quote.code %>" data-refresh="5" class="styled"/> 
 									    <% } %>
-									    <span class="text"><%= quote.title %></span><span class="price"><%= quote.text %></span></label>
+									    <span class="text"><%= quote.title %></span>
+									    <%  if (quote.text== "0грн.") { %>
+									    <span class="price">Оплата при доставке.</span>
+									    <%  } else { %>
+									    <span class="price"><%= quote.text %></span>
+									    <%  } %>
+									    </label>
 									  </div>
 									<% }) %>
 								<% } else { %>
