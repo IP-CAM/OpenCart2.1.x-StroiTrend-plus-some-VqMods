@@ -103,7 +103,7 @@ $_['d_quickcheckout_setting'] = array(
 								'id' => 'email',
 								'title' => 'entry_email', 
 								'tooltip' => '',
-								'error' => array(),
+								
 								'type' => 'email',
 								'refresh' => '0',
 								'custom' => 0,
@@ -111,20 +111,7 @@ $_['d_quickcheckout_setting'] = array(
 								'class' => '',
 								'mask' => '',
 						),
-						'email_confirm' => array(
-								'id' => 'email_confirm',
-								'title' => 'entry_email_confirm', 
-								'tooltip' => '',
-								'error' => array(0 => array('compare_to' => '#payment_address_email',
-															 'text' => 'error_email_confirm')),
-								
-								'type' => 'text',
-								'refresh' => '0',
-								'custom' => 0,
-								'sort_order' => 3,
-								'class' => '',
-								'mask' => '',
-						),
+						
 						'telephone' => array(
 								'id' => 'telephone',
 								'title' => 'entry_telephone', 
@@ -139,20 +126,7 @@ $_['d_quickcheckout_setting'] = array(
 								'class' => '',
 								'mask' => '',
 						),
-						'fax' => array(
-								'id' => 'fax',
-								'title' => 'entry_fax',
-								'tooltip' => '',
-								'error' => array(0 => array('min_length' => 3, 
-															 'max_length' => 32, 
-															 'text' => 'error_telephone')),
-								'type' => 'text',
-								'refresh' => '0',
-								'custom' => 0,
-								'sort_order' => 5,
-								'class' => '',
-								'mask' => '',
-						),
+					
 						'password' => array(
 								'id' => 'password',
 								'title' => 'entry_password', 
@@ -200,6 +174,7 @@ $_['d_quickcheckout_setting'] = array(
 								'sort_order' => 9,
 								'class' => '',
 								'mask' => '',
+                            'display'=>0,
 						),
 						'customer_group_id' => array(
 								'id' => 'customer_group_id',
@@ -221,7 +196,7 @@ $_['d_quickcheckout_setting'] = array(
 								'type' => 'text',
 								'refresh' => '0',
 								'custom' => 0,
-								'sort_order' => 11,
+								'sort_order' => 16,
 								'class' => '',
 								'mask' => '',
 						),
@@ -249,7 +224,7 @@ $_['d_quickcheckout_setting'] = array(
 								'type' => 'text',
 								'refresh' => '0',
 								'custom' => 0,
-								'sort_order' => 13,
+								'sort_order' => 15,
 								'class' => ''
 						),
 						'postcode' => array(
@@ -265,6 +240,8 @@ $_['d_quickcheckout_setting'] = array(
 								'sort_order' => 14,
 								'class' => '',
 								'mask' => '',
+                                'require' => 0,
+                                'display'=>0,
 						),
 						'country_id' => array(
 								'id' => 'country_id',
@@ -275,7 +252,7 @@ $_['d_quickcheckout_setting'] = array(
 								'type' => 'select',
 								'refresh' => '3',
 								'custom' => 0,
-								'sort_order' => 15,
+								'sort_order' => 11,
 								'class' => 'country'
 						),
 						'zone_id' => array(
@@ -286,7 +263,7 @@ $_['d_quickcheckout_setting'] = array(
 								'type' => 'select',
 								'refresh' => '3',
 								'custom' => 0,
-								'sort_order' => 16,
+								'sort_order' => 13,
 								'class' => 'zone'
 						),
 						'newsletter' => array(
@@ -390,6 +367,7 @@ $_['d_quickcheckout_setting'] = array(
 							'sort_order' => 3,
 							'class' => '',
 							'mask' => '',
+
 						),
 						'address_1' => array(
 							'id' => 'address_1',
@@ -606,6 +584,7 @@ $_['d_quickcheckout_setting'] = array(
 							'custom' => 0,
 							'class' => '',
 							'sort_order' => 1,
+                            'display' =>0,
 					)
 					
 					
@@ -629,7 +608,7 @@ $_['d_quickcheckout_setting'] = array(
 										 'value' => ''													
 										 ), 
 					'email' => array(	 'display' => 1, 
-										 'require' => 1,
+										 'require' => 0,
 										 'error' => array(0 => array('min_length' => 3, 
 															 'max_length' => 96, 
 															 'text' => array(1 => 'Sorry, but you need to have the length of the text more then 3 and less then 96 ')),
@@ -643,7 +622,7 @@ $_['d_quickcheckout_setting'] = array(
 										 ),
 					'email_confirm' => array(	 
 										 'display' => 1, 
-										 'require' => 1,
+										 'require' => 0,
 										 'value' => ''
 										 ),
 					'heading' => array(
@@ -667,7 +646,7 @@ $_['d_quickcheckout_setting'] = array(
 										 ),
 					'confirm' => array(
 									     'display' => 1, 
-										 'require' => 1,
+										 'require' => 0,
 										 'value' => ''	
 										 ),
 					'company' => array(
@@ -841,7 +820,7 @@ $_['d_quickcheckout_setting'] = array(
 										 'value' => ''														
 										 ), 
 					'email' => array(	 'display' => 1, 
-										 'require' => 1,
+										 'require' => 0,
 										 'error' => array(0 => array('min_length' => 3, 
 															 'max_length' => 96, 
 															 'text' => array(1 => 'Sorry, but you need to have the length of the text more then 3 and less then 96 ')),
@@ -916,7 +895,7 @@ $_['d_quickcheckout_setting'] = array(
 										 'value' => 1
 										 ),
 					'agree' => array( 
-										 'display' => 1, 
+										 'display' => 0, 
 										 'require' => 1,
 										 'value' => '0'
 										 )

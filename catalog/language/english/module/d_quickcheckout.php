@@ -2,7 +2,7 @@
 
 $_['title_payment_address']  						= 'Детали заказа';
 $_['description_payment_address']  					= '';
-$_['title_shipping_address']  						= 'Delivery details';
+$_['title_shipping_address']  						= 'Детали доставки';
 $_['description_shipping_address'] 					= '';
 $_['title_shipping_method']  						= 'Доставка';
 $_['description_shipping_method'] 					= '';

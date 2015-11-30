@@ -27,6 +27,11 @@
 {
     text-align: left !important;
 }
+#payment_address_customer_group_id_input
+{
+    display: none;
+}
+
 .buttoncard:hover {
     border: 1px solid #00562f !important;
     color: #00562f !important;
@@ -36,6 +41,10 @@
     transition: all 0.3s ease !important;
     text-decoration: none !important;
     background-color: #ffffff !important;
+}
+.qc-coupon ,.qc-voucher
+{
+ display: none !important;   
 }
 
 
