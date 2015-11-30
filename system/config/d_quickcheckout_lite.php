@@ -362,7 +362,7 @@ $_['d_quickcheckout_setting'] = array(
 							'type' => 'text',
 							'refresh' => '0',
 							'custom' => 0,
-							// 'display' => 0,
+							 'display' => 0,
 							// 'require' => 0,
 							'sort_order' => 3,
 							'class' => '',
@@ -413,7 +413,7 @@ $_['d_quickcheckout_setting'] = array(
 							'custom' => 0,
 							// 'display' => 0,
 							// 'require' => 0,
-							'sort_order' => 6,
+							'sort_order' => 8,
 							'class' => '',
 							'mask' => '',
 						),
@@ -427,9 +427,9 @@ $_['d_quickcheckout_setting'] = array(
 							'type' => 'text',
 							'refresh' => '0',
 							'custom' => 0,
-							// 'display' => 0,
-							// 'require' => 0,
-							'sort_order' => 7,
+							 'display' => 0,
+							 'require' => 0,
+							'sort_order' => 9,
 							'class' => '',
 							'mask' => '',
 						),
@@ -444,7 +444,7 @@ $_['d_quickcheckout_setting'] = array(
 							'custom' => 0,
 							// 'display' => 0,
 							// 'require' => 0,
-							'sort_order' => 8,
+							'sort_order' => 6,
 							'class' => '',
 						),
 						'zone_id' => array(
@@ -458,7 +458,7 @@ $_['d_quickcheckout_setting'] = array(
 							'custom' => 0,
 							// 'display' => 0,
 							// 'require' => 0,
-							'sort_order' => 9,
+							'sort_order' => 7,
 							'class' => ''
 						)
 					)

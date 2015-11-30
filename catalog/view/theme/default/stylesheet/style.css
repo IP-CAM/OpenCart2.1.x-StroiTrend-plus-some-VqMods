@@ -31,6 +31,9 @@
 {
     display: none;
 }
+.nonewhbg:hover {
+    background: rgba(255, 255, 255, 0) !important; 
+}
 
 .buttoncard:hover {
     border: 1px solid #00562f !important;
@@ -312,7 +315,7 @@ header .buttonbl {
 }
 
 .fsize16 {
-    font-size: 13pt !important;
+    font-size: 12pt !important;
     padding-left: 6px;
     padding-right: 6px;
 }
@@ -537,8 +540,8 @@ hr {
     width: 30%
 }
 
-.img-container >img {
-    width: 100%;
+.img-container img {
+    width: 100% !important;
     height: auto;
    
     
