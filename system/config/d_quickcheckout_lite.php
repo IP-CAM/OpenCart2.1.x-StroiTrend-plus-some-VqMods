@@ -381,7 +381,7 @@ $_['d_quickcheckout_setting'] = array(
 							'custom' => 0,
 							// 'display' => 0,
 							// 'require' => 0,
-							'sort_order' => 4,
+							'sort_order' => 9,
 							'class' => '',
 							'mask' => '',
 						),
