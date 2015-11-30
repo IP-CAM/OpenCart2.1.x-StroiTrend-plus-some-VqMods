@@ -613,7 +613,52 @@ hr {
         max-height: 600px !important;
     }
 
+.btn-danger
+{
+     color: #000000 !important;
+    background: rgba(247, 40, 44, 0) !important;
 
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+    text-shadow: none;
+    border: 1px solid #00562f !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+    font-family: 'Roboto', sans-serif;
+
+
+  
+}
+.btn-danger:hover
+{
+     color: #ffffff !important;
+    background: #00562f !important;
+
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+    text-shadow: none;
+    border: 1px solid #00562f !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+    font-family: 'Roboto', sans-serif;
+
+
+  
+}
 
 /*категория левый баннер*/
 .list-group a {
