@@ -1,4 +1,0 @@
-2015-11-26 14:19:28 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 20
-2015-11-26 14:19:28 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 26
-2015-11-26 14:19:28 - PHP Notice:  Undefined variable: result in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\model\setting\articles.php on line 35
-2015-11-26 14:37:34 - PHP Notice:  Undefined index: category_id in C:\xampp\htdocs\OpenCart21-StroiTrend\system\storage\modification\admin\controller\catalog\category.php on line 600

@@ -23,6 +23,7 @@
       <div class="row">
         <div class="col-sm-6">
           <div class="well">
+          
             <h2><?php echo $text_new_customer; ?></h2>
             <p><strong><?php echo $text_register; ?></strong></p>
             <p><?php echo $text_register_account; ?></p>

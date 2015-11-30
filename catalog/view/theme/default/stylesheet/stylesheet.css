@@ -14,6 +14,11 @@ body a {
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    color:#00562f ;
+}
+#d_quickcheckout a
+{
+        color:#00562f !important;
 }
 
 body li {
@@ -578,26 +583,40 @@ footer h5 {
 }
 
 .btn-default {
-    color: #777;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-    background-color: #e7e7e7;
-    background-image: linear-gradient(to bottom, #eeeeee, #dddddd);
-    background-repeat: repeat-x;
-    border-color: #dddddd #dddddd #b3b3b3 #b7b7b7;
-}
-
-.btn-primary {
-   color: #000000;
-    background: rgba(247, 40, 44, 0);
+    color: #000000 !important;
+    background: rgba(247, 40, 44, 0) !important;
     padding: 6px 6px;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
-    border-radius: 0;
-    text-shadow: none;
-    border: 1px solid #00562f;
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+    border-radius: 0 !important;
+    text-shadow: none !important;
+    border: 1px solid #00562f !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+   
+    font-family: 'Roboto', sans-serif;
+    margin-left: 2px;
+    white-space: nowrap;
+    line-height: 20px;
+}
+
+.btn-primary {
+   color: #000000 !important;
+    background: rgba(247, 40, 44, 0) !important;
+    padding: 6px 6px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0 !important;
+    text-shadow: none !important;
+    border: 1px solid #00562f !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -614,14 +633,14 @@ footer h5 {
 .btn-primary.active,
 .btn-primary.disabled,
 .btn-primary[disabled] {
-    border-bottom: 1px solid #00562f;
-    color: #ffffff;
+    border: 1px solid #00562f !important;
+    color: #ffffff !important;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
-    text-decoration: none;
-    background-color: #00562f;
+    text-decoration: none !important;
+    background-color: #00562f !important;
 }
 
 .btn-warning {

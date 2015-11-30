@@ -2,8 +2,8 @@
 // Text
 $sendthis='Задать вопрос';
 $callback='Перезвонить:';
-$namew = 'Email:';
-$phonew  = 'Вопрос:';
+$namew = 'Имя:';
+$phonew  = 'Телефон:';
 $theme  = 'Перезвонить:';
 $messagew  = 'Сообщение:';
 $cancel = 'Отмена';

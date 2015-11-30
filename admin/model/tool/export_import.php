@@ -68,6 +68,7 @@ function fatal_error_shutdown_handler_for_export_import()
 class ModelToolExportImport extends Model {
 
 	private $error = array();
+	protected $null_array = array();
 
 	protected function clean( &$str, $allowBlanks=false ) {
 		$result = "";
@@ -295,32 +296,16 @@ class ModelToolExportImport extends Model {
 
 
 	protected function getAvailableProductIds(&$data) {
-		// get all product_ids from the database
-		$sql = "SELECT `product_id` FROM `".DB_PREFIX."product`;";
-		$result = $this->db->query( $sql );
-		$product_ids = array();
-		foreach ($result->rows as $row) {
-			$product_ids[$row['product_id']] = $row['product_id'];
-		}
-
-		// we are only interested in above found product_ids if they are also listed in the Products worksheet
 		$available_product_ids = array();
-		$i = 0;
 		$k = $data->getHighestRow();
-		for ($i=0; $i<$k; $i+=1) {
+		for ($i=1; $i<$k; $i+=1) {
 			$j = 1;
-			if ($i==0) {
-				continue;
-			}
 			$product_id = trim($this->getCell($data,$i,$j++));
 			if ($product_id=="") {
 				continue;
 			}
-			if (array_key_exists($product_id,$product_ids)) {
-				$available_product_ids[$product_id] = $product_id;
-			}
+			$available_product_ids[$product_id] = $product_id;
 		}
-
 		return $available_product_ids;
 	}
 
@@ -378,7 +363,7 @@ class ModelToolExportImport extends Model {
 	protected function storeCategoryIntoDatabase( &$category, &$languages, $exist_meta_title, &$layout_ids, &$available_store_ids, &$url_alias_ids ) {
 		// extract the category details
 		$category_id = $category['category_id'];
-		$image_name = $category['image'];
+		$image_name = $this->db->escape($category['image']);
 		$parent_id = $category['parent_id'];
 		$top = $category['top'];
 		$top = ((strtoupper($top)=="TRUE") || (strtoupper($top)=="YES") || (strtoupper($top)=="ENABLED")) ? 1 : 0;
@@ -519,7 +504,7 @@ class ModelToolExportImport extends Model {
 	}
 
 
-	protected function uploadCategories( &$reader, $incremental ) {
+	protected function uploadCategories( &$reader, $incremental, &$available_category_ids=array() ) {
 		// get worksheet if there
 		$data = $reader->getSheetByName( 'Categories' );
 		if ($data==null) {
@@ -664,6 +649,119 @@ class ModelToolExportImport extends Model {
 	}
 
 
+	protected function storeCategoryFilterIntoDatabase( &$category_filter, &$languages ) {
+		$category_id = $category_filter['category_id'];
+		$filter_id = $category_filter['filter_id'];
+		$sql  = "INSERT INTO `".DB_PREFIX."category_filter` (`category_id`, `filter_id`) VALUES ";
+		$sql .= "( $category_id, $filter_id );";
+		$this->db->query( $sql );
+	}
+
+
+	protected function deleteCategoryFilters() {
+		$sql = "TRUNCATE TABLE `".DB_PREFIX."category_filter`";
+		$this->db->query( $sql );
+	}
+
+
+	protected function deleteCategoryFilter( $category_id ) {
+		$sql = "DELETE FROM `".DB_PREFIX."category_filter` WHERE category_id='".(int)$category_id."'";
+		$this->db->query( $sql );
+	}
+
+
+	protected function deleteUnlistedCategoryFilters( &$unlisted_category_ids ) {
+		foreach ($unlisted_category_ids as $category_id) {
+			$sql = "DELETE FROM `".DB_PREFIX."category_filter` WHERE category_id='".(int)$category_id."'";
+			$this->db->query( $sql );
+		}
+	}
+
+
+	// function for reading additional cells in class extensions
+	protected function moreCategoryFilterCells( $i, &$j, &$worksheet, &$category_filter ) {
+		return;
+	}
+
+
+	protected function uploadCategoryFilters( &$reader, $incremental, &$available_category_ids ) {
+		// get worksheet, if not there return immediately
+		$data = $reader->getSheetByName( 'CategoryFilters' );
+		if ($data==null) {
+			return;
+		}
+
+		// if incremental then find current category IDs else delete all old category filters
+		if ($incremental) {
+			$unlisted_category_ids = $available_category_ids;
+		} else {
+			$this->deleteCategoryFilters();
+		}
+
+		if (!$this->config->get( 'export_import_settings_use_filter_group_id' )) {
+			$filter_group_ids = $this->getFilterGroupIds();
+		}
+		if (!$this->config->get( 'export_import_settings_use_filter_id' )) {
+			$filter_ids = $this->getFilterIds();
+		}
+
+		// load the worksheet cells and store them to the database
+		$languages = $this->getLanguages();
+		$previous_category_id = 0;
+		$first_row = array();
+		$i = 0;
+		$k = $data->getHighestRow();
+		for ($i=0; $i<$k; $i+=1) {
+			if ($i==0) {
+				$max_col = PHPExcel_Cell::columnIndexFromString( $data->getHighestColumn() );
+				for ($j=1; $j<=$max_col; $j+=1) {
+					$first_row[] = $this->getCell($data,$i,$j);
+				}
+				continue;
+			}
+			$j = 1;
+			$category_id = trim($this->getCell($data,$i,$j++));
+			if ($category_id=='') {
+				continue;
+			}
+			if ($this->config->get( 'export_import_settings_use_filter_group_id' )) {
+				$filter_group_id = $this->getCell($data,$i,$j++,'');
+			} else {
+				$filter_group_name = $this->getCell($data,$i,$j++);
+				$filter_group_id = isset($filter_group_ids[$filter_group_name]) ? $filter_group_ids[$filter_group_name] : '';
+			}
+			if ($filter_group_id=='') {
+				continue;
+			}
+			if ($this->config->get( 'export_import_settings_use_filter_id' )) {
+				$filter_id = $this->getCell($data,$i,$j++,'');
+			} else {
+				$filter_name = $this->getCell($data,$i,$j++);
+				$filter_id = isset($filter_ids[$filter_group_id][$filter_name]) ? $filter_ids[$filter_group_id][$filter_name] : '';
+			}
+			if ($filter_id=='') {
+				continue;
+			}
+			$category_filter = array();
+			$category_filter['category_id'] = $category_id;
+			$category_filter['filter_group_id'] = $filter_group_id;
+			$category_filter['filter_id'] = $filter_id;
+			if (($incremental) && ($category_id != $previous_category_id)) {
+				$this->deleteCategoryFilter( $category_id );
+				if (isset($unlisted_category_ids[$category_id])) {
+					unset($unlisted_category_ids[$category_id]);
+				}
+			}
+			$this->moreCategoryFilterCells( $i, $j, $data, $category_filter );
+			$this->storeCategoryFilterIntoDatabase( $category_filter, $languages );
+			$previous_category_id = $category_id;
+		}
+		if ($incremental) {
+			$this->deleteUnlistedCategoryFilters( $unlisted_category_ids );
+		}
+	}
+
+
 	protected function getProductViewCounts() {
 		$query = $this->db->query( "SELECT product_id, viewed FROM `".DB_PREFIX."product`" );
 		$view_counts = array();
@@ -699,7 +797,7 @@ class ModelToolExportImport extends Model {
 		$quantity = $product['quantity'];
 		$model = $this->db->escape($product['model']);
 		$manufacturer_name = $product['manufacturer_name'];
-		$image = $product['image'];
+		$image = $this->db->escape($product['image']);
 		$shipping = $product['shipping'];
 		$shipping = ((strtoupper($shipping)=="YES") || (strtoupper($shipping)=="Y") || (strtoupper($shipping)=="TRUE")) ? 1 : 0;
 		$price = trim($product['price']);
@@ -1160,11 +1258,7 @@ class ModelToolExportImport extends Model {
 			$product['tags'] = $tags;
 			$product['sort_order'] = $sort_order;
 			if ($incremental) {
-				if ($available_product_ids) {
-					if (in_array((int)$product_id,$available_product_ids)) {
-						$this->deleteProduct( $product_id, $exist_table_product_tag );
-					}
-				}
+				$this->deleteProduct( $product_id, $exist_table_product_tag );
 			}
 			$this->moreProductCells( $i, $j, $data, $product );
 			$this->storeProductIntoDatabase( $product, $languages, $product_fields, $exist_table_product_tag, $exist_meta_title, $layout_ids, $available_store_ids, $manufacturers, $weight_class_ids, $length_class_ids, $url_alias_ids );
@@ -1218,8 +1312,10 @@ class ModelToolExportImport extends Model {
 			$image_name = $row['image'];
 			$old_product_image_ids[$product_id][$image_name] = $product_image_id;
 		}
-		$sql = "DELETE FROM `".DB_PREFIX."product_image` WHERE product_id='".(int)$product_id."'";
-		$this->db->query( $sql );
+		if ($old_product_image_ids) {
+			$sql = "DELETE FROM `".DB_PREFIX."product_image` WHERE product_id='".(int)$product_id."'";
+			$this->db->query( $sql );
+		}
 		return $old_product_image_ids;
 	}
 
@@ -1282,14 +1378,9 @@ class ModelToolExportImport extends Model {
 				$image['sort_order'] = $sort_order;
 			}
 			if (($incremental) && ($product_id != $previous_product_id)) {
-				$old_product_image_ids = array();
-				if ($available_product_ids) {
-					if (in_array((int)$product_id,$available_product_ids)) {
-						$old_product_image_ids = $this->deleteAdditionalImage( $product_id );
-						if (isset($unlisted_product_ids[$product_id])) {
-							unset($unlisted_product_ids[$product_id]);
-						}
-					}
+				$old_product_image_ids = $this->deleteAdditionalImage( $product_id );
+				if (isset($unlisted_product_ids[$product_id])) {
+					unset($unlisted_product_ids[$product_id]);
 				}
 			}
 			$this->moreAdditionalImageCells( $i, $j, $data, $image );
@@ -1340,8 +1431,10 @@ class ModelToolExportImport extends Model {
 			$customer_group_id = $row['customer_group_id'];
 			$old_product_special_ids[$product_id][$customer_group_id] = $product_special_id;
 		}
-		$sql = "DELETE FROM `".DB_PREFIX."product_special` WHERE product_id='".(int)$product_id."'";
-		$this->db->query( $sql );
+		if ($old_product_special_ids) {
+			$sql = "DELETE FROM `".DB_PREFIX."product_special` WHERE product_id='".(int)$product_id."'";
+			$this->db->query( $sql );
+		}
 		return $old_product_special_ids;
 	}
 
@@ -1407,13 +1500,9 @@ class ModelToolExportImport extends Model {
 			$special['date_start'] = $date_start;
 			$special['date_end'] = $date_end;
 			if (($incremental) && ($product_id != $previous_product_id)) {
-				if ($available_product_ids) {
-					if (in_array((int)$product_id,$available_product_ids)) {
-						$old_product_special_ids = $this->deleteSpecial( $product_id );
-						if (isset($unlisted_product_ids[$product_id])) {
-							unset($unlisted_product_ids[$product_id]);
-						}
-					}
+				$old_product_special_ids = $this->deleteSpecial( $product_id );
+				if (isset($unlisted_product_ids[$product_id])) {
+					unset($unlisted_product_ids[$product_id]);
 				}
 			}
 			$this->moreSpecialCells( $i, $j, $data, $special );
@@ -1466,8 +1555,10 @@ class ModelToolExportImport extends Model {
 			$quantity = $row['quantity'];
 			$old_product_discount_ids[$product_id][$customer_group_id][$quantity] = $product_discount_id;
 		}
-		$sql = "DELETE FROM `".DB_PREFIX."product_discount` WHERE product_id='".(int)$product_id."'";
-		$this->db->query( $sql );
+		if ($old_product_discount_ids) {
+			$sql = "DELETE FROM `".DB_PREFIX."product_discount` WHERE product_id='".(int)$product_id."'";
+			$this->db->query( $sql );
+		}
 		return $old_product_discount_ids;
 	}
 
@@ -1535,13 +1626,9 @@ class ModelToolExportImport extends Model {
 			$discount['date_start'] = $date_start;
 			$discount['date_end'] = $date_end;
 			if (($incremental) && ($product_id != $previous_product_id)) {
-				if ($available_product_ids) {
-					if (in_array((int)$product_id,$available_product_ids)) {
-						$old_product_discount_ids = $this->deleteDiscount( $product_id );
-						if (isset($unlisted_product_ids[$product_id])) {
-							unset($unlisted_product_ids[$product_id]);
-						}
-					}
+				$old_product_discount_ids = $this->deleteDiscount( $product_id );
+				if (isset($unlisted_product_ids[$product_id])) {
+					unset($unlisted_product_ids[$product_id]);
 				}
 			}
 			$this->moreDiscountCells( $i, $j, $data, $discount );
@@ -1589,8 +1676,10 @@ class ModelToolExportImport extends Model {
 			$customer_group_id = $row['customer_group_id'];
 			$old_product_reward_ids[$product_id][$customer_group_id] = $product_reward_id;
 		}
-		$sql = "DELETE FROM `".DB_PREFIX."product_reward` WHERE product_id='".(int)$product_id."'";
-		$this->db->query( $sql );
+		if ($old_product_reward_ids) {
+			$sql = "DELETE FROM `".DB_PREFIX."product_reward` WHERE product_id='".(int)$product_id."'";
+			$this->db->query( $sql );
+		}
 		return $old_product_reward_ids;
 	}
 
@@ -1650,13 +1739,9 @@ class ModelToolExportImport extends Model {
 			$reward['customer_group'] = $customer_group;
 			$reward['points'] = $points;
 			if (($incremental) && ($product_id != $previous_product_id)) {
-				if ($available_product_ids) {
-					if (in_array((int)$product_id,$available_product_ids)) {
-						$old_product_reward_ids = $this->deleteReward( $product_id );
-						if (isset($unlisted_product_ids[$product_id])) {
-							unset($unlisted_product_ids[$product_id]);
-						}
-					}
+				$old_product_reward_ids = $this->deleteReward( $product_id );
+				if (isset($unlisted_product_ids[$product_id])) {
+					unset($unlisted_product_ids[$product_id]);
 				}
 			}
 			$this->moreRewardCells( $i, $j, $data, $reward );
@@ -1733,8 +1818,10 @@ class ModelToolExportImport extends Model {
 			$option_id = $row['option_id'];
 			$old_product_option_ids[$product_id][$option_id] = $product_option_id;
 		}
-		$sql = "DELETE FROM `".DB_PREFIX."product_option` WHERE product_id='".(int)$product_id."'";
-		$this->db->query( $sql );
+		if ($old_product_option_ids) {
+			$sql = "DELETE FROM `".DB_PREFIX."product_option` WHERE product_id='".(int)$product_id."'";
+			$this->db->query( $sql );
+		}
 		return $old_product_option_ids;
 	}
 
@@ -1802,13 +1889,9 @@ class ModelToolExportImport extends Model {
 			$product_option['option_value'] = $option_value;
 			$product_option['required'] = $required;
 			if (($incremental) && ($product_id != $previous_product_id)) {
-				if ($available_product_ids) {
-					if (in_array((int)$product_id,$available_product_ids)) {
-						$old_product_option_ids = $this->deleteProductOption( $product_id );
-						if (isset($unlisted_product_ids[$product_id])) {
-							unset($unlisted_product_ids[$product_id]);
-						}
-					}
+				$old_product_option_ids = $this->deleteProductOption( $product_id );
+				if (isset($unlisted_product_ids[$product_id])) {
+					unset($unlisted_product_ids[$product_id]);
 				}
 			}
 			$this->moreProductOptionCells( $i, $j, $data, $product_option );
@@ -1898,8 +1981,10 @@ class ModelToolExportImport extends Model {
 			$option_value_id = $row['option_value_id'];
 			$old_product_option_value_ids[$product_id][$option_id][$option_value_id] = $product_option_value_id;
 		}
-		$sql = "DELETE FROM `".DB_PREFIX."product_option_value` WHERE product_id='".(int)$product_id."'";
-		$this->db->query( $sql );
+		if ($old_product_option_value_ids) {
+			$sql = "DELETE FROM `".DB_PREFIX."product_option_value` WHERE product_id='".(int)$product_id."'";
+			$this->db->query( $sql );
+		}
 		return $old_product_option_value_ids;
 	}
 
@@ -1997,13 +2082,9 @@ class ModelToolExportImport extends Model {
 			$product_option_value['weight_prefix'] = $weight_prefix;
 			$product_option_value['product_option_id'] = isset($product_option_ids[$option_id]) ? $product_option_ids[$option_id] : 0;
 			if (($incremental) && ($product_id != $previous_product_id)) {
-				if ($available_product_ids) {
-					if (in_array((int)$product_id,$available_product_ids)) {
-						$old_product_option_value_ids = $this->deleteProductOptionValue( $product_id );
-						if (isset($unlisted_product_ids[$product_id])) {
-							unset($unlisted_product_ids[$product_id]);
-						}
-					}
+				$old_product_option_value_ids = $this->deleteProductOptionValue( $product_id );
+				if (isset($unlisted_product_ids[$product_id])) {
+					unset($unlisted_product_ids[$product_id]);
 				}
 			}
 			$this->moreProductOptionValueCells( $i, $j, $data, $product_option_value );
@@ -2160,13 +2241,9 @@ class ModelToolExportImport extends Model {
 			$product_attribute['attribute_id'] = $attribute_id;
 			$product_attribute['texts'] = $texts;
 			if (($incremental) && ($product_id != $previous_product_id)) {
-				if ($available_product_ids) {
-					if (in_array((int)$product_id,$available_product_ids)) {
-						$this->deleteProductAttribute( $product_id );
-						if (isset($unlisted_product_ids[$product_id])) {
-							unset($unlisted_product_ids[$product_id]);
-						}
-					}
+				$this->deleteProductAttribute( $product_id );
+				if (isset($unlisted_product_ids[$product_id])) {
+					unset($unlisted_product_ids[$product_id]);
 				}
 			}
 			$this->moreProductAttributeCells( $i, $j, $data, $product_attribute );
@@ -2175,6 +2252,151 @@ class ModelToolExportImport extends Model {
 		}
 		if ($incremental) {
 			$this->deleteUnlistedProductAttributes( $unlisted_product_ids );
+		}
+	}
+
+
+	protected function getFilterGroupIds() {
+		$language_id = $this->getDefaultLanguageId();
+		$sql  = "SELECT filter_group_id, name FROM `".DB_PREFIX."filter_group_description` ";
+		$sql .= "WHERE language_id='".(int)$language_id."'";
+		$query = $this->db->query( $sql );
+		$filter_group_ids = array();
+		foreach ($query->rows as $row) {
+			$filter_group_id = $row['filter_group_id'];
+			$name = $row['name'];
+			$filter_group_ids[$name] = $filter_group_id;
+		}
+		return $filter_group_ids;
+	}
+
+
+	protected function getFilterIds() {
+		$language_id = $this->getDefaultLanguageId();
+		$sql  = "SELECT f.filter_group_id, fd.filter_id, fd.name FROM `".DB_PREFIX."filter_description` fd ";
+		$sql .= "INNER JOIN `".DB_PREFIX."filter` f ON f.filter_id=fd.filter_id ";
+		$sql .= "WHERE fd.language_id='".(int)$language_id."'";
+		$query = $this->db->query( $sql );
+		$filter_ids = array();
+		foreach ($query->rows as $row) {
+			$filter_group_id = $row['filter_group_id'];
+			$filter_id = $row['filter_id'];
+			$name = $row['name'];
+			$filter_ids[$filter_group_id][$name] = $filter_id;
+		}
+		return $filter_ids;
+	}
+
+
+	protected function storeProductFilterIntoDatabase( &$product_filter, &$languages ) {
+		$product_id = $product_filter['product_id'];
+		$filter_id = $product_filter['filter_id'];
+		$sql  = "INSERT INTO `".DB_PREFIX."product_filter` (`product_id`, `filter_id`) VALUES ";
+		$sql .= "( $product_id, $filter_id );";
+		$this->db->query( $sql );
+	}
+
+
+	protected function deleteProductFilters() {
+		$sql = "TRUNCATE TABLE `".DB_PREFIX."product_filter`";
+		$this->db->query( $sql );
+	}
+
+
+	protected function deleteProductFilter( $product_id ) {
+		$sql = "DELETE FROM `".DB_PREFIX."product_filter` WHERE product_id='".(int)$product_id."'";
+		$this->db->query( $sql );
+	}
+
+
+	protected function deleteUnlistedProductFilters( &$unlisted_product_ids ) {
+		foreach ($unlisted_product_ids as $product_id) {
+			$sql = "DELETE FROM `".DB_PREFIX."product_filter` WHERE product_id='".(int)$product_id."'";
+			$this->db->query( $sql );
+		}
+	}
+
+
+	// function for reading additional cells in class extensions
+	protected function moreProductFilterCells( $i, &$j, &$worksheet, &$product_filter ) {
+		return;
+	}
+
+
+	protected function uploadProductFilters( &$reader, $incremental, &$available_product_ids ) {
+		// get worksheet, if not there return immediately
+		$data = $reader->getSheetByName( 'ProductFilters' );
+		if ($data==null) {
+			return;
+		}
+
+		// if incremental then find current product IDs else delete all old product filters
+		if ($incremental) {
+			$unlisted_product_ids = $available_product_ids;
+		} else {
+			$this->deleteProductFilters();
+		}
+
+		if (!$this->config->get( 'export_import_settings_use_filter_group_id' )) {
+			$filter_group_ids = $this->getFilterGroupIds();
+		}
+		if (!$this->config->get( 'export_import_settings_use_filter_id' )) {
+			$filter_ids = $this->getFilterIds();
+		}
+
+		// load the worksheet cells and store them to the database
+		$languages = $this->getLanguages();
+		$previous_product_id = 0;
+		$first_row = array();
+		$i = 0;
+		$k = $data->getHighestRow();
+		for ($i=0; $i<$k; $i+=1) {
+			if ($i==0) {
+				$max_col = PHPExcel_Cell::columnIndexFromString( $data->getHighestColumn() );
+				for ($j=1; $j<=$max_col; $j+=1) {
+					$first_row[] = $this->getCell($data,$i,$j);
+				}
+				continue;
+			}
+			$j = 1;
+			$product_id = trim($this->getCell($data,$i,$j++));
+			if ($product_id=='') {
+				continue;
+			}
+			if ($this->config->get( 'export_import_settings_use_filter_group_id' )) {
+				$filter_group_id = $this->getCell($data,$i,$j++,'');
+			} else {
+				$filter_group_name = $this->getCell($data,$i,$j++);
+				$filter_group_id = isset($filter_group_ids[$filter_group_name]) ? $filter_group_ids[$filter_group_name] : '';
+			}
+			if ($filter_group_id=='') {
+				continue;
+			}
+			if ($this->config->get( 'export_import_settings_use_filter_id' )) {
+				$filter_id = $this->getCell($data,$i,$j++,'');
+			} else {
+				$filter_name = $this->getCell($data,$i,$j++);
+				$filter_id = isset($filter_ids[$filter_group_id][$filter_name]) ? $filter_ids[$filter_group_id][$filter_name] : '';
+			}
+			if ($filter_id=='') {
+				continue;
+			}
+			$product_filter = array();
+			$product_filter['product_id'] = $product_id;
+			$product_filter['filter_group_id'] = $filter_group_id;
+			$product_filter['filter_id'] = $filter_id;
+			if (($incremental) && ($product_id != $previous_product_id)) {
+				$this->deleteProductFilter( $product_id );
+				if (isset($unlisted_product_ids[$product_id])) {
+					unset($unlisted_product_ids[$product_id]);
+				}
+			}
+			$this->moreProductFilterCells( $i, $j, $data, $product_filter );
+			$this->storeProductFilterIntoDatabase( $product_filter, $languages );
+			$previous_product_id = $product_id;
+		}
+		if ($incremental) {
+			$this->deleteUnlistedProductFilters( $unlisted_product_ids );
 		}
 	}
 
@@ -2585,6 +2807,198 @@ class ModelToolExportImport extends Model {
 	}
 
 
+	protected function storeFilterGroupIntoDatabase( &$filter_group, &$languages ) {
+		$filter_group_id = $filter_group['filter_group_id'];
+		$sort_order = $filter_group['sort_order'];
+		$names = $filter_group['names'];
+		$sql  = "INSERT INTO `".DB_PREFIX."filter_group` (`filter_group_id`,`sort_order`) VALUES ";
+		$sql .= "( $filter_group_id, $sort_order );"; 
+		$this->db->query( $sql );
+		foreach ($languages as $language) {
+			$language_code = $language['code'];
+			$language_id = $language['language_id'];
+			$name = isset($names[$language_code]) ? $this->db->escape($names[$language_code]) : '';
+			$sql  = "INSERT INTO `".DB_PREFIX."filter_group_description` (`filter_group_id`, `language_id`, `name`) VALUES ";
+			$sql .= "( $filter_group_id, $language_id, '$name' );";
+			$this->db->query( $sql );
+		}
+	}
+
+
+	protected function deleteFilterGroups() {
+		$sql = "TRUNCATE TABLE `".DB_PREFIX."filter_group`";
+		$this->db->query( $sql );
+		$sql = "TRUNCATE TABLE `".DB_PREFIX."filter_group_description`";
+		$this->db->query( $sql );
+	}
+
+
+	protected function deleteFilterGroup( $filter_group_id ) {
+		$sql = "DELETE FROM `".DB_PREFIX."filter_group` WHERE filter_group_id='".(int)$filter_group_id."'";
+		$this->db->query( $sql );
+		$sql = "DELETE FROM `".DB_PREFIX."filter_group_description` WHERE filter_group_id='".(int)$filter_group_id."'";
+		$this->db->query( $sql );
+	}
+
+
+	// function for reading additional cells in class extensions
+	protected function moreFilterGroupCells( $i, &$j, &$worksheet, &$filter_group ) {
+		return;
+	}
+
+
+	protected function uploadFilterGroups( &$reader, $incremental ) {
+		// get worksheet, if not there return immediately
+		$data = $reader->getSheetByName( 'FilterGroups' );
+		if ($data==null) {
+			return;
+		}
+
+		// find the installed languages
+		$languages = $this->getLanguages();
+
+		// if not incremental then delete all old filter groups
+		if (!$incremental) {
+			$this->deleteFilterGroups();
+		}
+
+		// load the worksheet cells and store them to the database
+		$first_row = array();
+		$i = 0;
+		$k = $data->getHighestRow();
+		for ($i=0; $i<$k; $i+=1) {
+			if ($i==0) {
+				$max_col = PHPExcel_Cell::columnIndexFromString( $data->getHighestColumn() );
+				for ($j=1; $j<=$max_col; $j+=1) {
+					$first_row[] = $this->getCell($data,$i,$j);
+				}
+				continue;
+			}
+			$j = 1;
+			$filter_group_id = trim($this->getCell($data,$i,$j++));
+			if ($filter_group_id=='') {
+				continue;
+			}
+			$sort_order = $this->getCell($data,$i,$j++,'0');
+			$names = array();
+			while (($j<=$max_col) && $this->startsWith($first_row[$j-1],"name(")) {
+				$language_code = substr($first_row[$j-1],strlen("name("),strlen($first_row[$j-1])-strlen("name(")-1);
+				$name = $this->getCell($data,$i,$j++);
+				$name = htmlspecialchars( $name );
+				$names[$language_code] = $name;
+			}
+			$filter_group = array();
+			$filter_group['filter_group_id'] = $filter_group_id;
+			$filter_group['sort_order'] = $sort_order;
+			$filter_group['names'] = $names;
+			if ($incremental) {
+				$this->deleteFilterGroup( $filter_group_id );
+			}
+			$this->moreFilterGroupCells( $i, $j, $data, $filter_group );
+			$this->storeFilterGroupIntoDatabase( $filter_group, $languages );
+		}
+	}
+
+
+	protected function storeFilterIntoDatabase( &$filter, &$languages ) {
+		$filter_id = $filter['filter_id'];
+		$filter_group_id = $filter['filter_group_id'];
+		$sort_order = $filter['sort_order'];
+		$names = $filter['names'];
+		$sql  = "INSERT INTO `".DB_PREFIX."filter` (`filter_id`,`filter_group_id`,`sort_order`) VALUES ";
+		$sql .= "( $filter_id, $filter_group_id, $sort_order );"; 
+		$this->db->query( $sql );
+		foreach ($languages as $language) {
+			$language_code = $language['code'];
+			$language_id = $language['language_id'];
+			$name = isset($names[$language_code]) ? $this->db->escape($names[$language_code]) : '';
+			$sql  = "INSERT INTO `".DB_PREFIX."filter_description` (`filter_id`, `language_id`, `filter_group_id`, `name`) ";
+			$sql .= "VALUES ( $filter_id, $language_id, $filter_group_id, '$name' );";
+			$this->db->query( $sql );
+		}
+	}
+
+
+	protected function deleteFilters() {
+		$sql = "TRUNCATE TABLE `".DB_PREFIX."filter`";
+		$this->db->query( $sql );
+		$sql = "TRUNCATE TABLE `".DB_PREFIX."filter_description`";
+		$this->db->query( $sql );
+	}
+
+
+	protected function deleteFilter( $filter_id ) {
+		$sql = "DELETE FROM `".DB_PREFIX."filter` WHERE filter_id='".(int)$filter_id."'";
+		$this->db->query( $sql );
+		$sql = "DELETE FROM `".DB_PREFIX."filter_description` WHERE filter_id='".(int)$filter_id."'";
+		$this->db->query( $sql );
+	}
+
+	
+	// function for reading additional cells in class extensions
+	protected function moreFilterCells( $i, &$j, &$worksheet, &$option ) {
+		return;
+	}
+
+
+	protected function uploadFilters( &$reader, $incremental ) {
+		// get worksheet, if not there return immediately
+		$data = $reader->getSheetByName( 'Filters' );
+		if ($data==null) {
+			return;
+		}
+
+		// find the installed languages
+		$languages = $this->getLanguages();
+
+		// if not incremental then delete all old filters
+		if (!$incremental) {
+			$this->deleteFilters();
+		}
+
+		// load the worksheet cells and store them to the database
+		$first_row = array();
+		$i = 0;
+		$k = $data->getHighestRow();
+		for ($i=0; $i<$k; $i+=1) {
+			if ($i==0) {
+				$max_col = PHPExcel_Cell::columnIndexFromString( $data->getHighestColumn() );
+				for ($j=1; $j<=$max_col; $j+=1) {
+					$first_row[] = $this->getCell($data,$i,$j);
+				}
+				continue;
+			}
+			$j = 1;
+			$filter_id = trim($this->getCell($data,$i,$j++));
+			if ($filter_id=='') {
+				continue;
+			}
+			$filter_group_id = trim($this->getCell($data,$i,$j++));
+			if ($filter_group_id=='') {
+				continue;
+			}
+			$sort_order = $this->getCell($data,$i,$j++,'0');
+			$names = array();
+			while (($j<=$max_col) && $this->startsWith($first_row[$j-1],"name(")) {
+				$language_code = substr($first_row[$j-1],strlen("name("),strlen($first_row[$j-1])-strlen("name(")-1);
+				$name = $this->getCell($data,$i,$j++);
+				$name = htmlspecialchars( $name );
+				$names[$language_code] = $name;
+			}
+			$filter = array();
+			$filter['filter_id'] = $filter_id;
+			$filter['filter_group_id'] = $filter_group_id;
+			$filter['sort_order'] = $sort_order;
+			$filter['names'] = $names;
+			if ($incremental) {
+				$this->deleteFilter( $filter_id );
+			}
+			$this->moreFilterCells( $i, $j, $data, $filter );
+			$this->storeFilterIntoDatabase( $filter, $languages );
+		}
+	}
+
+
 	function getCell(&$worksheet,$row,$col,$default_val='') {
 		$col -= 1; // we use 1-based, PHPExcel uses 0-based column index
 		$row += 1; // we use 0-based, PHPExcel uses 1-based row index
@@ -2662,6 +3076,32 @@ class ModelToolExportImport extends Model {
 			( "category_id", "parent_id", "name", "top", "columns", "sort_order", "image_name", "date_added", "date_modified", "seo_keyword", "description", "meta_description", "meta_keywords", "store_ids", "layout", "status" );
 			$expected_multilingual = array( "name", "description", "meta_description", "meta_keywords" );
 		}
+		return $this->validateHeading( $data, $expected_heading, $expected_multilingual );
+	}
+
+
+	protected function validateCategoryFilters( &$reader ) {
+		$data = $reader->getSheetByName( 'CategoryFilters' );
+		if ($data==null) {
+			return true;
+		}
+		if (!$this->existFilter()) {
+			throw new Exception( $this->language->get( 'error_filter_not_supported' ) );
+		}
+		if ($this->config->get('export_import_settings_use_filter_group_id')) {
+			if ($this->config->get('export_import_settings_use_filter_id')) {
+				$expected_heading = array( "category_id", "filter_group_id", "filter_id" );
+			} else {
+				$expected_heading = array( "category_id", "filter_group_id", "filter" );
+			}
+		} else {
+			if ($this->config->get('export_import_settings_use_filter_id')) {
+				$expected_heading = array( "category_id", "filter_group", "filter_id" );
+			} else {
+				$expected_heading = array( "category_id", "filter_group", "filter" );
+			}
+		}
+		$expected_multilingual = array();
 		return $this->validateHeading( $data, $expected_heading, $expected_multilingual );
 	}
 
@@ -2824,6 +3264,32 @@ class ModelToolExportImport extends Model {
 	}
 
 
+	protected function validateProductFilters( &$reader ) {
+		$data = $reader->getSheetByName( 'ProductFilters' );
+		if ($data==null) {
+			return true;
+		}
+		if (!$this->existFilter()) {
+			throw new Exception( $this->language->get( 'error_filter_not_supported' ) );
+		}
+		if ($this->config->get('export_import_settings_use_filter_group_id')) {
+			if ($this->config->get('export_import_settings_use_filter_id')) {
+				$expected_heading = array( "product_id", "filter_group_id", "filter_id" );
+			} else {
+				$expected_heading = array( "product_id", "filter_group_id", "filter" );
+			}
+		} else {
+			if ($this->config->get('export_import_settings_use_filter_id')) {
+				$expected_heading = array( "product_id", "filter_group", "filter_id" );
+			} else {
+				$expected_heading = array( "product_id", "filter_group", "filter" );
+			}
+		}
+		$expected_multilingual = array();
+		return $this->validateHeading( $data, $expected_heading, $expected_multilingual );
+	}
+
+
 	protected function validateOptions( &$reader ) {
 		$data = $reader->getSheetByName( 'Options' );
 		if ($data==null) {
@@ -2875,6 +3341,804 @@ class ModelToolExportImport extends Model {
 	}
 
 
+	protected function validateFilterGroups( &$reader ) {
+		$data = $reader->getSheetByName( 'FilterGroups' );
+		if ($data==null) {
+			return true;
+		}
+		if (!$this->existFilter()) {
+			throw new Exception( $this->language->get( 'error_filter_not_supported' ) );
+		}
+		$expected_heading = array( "filter_group_id", "sort_order", "name" );
+		$expected_multilingual = array( "name" );
+		return $this->validateHeading( $data, $expected_heading, $expected_multilingual );
+	}
+
+
+	protected function validateFilters( &$reader ) {
+		$data = $reader->getSheetByName( 'Filters' );
+		if ($data==null) {
+			return true;
+		}
+		if (!$this->existFilter()) {
+			throw new Exception( $this->language->get( 'error_filter_not_supported' ) );
+		}
+		$expected_heading = array( "filter_id", "filter_group_id", "sort_order", "name" );
+		$expected_multilingual = array( "name" );
+		return $this->validateHeading( $data, $expected_heading, $expected_multilingual );
+	}
+
+
+	protected function validateProductIdColumns( &$reader ) {
+		$data = $reader->getSheetByName( 'Products' );
+		if ($data==null) {
+			return true;
+		}
+		$ok = true;
+		
+		// only unique numeric product_ids can be used in worksheet 'Products'
+		$has_missing_product_ids = false;
+		$product_ids = array();
+		$k = $data->getHighestRow();
+		for ($i=1; $i<$k; $i+=1) {
+			$product_id = trim($this->getCell($data,$i,1));
+			if ($product_id=="") {
+				if (!$has_missing_product_ids) {
+					$msg = str_replace( '%1', 'Products', $this->language->get( 'error_missing_product_id' ) );
+					$this->log->write( $msg );
+					$has_missing_product_ids = true;
+				}
+				$ok = false;
+				continue;
+			}
+			if (!ctype_digit($product_id)) {
+				$msg = str_replace( '%2', $product_id, str_replace( '%1', 'Products', $this->language->get( 'error_invalid_product_id' ) ) );
+				$this->log->write( $msg );
+				$ok = false;
+				continue;
+			}
+			if (in_array( $product_id, $product_ids )) {
+				$msg = str_replace( '%2', $product_id, str_replace( '%1', 'Products', $this->language->get( 'error_duplicate_product_id' ) ) );
+				$this->log->write( $msg );
+				$ok = false;
+				continue;
+			}
+			$product_ids[] = $product_id;
+		}
+		
+		// make sure product_ids are numeric entries and are also mentioned in worksheet 'Products'
+		$worksheets = array( 'AdditionalImages', 'Specials', 'Discounts', 'Rewards', 'ProductOptions', 'ProductOptionValues', 'ProductAttributes' );
+		foreach ($worksheets as $worksheet) {
+			$data = $reader->getSheetByName( $worksheet );
+			if ($data==null) {
+				continue;
+			}
+			$has_missing_product_ids = false;
+			$unlisted_product_ids = array();
+			$k = $data->getHighestRow();
+			for ($i=1; $i<$k; $i+=1) {
+				$product_id = trim($this->getCell($data,$i,1));
+				if ($product_id=="") {
+					if (!$has_missing_product_ids) {
+						$msg = str_replace( '%1', $worksheet, $this->language->get( 'error_missing_product_id' ) );
+						$this->log->write( $msg );
+						$has_missing_product_ids = true;
+					}
+					$ok = false;
+					continue;
+				}
+				if (!ctype_digit($product_id)) {
+					$msg = str_replace( '%2', $product_id, str_replace( '%1', $worksheet, $this->language->get( 'error_invalid_product_id' ) ) );
+					$this->log->write( $msg );
+					$ok = false;
+					continue;
+				}
+				if (!in_array( $product_id, $product_ids )) {
+					if (!in_array( $product_id, $unlisted_product_ids )) {
+						$unlisted_product_ids[] = $product_id;
+						$msg = str_replace( '%2', $product_id, str_replace( '%1', $worksheet, $this->language->get( 'error_unlisted_product_id' ) ) );
+						$this->log->write( $msg );
+						$ok = false;
+						continue;
+					}
+				}
+			}
+		}
+		
+		return $ok;
+	}
+
+
+	protected function validateCustomerGroupColumns( &$reader ) {
+		// all customer_groups mentioned in the worksheets must be defined
+		$worksheets = array( 'Specials', 'Discounts', 'Rewards' );
+		$ok = true;
+		$customer_groups = array();
+		$customer_group_ids = $this->getCustomerGroupIds();
+		foreach ($worksheets as $worksheet) {
+			$data = $reader->getSheetByName( $worksheet );
+			if ($data==null) {
+				continue;
+			}
+			$has_missing_customer_groups = false;
+			$k = $data->getHighestRow();
+			for ($i=1; $i<$k; $i+=1) {
+				$customer_group = trim($this->getCell($data,$i,2));
+				if ($customer_group=="") {
+					if (!$has_missing_customer_groups) {
+						$msg = $this->language->get( 'error_missing_customer_group' );
+						$msg = str_replace( '%1', $worksheet, $msg );
+						$this->log->write( $msg );
+						$has_missing_customer_groups = true;
+					}
+					$ok = false;
+					continue;
+				}
+				if (!in_array( $customer_group, $customer_groups )) {
+					if (!isset($customer_group_ids[$customer_group])) {
+						$msg = $this->language->get( 'error_invalid_customer_group' );
+						$msg = str_replace( '%1', $worksheet, str_replace( '%2', $customer_group, $msg ) );
+						$this->log->write( $msg );
+						$ok = false;
+						continue;
+					}
+					$customer_groups[] = $customer_group;
+				}
+			}
+		}
+		return $ok;
+	}
+
+
+	protected function validateOptionColumns( &$reader ) {
+		// get all existing options and option values
+		$ok = true;
+		$export_import_settings_use_option_id = $this->config->get('export_import_settings_use_option_id');
+		$export_import_settings_use_option_value_id = $this->config->get('export_import_settings_use_option_value_id');
+		$language_id = $this->getDefaultLanguageId();
+		$sql  = "SELECT od.option_id, od.name AS option_name, ovd.option_value_id, ovd.name AS option_value_name ";
+		$sql .= "FROM `".DB_PREFIX."option_description` od ";
+		$sql .= "LEFT JOIN `".DB_PREFIX."option_value_description` ovd ON ovd.option_id=od.option_id AND ovd.language_id='".(int)$language_id."' ";
+		$sql .= "WHERE od.language_id='".(int)$language_id."'";
+		$query = $this->db->query( $sql );
+		$options = array();
+		foreach ($query->rows as $row) {
+			if ($export_import_settings_use_option_id) {
+				$option_id = $row['option_id'];
+				if (!isset($options[$option_id])) {
+					$options[$option_id] = array();
+				}
+				if ($export_import_settings_use_option_value_id) {
+					$option_value_id = $row['option_value_id'];
+					if (!is_null($option_value_id)) {
+						$options[$option_id][$option_value_id] = true;
+					}
+				} else {
+					$option_value_name = htmlspecialchars_decode($row['option_value_name']);
+					if (!is_null($option_value_name)) {
+						$options[$option_id][$option_value_name] = true;
+					}
+				}
+			} else {
+				$option_name = htmlspecialchars_decode($row['option_name']);
+				if (!isset($options[$option_name])) {
+					$options[$option_name] = array();
+				}
+				if ($export_import_settings_use_option_value_id) {
+					$option_value_id = $row['option_value_id'];
+					if (!is_null($option_value_id)) {
+						$options[$option_name][$option_value_id] = true;
+					}
+				} else {
+					$option_value_name = htmlspecialchars_decode($row['option_value_name']);
+					if (!is_null($option_value_name)) {
+						$options[$option_name][$option_value_name] = true;
+					}
+				}
+			}
+		}
+		
+		// only existing options can be used in 'ProductOptions' worksheet
+		$product_options = array();
+		$data = $reader->getSheetByName( 'ProductOptions' );
+		if ($data==null) {
+			return $ok;
+		}
+		$has_missing_options = false;
+		$i = 0;
+		$k = $data->getHighestRow();
+		for ($i=1; $i<$k; $i+=1) {
+			$product_id = trim($this->getCell($data,$i,1));
+			if ($product_id=="") {
+				continue;
+			}
+			if ($export_import_settings_use_option_id) {
+				$option_id = trim($this->getCell($data,$i,2));
+				if ($option_id=="") {
+					if (!$has_missing_options) {
+						$msg = str_replace( '%1', 'ProductOptions', $this->language->get( 'error_missing_option_id' ) );
+						$this->log->write( $msg );
+						$has_missing_options = true;
+					}
+					$ok = false;
+					continue;
+				}
+				if (!isset($options[$option_id])) {
+					$msg = $this->language->get( 'error_invalid_option_id' );
+					$msg = str_replace( '%1', 'ProductOptions', $msg );
+					$msg = str_replace( '%2', $option_id, $msg );
+					$this->log->write( $msg );
+					$ok = false;
+					continue;
+				}
+				$product_options[$product_id][$option_id] = true;
+			} else {
+				$option_name = trim($this->getCell($data,$i,2));
+				if ($option_name=="") {
+					if (!$has_missing_options) {
+						$msg = str_replace( '%1', 'ProductOptions', $this->language->get( 'error_missing_option_name' ) );
+						$this->log->write( $msg );
+						$has_missing_options = true;
+					}
+					$ok = false;
+					continue;
+				}
+				if (!isset($options[$option_name])) {
+					$msg = $this->language->get( 'error_invalid_option_name' );
+					$msg = str_replace( '%1', 'ProductOptions', $msg );
+					$msg = str_replace( '%2', $option_name, $msg );
+					$this->log->write( $msg );
+					$ok= false;
+					continue;
+				}
+				$product_options[$product_id][$option_name] = true;
+			}
+		}
+		
+		// only existing options and option values can be used in 'ProductOptionValues' worksheet
+		$data = $reader->getSheetByName( 'ProductOptionValues' );
+		if ($data==null) {
+			return $ok;
+		}
+		$has_missing_options = false;
+		$has_missing_option_values = false;
+		$i = 0;
+		$k = $data->getHighestRow();
+		for ($i=1; $i<$k; $i+=1) {
+			$product_id = trim($this->getCell($data,$i,1));
+			if ($product_id=="") {
+				continue;
+			}
+			if ($export_import_settings_use_option_id) {
+				$option_id = trim($this->getCell($data,$i,2));
+				if ($option_id=="") {
+					if (!$has_missing_options) {
+						$msg = str_replace( '%1', 'ProductOptionValues', $this->language->get( 'error_missing_option_id' ) );
+						$this->log->write( $msg );
+						$has_missing_options = true;
+					}
+					$ok = false;
+					continue;
+				}
+				if (!isset($options[$option_id])) {
+					$msg = $this->language->get( 'error_invalid_option_id' );
+					$msg = str_replace( '%1', 'ProductOptionValues', $msg );
+					$msg = str_replace( '%2', $option_id, $msg );
+					$this->log->write( $msg );
+					$ok = false;
+					continue;
+				}
+				if (!isset($product_options[$product_id][$option_id])) {
+					$msg = $this->language->get( 'error_invalid_product_id_option_id' );
+					$msg = str_replace( '%1', 'ProductOptionValues', $msg );
+					$msg = str_replace( '%2', $product_id, $msg );
+					$msg = str_replace( '%3', $option_id, $msg );
+					$msg = str_replace( '%4', 'ProductOptions', $msg );
+					$this->log->write( $msg );
+					$ok = false;
+					continue;
+				}
+				if ($export_import_settings_use_option_value_id) {
+					$option_value_id = trim($this->getCell($data,$i,3));
+					if ($option_value_id=="") {
+						if (!$has_missing_option_values) {
+							$msg = str_replace( '%1', 'ProductOptionValues', $this->language->get( 'error_missing_option_value_id' ) );
+							$this->log->write( $msg );
+							$has_missing_option_values = true;
+						}
+						$ok = false;
+						continue;
+					}
+					if (!isset($options[$option_id][$option_value_id])) {
+						$msg = $this->language->get( 'error_invalid_option_id_option_value_id' );
+						$msg = str_replace( '%1', 'ProductOptionValues', $msg );
+						$msg = str_replace( '%2', $option_id, $msg );
+						$msg = str_replace( '%3', $option_value_id, $msg );
+						$this->log->write( $msg );
+						$ok = false;
+						continue;
+					}
+				} else {
+					$option_value_name = trim($this->getCell($data,$i,3));
+					if ($option_value_name=="") {
+						if (!$has_missing_option_values) {
+							$msg = str_replace( '%1', 'ProductOptionValues', $this->language->get( 'error_missing_option_value_name' ) );
+							$this->log->write( $msg );
+							$has_missing_option_values = true;
+						}
+						$ok = false;
+						continue;
+					}
+					if (!isset($options[$option_id][$option_value_name])) {
+						$msg = $this->language->get( 'error_invalid_option_id_option_value_name' );
+						$msg = str_replace( '%1', 'ProductOptionValues', $msg );
+						$msg = str_replace( '%2', $option_id, $msg );
+						$msg = str_replace( '%3', $option_value_name, $msg );
+						$this->log->write( $msg );
+						$ok = false;
+						continue;
+					}
+				}
+			} else {
+				$option_name = trim($this->getCell($data,$i,2));
+				if ($option_name=="") {
+					if (!$has_missing_options) {
+						$msg = str_replace( '%1', 'ProductOptionValues', $this->language->get( 'error_missing_option_name' ) );
+						$this->log->write( $msg );
+						$has_missing_options = true;
+					}
+					$ok = false;
+					continue;
+				}
+				if (!isset($options[$option_name])) {
+					$msg = $this->language->get( 'error_invalid_option_name' );
+					$msg = str_replace( '%1', 'ProductOptionValues', $msg );
+					$msg = str_replace( '%2', $option_name, $msg );
+					$this->log->write( $msg );
+					$ok= false;
+					continue;
+				}
+				if (!isset($product_options[$product_id][$option_name])) {
+					$msg = $this->language->get( 'error_invalid_product_id_option_name' );
+					$msg = str_replace( '%1', 'ProductOptionValues', $msg );
+					$msg = str_replace( '%2', $product_id, $msg );
+					$msg = str_replace( '%3', $option_name, $msg );
+					$msg = str_replace( '%4', 'ProductOptions', $msg );
+					$this->log->write( $msg );
+					$ok = false;
+					continue;
+				}
+				if ($export_import_settings_use_option_value_id) {
+					$option_value_id = trim($this->getCell($data,$i,3));
+					if ($option_value_id=="") {
+						if (!$has_missing_option_values) {
+							$msg = str_replace( '%1', 'ProductOptionValues', $this->language->get( 'error_missing_option_value_id' ) );
+							$this->log->write( $msg );
+							$has_missing_option_values = true;
+						}
+						$ok = false;
+						continue;
+					}
+					if (!isset($options[$option_name][$option_value_id])) {
+						$msg = $this->language->get( 'error_invalid_option_name_option_value_id' );
+						$msg = str_replace( '%1', 'ProductOptionValues', $msg );
+						$msg = str_replace( '%2', $option_name, $msg );
+						$msg = str_replace( '%3', $option_value_id, $msg );
+						$this->log->write( $msg );
+						$ok = false;
+						continue;
+					}
+				} else {
+					$option_value_name = trim($this->getCell($data,$i,3));
+					if ($option_value_name=="") {
+						if (!$has_missing_option_values) {
+							$msg = str_replace( '%1', 'ProductOptionValues', $this->language->get( 'error_missing_option_value_name' ) );
+							$this->log->write( $msg );
+							$has_missing_option_values = true;
+						}
+						$ok = false;
+						continue;
+					}
+					if (!isset($options[$option_name][$option_value_name])) {
+						$msg = $this->language->get( 'error_invalid_option_name_option_value_name' );
+						$msg = str_replace( '%1', 'ProductOptionValues', $msg );
+						$msg = str_replace( '%2', $option_name, $msg );
+						$msg = str_replace( '%3', $option_value_name, $msg );
+						$this->log->write( $msg );
+						$ok = false;
+						continue;
+					}
+				}
+			}
+		}
+		
+		return $ok;
+	}
+
+
+	protected function validateAttributeColumns( &$reader ) {
+		// get all existing attribute_groups and attributes
+		$ok = true;
+		$export_import_settings_use_attribute_group_id = $this->config->get('export_import_settings_use_attribute_group_id');
+		$export_import_settings_use_attribute_id = $this->config->get('export_import_settings_use_attribute_id');
+		$language_id = $this->getDefaultLanguageId();
+		$sql  = "SELECT agd.attribute_group_id, agd.name AS attribute_group_name, ad.attribute_id, ad.name AS attribute_name ";
+		$sql .= "FROM `".DB_PREFIX."attribute_group_description` agd ";
+		$sql .= "LEFT JOIN `".DB_PREFIX."attribute` a ON a.attribute_group_id=agd.attribute_group_id ";
+		$sql .= "LEFT JOIN `".DB_PREFIX."attribute_description` ad ON ad.attribute_id=a.attribute_id AND ad.language_id='".(int)$language_id."' ";
+		$sql .= "WHERE agd.language_id='".(int)$language_id."'";
+		$query = $this->db->query( $sql );
+		$attribute_groups = array();
+		foreach ($query->rows as $row) {
+			if ($export_import_settings_use_attribute_group_id) {
+				$attribute_group_id = $row['attribute_group_id'];
+				if (!isset($attribute_groups[$attribute_group_id])) {
+					$attribute_groups[$attribute_group_id] = array();
+				}
+				if ($export_import_settings_use_attribute_id) {
+					$attribute_id = $row['attribute_id'];
+					if (!is_null($attribute_id)) {
+						$attribute_groups[$attribute_group_id][$attribute_id] = true;
+					}
+				} else {
+					$attribute_name = htmlspecialchars_decode($row['attribute_name']);
+					if (!is_null($attribute_name)) {
+						$attribute_groups[$attribute_group_id][$attribute_name] = true;
+					}
+				}
+			} else {
+				$attribute_group_name = htmlspecialchars_decode($row['attribute_group_name']);
+				if (!isset($attribute_groups[$attribute_group_name])) {
+					$attribute_groups[$attribute_group_name] = array();
+				}
+				if ($export_import_settings_use_attribute_id) {
+					$attribute_id = $row['attribute_id'];
+					if (!is_null($attribute_id)) {
+						$attribute_groups[$attribute_group_name][$attribute_id] = true;
+					}
+				} else {
+					$attribute_name = htmlspecialchars_decode($row['attribute_name']);
+					if (!is_null($attribute_name)) {
+						$attribute_groups[$attribute_group_name][$attribute_name] = true;
+					}
+				}
+			}
+		}
+		
+		// only existing attribute_groups and attributes can be used in 'ProductAttributes' worksheet
+		$data = $reader->getSheetByName( 'ProductAttributes' );
+		if ($data==null) {
+			return $ok;
+		}
+		$has_missing_attribute_groups = false;
+		$has_missing_attributes = false;
+		$i = 0;
+		$k = $data->getHighestRow();
+		for ($i=1; $i<$k; $i+=1) {
+			$product_id = trim($this->getCell($data,$i,1));
+			if ($product_id=="") {
+				continue;
+			}
+			if ($export_import_settings_use_attribute_group_id) {
+				$attribute_group_id = trim($this->getCell($data,$i,2));
+				if ($attribute_group_id=="") {
+					if (!$has_missing_attribute_groups) {
+						$msg = str_replace( '%1', 'ProductAttributes', $this->language->get( 'error_missing_attribute_group_id' ) );
+						$this->log->write( $msg );
+						$has_missing_attribute_groups = true;
+					}
+					$ok = false;
+					continue;
+				}
+				if (!isset($attribute_groups[$attribute_group_id])) {
+					$msg = $this->language->get( 'error_invalid_attribute_group_id' );
+					$msg = str_replace( '%1', 'ProductAttributes', $msg );
+					$msg = str_replace( '%2', $attribute_group_id, $msg );
+					$this->log->write( $msg );
+					$ok = false;
+					continue;
+				}
+				if ($export_import_settings_use_attribute_id) {
+					$attribute_id = trim($this->getCell($data,$i,3));
+					if ($attribute_id=="") {
+						if (!$has_missing_attributes) {
+							$msg = str_replace( '%1', 'ProductAttributes', $this->language->get( 'error_missing_attribute_id' ) );
+							$this->log->write( $msg );
+							$has_missing_attributes = true;
+						}
+						$ok = false;
+						continue;
+					}
+					if (!isset($attribute_groups[$attribute_group_id][$attribute_id])) {
+						$msg = $this->language->get( 'error_invalid_attribute_group_id_attribute_id' );
+						$msg = str_replace( '%1', 'ProductAttributes', $msg );
+						$msg = str_replace( '%2', $attribute_group_id, $msg );
+						$msg = str_replace( '%3', $attribute_id, $msg );
+						$this->log->write( $msg );
+						$ok = false;
+						continue;
+					}
+				} else {
+					$attribute_name = trim($this->getCell($data,$i,3));
+					if ($attribute_name=="") {
+						if (!$has_missing_attributes) {
+							$msg = str_replace( '%1', 'ProductAttributes', $this->language->get( 'error_missing_attribute_name' ) );
+							$this->log->write( $msg );
+							$has_missing_attributes = true;
+						}
+						$ok = false;
+						continue;
+					}
+					if (!isset($attribute_groups[$attribute_group_id][$attribute_name])) {
+						$msg = $this->language->get( 'error_invalid_attribute_group_id_attribute_name' );
+						$msg = str_replace( '%1', 'ProductAttributes', $msg );
+						$msg = str_replace( '%2', $attribute_group_id, $msg );
+						$msg = str_replace( '%3', $attribute_name, $msg );
+						$this->log->write( $msg );
+						$ok = false;
+						continue;
+					}
+				}
+			} else {
+				$attribute_group_name = trim($this->getCell($data,$i,2));
+				if ($attribute_group_name=="") {
+					if (!$has_missing_attribute_groups) {
+						$msg = str_replace( '%1', 'ProductAttributes', $this->language->get( 'error_missing_attribute_group_name' ) );
+						$this->log->write( $msg );
+						$has_missing_attribute_groups = true;
+					}
+					$ok = false;
+					continue;
+				}
+				if (!isset($attribute_groups[$attribute_group_name])) {
+					$msg = $this->language->get( 'error_invalid_attribute_group_name' );
+					$msg = str_replace( '%1', 'ProductAttributes', $msg );
+					$msg = str_replace( '%2', $attribute_group_name, $msg );
+					$this->log->write( $msg );
+					$ok= false;
+					continue;
+				}
+				if ($export_import_settings_use_attribute_id) {
+					$attribute_id = trim($this->getCell($data,$i,3));
+					if ($attribute_id=="") {
+						if (!$has_missing_attributes) {
+							$msg = str_replace( '%1', 'ProductAttributes', $this->language->get( 'error_missing_attribute_id' ) );
+							$this->log->write( $msg );
+							$has_missing_attributes = true;
+						}
+						$ok = false;
+						continue;
+					}
+					if (!isset($attribute_groups[$attribute_group_name][$attribute_id])) {
+						$msg = $this->language->get( 'error_invalid_attribute_group_name_attribute_id' );
+						$msg = str_replace( '%1', 'ProductAttributes', $msg );
+						$msg = str_replace( '%2', $attribute_group_name, $msg );
+						$msg = str_replace( '%3', $attribute_id, $msg );
+						$this->log->write( $msg );
+						$ok = false;
+						continue;
+					}
+				} else {
+					$attribute_name = trim($this->getCell($data,$i,3));
+					if ($attribute_name=="") {
+						if (!$has_missing_attributes) {
+							$msg = str_replace( '%1', 'ProductAttributes', $this->language->get( 'error_missing_attribute_name' ) );
+							$this->log->write( $msg );
+							$has_missing_attributes = true;
+						}
+						$ok = false;
+						continue;
+					}
+					if (!isset($attribute_groups[$attribute_group_name][$attribute_name])) {
+						$msg = $this->language->get( 'error_invalid_attribute_group_name_attribute_name' );
+						$msg = str_replace( '%1', 'ProductAttributes', $msg );
+						$msg = str_replace( '%2', $attribute_group_name, $msg );
+						$msg = str_replace( '%3', $attribute_name, $msg );
+						$this->log->write( $msg );
+						$ok = false;
+						continue;
+					}
+				}
+			}
+		}
+		
+		return $ok;
+	}
+
+
+	protected function validateFilterColumns( &$reader ) {
+		// get all existing filter_groups and filters
+		$ok = true;
+		$export_import_settings_use_filter_group_id = $this->config->get('export_import_settings_use_filter_group_id');
+		$export_import_settings_use_filter_id = $this->config->get('export_import_settings_use_filter_id');
+		$language_id = $this->getDefaultLanguageId();
+		$sql  = "SELECT fgd.filter_group_id, fgd.name AS filter_group_name, fd.filter_id, fd.name AS filter_name ";
+		$sql .= "FROM `".DB_PREFIX."filter_group_description` fgd ";
+		$sql .= "LEFT JOIN `".DB_PREFIX."filter` f ON f.filter_group_id=fgd.filter_group_id ";
+		$sql .= "LEFT JOIN `".DB_PREFIX."filter_description` fd ON fd.filter_id=f.filter_id AND fd.language_id='".(int)$language_id."' ";
+		$sql .= "WHERE fgd.language_id='".(int)$language_id."'";
+		$query = $this->db->query( $sql );
+		$filter_groups = array();
+		foreach ($query->rows as $row) {
+			if ($export_import_settings_use_filter_group_id) {
+				$filter_group_id = $row['filter_group_id'];
+				if (!isset($filter_groups[$filter_group_id])) {
+					$filter_groups[$filter_group_id] = array();
+				}
+				if ($export_import_settings_use_filter_id) {
+					$filter_id = $row['filter_id'];
+					if (!is_null($filter_id)) {
+						$filter_groups[$filter_group_id][$filter_id] = true;
+					}
+				} else {
+					$filter_name = htmlspecialchars_decode($row['filter_name']);
+					if (!is_null($filter_name)) {
+						$filter_groups[$filter_group_id][$filter_name] = true;
+					}
+				}
+			} else {
+				$filter_group_name = htmlspecialchars_decode($row['filter_group_name']);
+				if (!isset($filter_groups[$filter_group_name])) {
+					$filter_groups[$filter_group_name] = array();
+				}
+				if ($export_import_settings_use_filter_id) {
+					$filter_id = $row['filter_id'];
+					if (!is_null($filter_id)) {
+						$filter_groups[$filter_group_name][$filter_id] = true;
+					}
+				} else {
+					$filter_name = htmlspecialchars_decode($row['filter_name']);
+					if (!is_null($filter_name)) {
+						$filter_groups[$filter_group_name][$filter_name] = true;
+					}
+				}
+			}
+		}
+
+		// only existing filter_groups and filters can be used in the 'ProductFilters' and 'CategoryFilters' worksheets
+		$worksheet_names = array('ProductFilters','CategoryFilters');
+		foreach ($worksheet_names as $worksheet_name) {
+			$data = $reader->getSheetByName( 'ProductFilters' );
+			if ($data==null) {
+				return $ok;
+			}
+			$has_missing_filter_groups = false;
+			$has_missing_filters = false;
+			$i = 0;
+			$k = $data->getHighestRow();
+			for ($i=1; $i<$k; $i+=1) {
+				$id = trim($this->getCell($data,$i,1));
+				if ($id=="") {
+					continue;
+				}
+				if ($export_import_settings_use_filter_group_id) {
+					$filter_group_id = trim($this->getCell($data,$i,2));
+					if ($filter_group_id=="") {
+						if (!$has_missing_filter_groups) {
+							$msg = str_replace( '%1', $worksheet_name, $this->language->get( 'error_missing_filter_group_id' ) );
+							$this->log->write( $msg );
+							$has_missing_filter_groups = true;
+						}
+						$ok = false;
+						continue;
+					}
+					if (!isset($filter_groups[$filter_group_id])) {
+						$msg = $this->language->get( 'error_invalid_filter_group_id' );
+						$msg = str_replace( '%1', $worksheet_name, $msg );
+						$msg = str_replace( '%2', $filter_group_id, $msg );
+						$this->log->write( $msg );
+						$ok = false;
+						continue;
+					}
+					if ($export_import_settings_use_filter_id) {
+						$filter_id = trim($this->getCell($data,$i,3));
+						if ($filter_id=="") {
+							if (!$has_missing_filters) {
+								$msg = str_replace( '%1', $worksheet_name, $this->language->get( 'error_missing_filter_id' ) );
+								$this->log->write( $msg );
+								$has_missing_filters = true;
+							}
+							$ok = false;
+							continue;
+						}
+						if (!isset($filter_groups[$filter_group_id][$filter_id])) {
+							$msg = $this->language->get( 'error_invalid_filter_group_id_filter_id' );
+							$msg = str_replace( '%1', $worksheet_name, $msg );
+							$msg = str_replace( '%2', $filter_group_id, $msg );
+							$msg = str_replace( '%3', $filter_id, $msg );
+							$this->log->write( $msg );
+							$ok = false;
+							continue;
+						}
+					} else {
+						$filter_name = trim($this->getCell($data,$i,3));
+						if ($filter_name=="") {
+							if (!$has_missing_filters) {
+								$msg = str_replace( '%1', $worksheet_name, $this->language->get( 'error_missing_filter_name' ) );
+								$this->log->write( $msg );
+								$has_missing_filters = true;
+							}
+							$ok = false;
+							continue;
+						}
+						if (!isset($filter_groups[$filter_group_id][$filter_name])) {
+							$msg = $this->language->get( 'error_invalid_filter_group_id_filter_name' );
+							$msg = str_replace( '%1', $worksheet_name, $msg );
+							$msg = str_replace( '%2', $filter_group_id, $msg );
+							$msg = str_replace( '%3', $filter_name, $msg );
+							$this->log->write( $msg );
+							$ok = false;
+							continue;
+						}
+					}
+				} else {
+					$filter_group_name = trim($this->getCell($data,$i,2));
+					if ($filter_group_name=="") {
+						if (!$has_missing_filter_groups) {
+							$msg = str_replace( '%1', $worksheet_name, $this->language->get( 'error_missing_filter_group_name' ) );
+							$this->log->write( $msg );
+							$has_missing_filter_groups = true;
+						}
+						$ok = false;
+						continue;
+					}
+					if (!isset($filter_groups[$filter_group_name])) {
+						$msg = $this->language->get( 'error_invalid_filter_group_name' );
+						$msg = str_replace( '%1', $worksheet_name, $msg );
+						$msg = str_replace( '%2', $filter_group_name, $msg );
+						$this->log->write( $msg );
+						$ok= false;
+						continue;
+					}
+					if ($export_import_settings_use_filter_id) {
+						$filter_id = trim($this->getCell($data,$i,3));
+						if ($filter_id=="") {
+							if (!$has_missing_filters) {
+								$msg = str_replace( '%1', $worksheet_name, $this->language->get( 'error_missing_filter_id' ) );
+								$this->log->write( $msg );
+								$has_missing_filters = true;
+							}
+							$ok = false;
+							continue;
+						}
+						if (!isset($filter_groups[$filter_group_name][$filter_id])) {
+							$msg = $this->language->get( 'error_invalid_filter_group_name_filter_id' );
+							$msg = str_replace( '%1', $worksheet_name, $msg );
+							$msg = str_replace( '%2', $filter_group_name, $msg );
+							$msg = str_replace( '%3', $filter_id, $msg );
+							$this->log->write( $msg );
+							$ok = false;
+							continue;
+						}
+					} else {
+						$filter_name = trim($this->getCell($data,$i,3));
+						if ($filter_name=="") {
+							if (!$has_missing_filters) {
+								$msg = str_replace( '%1', $worksheet_name, $this->language->get( 'error_missing_filter_name' ) );
+								$this->log->write( $msg );
+								$has_missing_filters = true;
+							}
+							$ok = false;
+							continue;
+						}
+						if (!isset($filter_groups[$filter_group_name][$filter_name])) {
+							$msg = $this->language->get( 'error_invalid_filter_group_name_filter_name' );
+							$msg = str_replace( '%1', $worksheet_name, $msg );
+							$msg = str_replace( '%2', $filter_group_name, $msg );
+							$msg = str_replace( '%3', $filter_name, $msg );
+							$this->log->write( $msg );
+							$ok = false;
+							continue;
+						}
+					}
+				}
+			}
+		}
+
+		return $ok;
+	}
+
+
 	protected function validateUpload( &$reader )
 	{
 		$ok = true;
@@ -2882,6 +4146,10 @@ class ModelToolExportImport extends Model {
 		// worksheets must have correct heading rows
 		if (!$this->validateCategories( $reader )) {
 			$this->log->write( $this->language->get('error_categories_header') );
+			$ok = false;
+		}
+		if (!$this->validateCategoryFilters( $reader )) {
+			$this->log->write( $this->language->get('error_category_filters_header') );
 			$ok = false;
 		}
 		if (!$this->validateProducts( $reader )) {
@@ -2916,6 +4184,10 @@ class ModelToolExportImport extends Model {
 			$this->log->write( $this->language->get('error_product_attributes_header') );
 			$ok = false;
 		}
+		if (!$this->validateProductFilters( $reader )) {
+			$this->log->write( $this->language->get('error_product_filters_header') );
+			$ok = false;
+		}
 		if (!$this->validateOptions( $reader )) {
 			$this->log->write( $this->language->get('error_options_header') );
 			$ok = false;
@@ -2932,9 +4204,19 @@ class ModelToolExportImport extends Model {
 			$this->log->write( $this->language->get('error_attributes_header') );
 			$ok = false;
 		}
+		if (!$this->validateFilterGroups( $reader )) {
+			$this->log->write( $this->language->get('error_filter_groups_header') );
+			$ok = false;
+		}
+		if (!$this->validateFilters( $reader )) {
+			$this->log->write( $this->language->get('error_filters_header') );
+			$ok = false;
+		}
 
 		// certain worksheets rely on the existence of other worksheets
 		$names = $reader->getSheetNames();
+		$exist_categories = false;
+		$exist_category_filters = false;
 		$exist_product_options = false;
 		$exist_product_option_values = false;
 		$exist_products = false;
@@ -2943,11 +4225,27 @@ class ModelToolExportImport extends Model {
 		$exist_discounts = false;
 		$exist_rewards = false;
 		$exist_product_attributes = false;
+		$exist_product_filters = false;
 		$exist_attribute_groups = false;
+		$exist_filters = false;
+		$exist_filter_groups = false;
 		$exist_attributes = false;
 		$exist_options = false;
 		$exist_option_values = false;
 		foreach ($names as $name) {
+			if ($name=='Categories') {
+				$exist_categories = true;
+				continue;
+			}
+			if ($name=='CategoryFilters') {
+				if (!$exist_categories) {
+					// Missing Categories worksheet, or Categories worksheet not listed before CategoryFilters
+					$this->log->write( $this->language->get('error_category_filters') );
+					$ok = false;
+				}
+				$exist_category_filters = true;
+				continue;
+			}
 			if ($name=='Products') {
 				$exist_products = true;
 				continue;
@@ -2990,7 +4288,7 @@ class ModelToolExportImport extends Model {
 					$this->log->write( $this->language->get('error_specials') );
 					$ok = false;
 				}
-				$exist_additional_images = true;
+				$exist_specials = true;
 				continue;
 			}
 			if ($name=='Discounts') {
@@ -2999,7 +4297,7 @@ class ModelToolExportImport extends Model {
 					$this->log->write( $this->language->get('error_discounts') );
 					$ok = false;
 				}
-				$exist_additional_images = true;
+				$exist_discounts = true;
 				continue;
 			}
 			if ($name=='Rewards') {
@@ -3008,7 +4306,7 @@ class ModelToolExportImport extends Model {
 					$this->log->write( $this->language->get('error_rewards') );
 					$ok = false;
 				}
-				$exist_additional_images = true;
+				$exist_rewards = true;
 				continue;
 			}
 			if ($name=='ProductAttributes') {
@@ -3017,7 +4315,7 @@ class ModelToolExportImport extends Model {
 					$this->log->write( $this->language->get('error_product_attributes') );
 					$ok = false;
 				}
-				$exist_additional_images = true;
+				$exist_product_attributes = true;
 				continue;
 			}
 			if ($name=='AttributeGroups') {
@@ -3031,6 +4329,28 @@ class ModelToolExportImport extends Model {
 					$ok = false;
 				}
 				$exist_attributes = true;
+				continue;
+			}
+			if ($name=='ProductFilters') {
+				if (!$exist_products) {
+					// Missing Products worksheet, or Products worksheet not listed before ProductFilters
+					$this->log->write( $this->language->get('error_product_filters') );
+					$ok = false;
+				}
+				$exist_product_filters = true;
+				continue;
+			}
+			if ($name=='FilterGroups') {
+				$exist_filter_groups = true;
+				continue;
+			}
+			if ($name=='Filters') {
+				if (!$exist_filter_groups) {
+					// Missing FilterGroups worksheet, or FilterGroups worksheet not listed before Filters
+					$this->log->write( $this->language->get('error_filters') );
+					$ok = false;
+				}
+				$exist_filters = true;
 				continue;
 			}
 			if ($name=='Options') {
@@ -3061,6 +4381,13 @@ class ModelToolExportImport extends Model {
 				$ok = false;
 			}
 		}
+		if ($exist_filter_groups) {
+			if (!$exist_filters) {
+				// Filters worksheet also expected after an FilterGroups worksheet
+				$this->log->write( $this->language->get('error_filters_2') );
+				$ok = false;
+			}
+		}
 		if ($exist_options) {
 			if (!$exist_option_values) {
 				// OptionValues worksheet also expected after an Options worksheet
@@ -3069,6 +4396,32 @@ class ModelToolExportImport extends Model {
 			}
 		}
 
+		if (!$ok) {
+			return false;
+		}
+		
+		if (!$this->validateProductIdColumns( $reader )) {
+			return false;
+		}
+		
+		if (!$this->validateCustomerGroupColumns( $reader )) {
+			$ok = false;
+		}
+		
+		if (!$this->validateOptionColumns( $reader )) {
+			$ok = false;
+		}
+		
+		if (!$this->validateAttributeColumns( $reader )) {
+			$ok = false;
+		}
+
+		if ($this->existFilter()) {
+			if (!$this->validateFilterColumns( $reader )) {
+				$ok = false;
+			}
+		}
+		
 		return $ok;
 	}
 
@@ -3114,7 +4467,9 @@ class ModelToolExportImport extends Model {
 			$this->clearCache();
 			$this->session->data['export_import_nochange'] = 0;
 			$available_product_ids = array();
-			$this->uploadCategories( $reader, $incremental );
+			$available_category_ids = array();
+			$this->uploadCategories( $reader, $incremental, $available_category_ids );
+			$this->uploadCategoryFilters( $reader, $incremental, $available_category_ids );
 			$this->uploadProducts( $reader, $incremental, $available_product_ids );
 			$this->uploadAdditionalImages( $reader, $incremental, $available_product_ids );
 			$this->uploadSpecials( $reader, $incremental, $available_product_ids );
@@ -3123,10 +4478,13 @@ class ModelToolExportImport extends Model {
 			$this->uploadProductOptions( $reader, $incremental, $available_product_ids );
 			$this->uploadProductOptionValues( $reader, $incremental, $available_product_ids );
 			$this->uploadProductAttributes( $reader, $incremental, $available_product_ids );
+			$this->uploadProductFilters( $reader, $incremental, $available_product_ids );
 			$this->uploadOptions( $reader, $incremental );
 			$this->uploadOptionValues( $reader, $incremental );
 			$this->uploadAttributeGroups( $reader, $incremental );
 			$this->uploadAttributes( $reader, $incremental );
+			$this->uploadFilterGroups( $reader, $incremental );
+			$this->uploadFilters( $reader, $incremental );
 			return true;
 		} catch (Exception $e) {
 			$errstr = $e->getMessage();
@@ -3193,18 +4551,22 @@ class ModelToolExportImport extends Model {
 	}
 
 
-	protected function setCellRow( $worksheet, $row/*1-based*/, $data, &$style=null ) {
+	protected function setCellRow( $worksheet, $row/*1-based*/, $data, &$default_style=null, &$styles=null ) {
+		if (!empty($default_style)) {
+			$worksheet->getStyle( "$row:$row" )->applyFromArray( $default_style, false );
+		}
+		if (!empty($styles)) {
+			foreach ($styles as $col=>$style) {
+				$worksheet->getStyleByColumnAndRow($col,$row)->applyFromArray($style,false);
+			}
+		}
 		$worksheet->fromArray( $data, null, 'A'.$row, true );
+//		foreach ($data as $col=>$val) {
+//			$worksheet->setCellValueExplicitByColumnAndRow( $col, $row-1, $val );
+//		}
 //		foreach ($data as $col=>$val) {
 //			$worksheet->setCellValueByColumnAndRow( $col, $row, $val );
 //		}
-		if (!empty($style)) {
-//			$from = 'A'.$row;
-//			$to = PHPExcel_Cell::stringFromColumnIndex(count($data)-1).$row;
-//			$range = $from.':'.$to;
-//			$worksheet->getStyle( $range )->applyFromArray( $style, false );
-			$worksheet->getStyle( "$row:$row" )->applyFromArray( $style, false );
-		}
 	}
 
 
@@ -3423,11 +4785,134 @@ class ModelToolExportImport extends Model {
 			}
 			$data[$j++] = $layout_list;
 			$data[$j++] = ($row['status']==0) ? 'false' : 'true';
-			$this->setCellRow( $worksheet, $i, $data );
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
 			$i += 1;
 			$j = 0;
 		}
-		$this->setColumnStyles( $worksheet, $styles, 2, $i-1 );
+	}
+
+
+	protected function getFilterGroupNames( $language_id ) {
+		$sql  = "SELECT filter_group_id, name ";
+		$sql .= "FROM `".DB_PREFIX."filter_group_description` ";
+		$sql .= "WHERE language_id='".(int)$language_id."' ";
+		$sql .= "ORDER BY filter_group_id ASC";
+		$query = $this->db->query( $sql );
+		$filter_group_names = array();
+		foreach ($query->rows as $row) {
+			$filter_group_id = $row['filter_group_id'];
+			$name = $row['name'];
+			$filter_group_names[$filter_group_id] = $name;
+		}
+		return $filter_group_names;
+	}
+
+
+	protected function getFilterNames( $language_id ) {
+		$sql  = "SELECT filter_id, name ";
+		$sql .= "FROM `".DB_PREFIX."filter_description` ";
+		$sql .= "WHERE language_id='".(int)$language_id."' ";
+		$sql .= "ORDER BY filter_id ASC";
+		$query = $this->db->query( $sql );
+		$filter_names = array();
+		foreach ($query->rows as $row) {
+			$filter_id = $row['filter_id'];
+			$filter_name = $row['name'];
+			$filter_names[$filter_id] = $filter_name;
+		}
+		return $filter_names;
+	}
+
+
+	protected function getCategoryFilters( $min_id, $max_id ) {
+		$sql  = "SELECT cf.category_id, fg.filter_group_id, cf.filter_id ";
+		$sql .= "FROM `".DB_PREFIX."category_filter` cf ";
+		$sql .= "INNER JOIN `".DB_PREFIX."filter` f ON f.filter_id=cf.filter_id ";
+		$sql .= "INNER JOIN `".DB_PREFIX."filter_group` fg ON fg.filter_group_id=f.filter_group_id ";
+		if (isset($min_id) && isset($max_id)) {
+			$sql .= "WHERE category_id BETWEEN $min_id AND $max_id ";
+		}
+		$sql .= "ORDER BY cf.category_id ASC, fg.filter_group_id ASC, cf.filter_id ASC";
+		$query = $this->db->query( $sql );
+		$category_filters = array();
+		foreach ($query->rows as $row) {
+			$category_filter = array();
+			$category_filter['category_id'] = $row['category_id'];
+			$category_filter['filter_group_id'] = $row['filter_group_id'];
+			$category_filter['filter_id'] = $row['filter_id'];
+			$category_filters[] = $category_filter;
+		}
+		return $category_filters;
+	}
+
+
+	protected function populateCategoryFiltersWorksheet( &$worksheet, &$languages, $default_language_id, &$box_format, &$text_format, $min_id=null, $max_id=null ) {
+		// Set the column widths
+		$j = 0;
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('category_id')+1);
+		if ($this->config->get( 'export_import_settings_use_filter_group_id' )) {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('filter_group_id')+1);
+		} else {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('filter_group'),30)+1);
+		}
+		if ($this->config->get( 'export_import_settings_use_filter_id' )) {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('filter_id')+1);
+		} else {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('filter'),30)+1);
+		}
+		foreach ($languages as $language) {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('text')+4,30)+1);
+		}
+
+		// The heading row and column styles
+		$styles = array();
+		$data = array();
+		$i = 1;
+		$j = 0;
+		$data[$j++] = 'category_id';
+		if ($this->config->get( 'export_import_settings_use_filter_group_id' )) {
+			$data[$j++] = 'filter_group_id';
+		} else {
+			$styles[$j] = &$text_format;
+			$data[$j++] = 'filter_group';
+		}
+		if ($this->config->get( 'export_import_settings_use_filter_id' )) {
+			$data[$j++] = 'filter_id';
+		} else {
+			$styles[$j] = &$text_format;
+			$data[$j++] = 'filter';
+		}
+		$worksheet->getRowDimension($i)->setRowHeight(30);
+		$this->setCellRow( $worksheet, $i, $data, $box_format );
+
+		// The actual category filters data
+		if (!$this->config->get( 'export_import_settings_use_filter_group_id' )) {
+			$filter_group_names = $this->getFilterGroupNames( $default_language_id );
+		}
+		if (!$this->config->get( 'export_import_settings_use_filter_id' )) {
+			$filter_names = $this->getFilterNames( $default_language_id );
+		}
+		$i += 1;
+		$j = 0;
+		$category_filters = $this->getCategoryFilters( $min_id, $max_id );
+		foreach ($category_filters as $row) {
+			$worksheet->getRowDimension($i)->setRowHeight(13);
+			$data = array();
+			$data[$j++] = $row['category_id'];
+			if ($this->config->get( 'export_import_settings_use_filter_group_id' )) {
+				$data[$j++] = $row['filter_group_id'];
+			} else {
+				$data[$j++] = html_entity_decode($filter_group_names[$row['filter_group_id']],ENT_QUOTES,'UTF-8');
+			}
+			if ($this->config->get( 'export_import_settings_use_filter_id' )) {
+				$data[$j++] = $row['filter_id'];
+			} else {
+				$data[$j++] = html_entity_decode($filter_names[$row['filter_id']],ENT_QUOTES,'UTF-8');
+			}
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
+			$i += 1;
+			$j = 0;
+		}
 	}
 
 
@@ -3685,19 +5170,24 @@ class ModelToolExportImport extends Model {
 		}
 		$styles[$j] = &$text_format;
 		$data[$j++] = 'categories';
+		$styles[$j] = &$text_format;
 		$data[$j++] = 'sku';
+		$styles[$j] = &$text_format;
 		$data[$j++] = 'upc';
 		if (in_array('ean',$product_fields)) {
 			$styles[$j] = &$text_format;
 			$data[$j++] = 'ean';
 		}
 		if (in_array('jan',$product_fields)) {
+			$styles[$j] = &$text_format;
 			$data[$j++] = 'jan';
 		}
 		if (in_array('isbn',$product_fields)) {
+			$styles[$j] = &$text_format;
 			$data[$j++] = 'isbn';
 		}
 		if (in_array('mpn',$product_fields)) {
+			$styles[$j] = &$text_format;
 			$data[$j++] = 'mpn';
 		}
 		$styles[$j] = &$text_format;
@@ -3848,11 +5338,10 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['sort_order'];
 			$data[$j++] = ($row['subtract']==0) ? 'false' : 'true';
 			$data[$j++] = $row['minimum'];
-			$this->setCellRow( $worksheet, $i, $data );
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
 			$i += 1;
 			$j = 0;
 		}
-		$this->setColumnStyles( $worksheet, $styles, 2, $i-1 );
 	}
 
 
@@ -3917,11 +5406,10 @@ class ModelToolExportImport extends Model {
 			if ($exist_sort_order) {
 				$data[$j++] = $row['sort_order'];
 			}
-			$this->setCellRow( $worksheet, $i, $data );
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
 			$i += 1;
 			$j = 0;
 		}
-		$this->setColumnStyles( $worksheet, $styles, 2, $i-1 );
 	}
 
 
@@ -3989,11 +5477,10 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['price'];
 			$data[$j++] = $row['date_start'];
 			$data[$j++] = $row['date_end'];
-			$this->setCellRow( $worksheet, $i, $data );
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
 			$i += 1;
 			$j = 0;
 		}
-		$this->setColumnStyles( $worksheet, $styles, 2, $i-1 );
 	}
 
 
@@ -4064,11 +5551,10 @@ class ModelToolExportImport extends Model {
 			$data[$j++] =$row['price'];
 			$data[$j++] =$row['date_start'];
 			$data[$j++] =$row['date_end'];
-			$this->setCellRow( $worksheet, $i, $data );
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
 			$i += 1;
 			$j = 0;
 		}
-		$this->setColumnStyles( $worksheet, $styles, 2, $i-1 );
 	}
 
 
@@ -4126,11 +5612,10 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['product_id'];
 			$data[$j++] = $row['name'];
 			$data[$j++] = $row['points'];
-			$this->setCellRow( $worksheet, $i, $data );
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
 			$i += 1;
 			$j = 0;
 		}
-		$this->setColumnStyles( $worksheet, $styles, 2, $i-1 );
 	}
 
 
@@ -4209,11 +5694,10 @@ class ModelToolExportImport extends Model {
 			}
 			$data[$j++] = html_entity_decode($row['option_value'],ENT_QUOTES,'UTF-8');
 			$data[$j++] = ($row['required']==0) ? 'false' : 'true';
-			$this->setCellRow( $worksheet, $i, $data );
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
 			$i += 1;
 			$j = 0;
 		}
-		$this->setColumnStyles( $worksheet, $styles, 2, $i-1 );
 	}
 
 
@@ -4319,11 +5803,10 @@ class ModelToolExportImport extends Model {
 			$data[$j++] = $row['points_prefix'];
 			$data[$j++] = $row['weight'];
 			$data[$j++] = $row['weight_prefix'];
-			$this->setCellRow( $worksheet, $i, $data );
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
 			$i += 1;
 			$j = 0;
 		}
-		$this->setColumnStyles( $worksheet, $styles, 2, $i-1 );
 	}
 
 
@@ -4430,7 +5913,6 @@ class ModelToolExportImport extends Model {
 		$data[$j++] = 'product_id';
 		if ($this->config->get( 'export_import_settings_use_attribute_group_id' )) {
 			$data[$j++] = 'attribute_group_id';
-			$this->setCell( $worksheet, $i, $j++, '', $box_format );
 		} else {
 			$styles[$j] = &$text_format;
 			$data[$j++] = 'attribute_group';
@@ -4475,11 +5957,102 @@ class ModelToolExportImport extends Model {
 			foreach ($languages as $language) {
 				$data[$j++] = html_entity_decode($row['text'][$language['code']],ENT_QUOTES,'UTF-8');
 			}
-			$this->setCellRow( $worksheet, $i, $data );
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
 			$i += 1;
 			$j = 0;
 		}
-		$this->setColumnStyles( $worksheet, $styles, 2, $i-1 );
+	}
+
+
+	protected function getProductFilters( $min_id, $max_id ) {
+		$sql  = "SELECT pf.product_id, fg.filter_group_id, pf.filter_id ";
+		$sql .= "FROM `".DB_PREFIX."product_filter` pf ";
+		$sql .= "INNER JOIN `".DB_PREFIX."filter` f ON f.filter_id=pf.filter_id ";
+		$sql .= "INNER JOIN `".DB_PREFIX."filter_group` fg ON fg.filter_group_id=f.filter_group_id ";
+		if (isset($min_id) && isset($max_id)) {
+			$sql .= "WHERE product_id BETWEEN $min_id AND $max_id ";
+		}
+		$sql .= "ORDER BY pf.product_id ASC, fg.filter_group_id ASC, pf.filter_id ASC";
+		$query = $this->db->query( $sql );
+		$product_filters = array();
+		foreach ($query->rows as $row) {
+			$product_filter = array();
+			$product_filter['product_id'] = $row['product_id'];
+			$product_filter['filter_group_id'] = $row['filter_group_id'];
+			$product_filter['filter_id'] = $row['filter_id'];
+			$product_filters[] = $product_filter;
+		}
+		return $product_filters;
+	}
+
+
+	protected function populateProductFiltersWorksheet( &$worksheet, &$languages, $default_language_id, &$box_format, &$text_format, $min_id=null, $max_id=null ) {
+		// Set the column widths
+		$j = 0;
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('product_id')+1);
+		if ($this->config->get( 'export_import_settings_use_filter_group_id' )) {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('filter_group_id')+1);
+		} else {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('filter_group'),30)+1);
+		}
+		if ($this->config->get( 'export_import_settings_use_filter_id' )) {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(strlen('filter_id')+1);
+		} else {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('filter'),30)+1);
+		}
+		foreach ($languages as $language) {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('text')+4,30)+1);
+		}
+
+		// The heading row and column styles
+		$styles = array();
+		$data = array();
+		$i = 1;
+		$j = 0;
+		$data[$j++] = 'product_id';
+		if ($this->config->get( 'export_import_settings_use_filter_group_id' )) {
+			$data[$j++] = 'filter_group_id';
+		} else {
+			$styles[$j] = &$text_format;
+			$data[$j++] = 'filter_group';
+		}
+		if ($this->config->get( 'export_import_settings_use_filter_id' )) {
+			$data[$j++] = 'filter_id';
+		} else {
+			$styles[$j] = &$text_format;
+			$data[$j++] = 'filter';
+		}
+		$worksheet->getRowDimension($i)->setRowHeight(30);
+		$this->setCellRow( $worksheet, $i, $data, $box_format );
+
+		// The actual product filters data
+		if (!$this->config->get( 'export_import_settings_use_filter_group_id' )) {
+			$filter_group_names = $this->getFilterGroupNames( $default_language_id );
+		}
+		if (!$this->config->get( 'export_import_settings_use_filter_id' )) {
+			$filter_names = $this->getFilterNames( $default_language_id );
+		}
+		$i += 1;
+		$j = 0;
+		$product_filters = $this->getProductFilters( $min_id, $max_id );
+		foreach ($product_filters as $row) {
+			$worksheet->getRowDimension($i)->setRowHeight(13);
+			$data = array();
+			$data[$j++] = $row['product_id'];
+			if ($this->config->get( 'export_import_settings_use_filter_group_id' )) {
+				$data[$j++] = $row['filter_group_id'];
+			} else {
+				$data[$j++] = html_entity_decode($filter_group_names[$row['filter_group_id']],ENT_QUOTES,'UTF-8');
+			}
+			if ($this->config->get( 'export_import_settings_use_filter_id' )) {
+				$data[$j++] = $row['filter_id'];
+			} else {
+				$data[$j++] = html_entity_decode($filter_names[$row['filter_id']],ENT_QUOTES,'UTF-8');
+			}
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
+			$i += 1;
+			$j = 0;
+		}
 	}
 
 
@@ -4556,11 +6129,10 @@ class ModelToolExportImport extends Model {
 			foreach ($languages as $language) {
 				$data[$j++] = html_entity_decode($row['name'][$language['code']],ENT_QUOTES,'UTF-8');
 			}
-			$this->setCellRow( $worksheet, $i, $data );
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
 			$i += 1;
 			$j = 0;
 		}
-		$this->setColumnStyles( $worksheet, $styles, 2, $i-1 );
 	}
 
 
@@ -4652,11 +6224,10 @@ class ModelToolExportImport extends Model {
 			foreach ($languages as $language) {
 				$data[$j++] = html_entity_decode($row['name'][$language['code']],ENT_QUOTES,'UTF-8');
 			}
-			$this->setCellRow( $worksheet, $i, $data );
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
 			$i += 1;
 			$j = 0;
 		}
-		$this->setColumnStyles( $worksheet, $styles, 2, $i-1 );
 	}
 
 
@@ -4730,11 +6301,10 @@ class ModelToolExportImport extends Model {
 			foreach ($languages as $language) {
 				$data[$j++] = html_entity_decode($row['name'][$language['code']],ENT_QUOTES,'UTF-8');
 			}
-			$this->setCellRow( $worksheet, $i, $data );
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
 			$i += 1;
 			$j = 0;
 		}
-		$this->setColumnStyles( $worksheet, $styles, 2, $i-1 );
 	}
 
 
@@ -4811,11 +6381,167 @@ class ModelToolExportImport extends Model {
 			foreach ($languages as $language) {
 				$data[$j++] = html_entity_decode($row['name'][$language['code']],ENT_QUOTES,'UTF-8');
 			}
-			$this->setCellRow( $worksheet, $i, $data );
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
 			$i += 1;
 			$j = 0;
 		}
-		$this->setColumnStyles( $worksheet, $styles, 2, $i-1 );
+	}
+
+
+	protected function getFilterGroupDescriptions( &$languages ) {
+		// query the filter_group_description table for each language
+		$filter_group_descriptions = array();
+		foreach ($languages as $language) {
+			$language_id = $language['language_id'];
+			$language_code = $language['code'];
+			$sql  = "SELECT ag.filter_group_id, agd.* ";
+			$sql .= "FROM `".DB_PREFIX."filter_group` ag ";
+			$sql .= "LEFT JOIN `".DB_PREFIX."filter_group_description` agd ON agd.filter_group_id=ag.filter_group_id AND agd.language_id='".(int)$language_id."' ";
+			$sql .= "GROUP BY ag.filter_group_id ";
+			$sql .= "ORDER BY ag.filter_group_id ASC ";
+			$query = $this->db->query( $sql );
+			$filter_group_descriptions[$language_code] = $query->rows;
+		}
+		return $filter_group_descriptions;
+	}
+
+
+	protected function getFilterGroups( &$languages ) {
+		$results = $this->db->query( "SELECT * FROM `".DB_PREFIX."filter_group` ORDER BY filter_group_id ASC" );
+		$filter_group_descriptions = $this->getFilterGroupDescriptions( $languages );
+		foreach ($languages as $language) {
+			$language_code = $language['code'];
+			foreach ($results->rows as $key=>$row) {
+				if (isset($filter_group_descriptions[$language_code][$key])) {
+					$results->rows[$key]['name'][$language_code] = $filter_group_descriptions[$language_code][$key]['name'];
+				} else {
+					$results->rows[$key]['name'][$language_code] = '';
+				}
+			}
+		}
+		return $results->rows;
+	}
+
+
+	protected function populateFilterGroupsWorksheet( &$worksheet, $languages, &$box_format, &$text_format ) {
+		// Set the column widths
+		$j = 0;
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('filter_group_id'),4)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sort_order'),5)+1);
+		foreach ($languages as $language) {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4,30)+1);
+		}
+		
+		// The filter groups headings row and column styles
+		$styles = array();
+		$data = array();
+		$i = 1;
+		$j = 0;
+		$data[$j++] = 'filter_group_id';
+		$data[$j++] = 'sort_order';
+		foreach ($languages as $language) {
+			$styles[$j] = &$text_format;
+			$data[$j++] ='name('.$language['code'].')';
+		}
+		$worksheet->getRowDimension($i)->setRowHeight(30);
+		$this->setCellRow( $worksheet, $i, $data, $box_format );
+
+		// The actual filter groups data
+		$i += 1;
+		$j = 0;
+		$filters = $this->getFilterGroups( $languages );
+		foreach ($filters as $row) {
+			$worksheet->getRowDimension($i)->setRowHeight(13);
+			$data = array();
+			$data[$j++] = $row['filter_group_id'];
+			$data[$j++] = $row['sort_order'];
+			foreach ($languages as $language) {
+				$data[$j++] = html_entity_decode($row['name'][$language['code']],ENT_QUOTES,'UTF-8');
+			}
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
+			$i += 1;
+			$j = 0;
+		}
+	}
+
+
+	protected function getFilterDescriptions( &$languages ) {
+		// query the filter_description table for each language
+		$filter_descriptions = array();
+		foreach ($languages as $language) {
+			$language_id = $language['language_id'];
+			$language_code = $language['code'];
+			$sql  = "SELECT a.filter_group_id, a.filter_id, ad.* ";
+			$sql .= "FROM `".DB_PREFIX."filter` a ";
+			$sql .= "LEFT JOIN `".DB_PREFIX."filter_description` ad ON ad.filter_id=a.filter_id AND ad.language_id='".(int)$language_id."' ";
+			$sql .= "GROUP BY a.filter_group_id, a.filter_id ";
+			$sql .= "ORDER BY a.filter_group_id ASC, a.filter_id ASC ";
+			$query = $this->db->query( $sql );
+			$filter_descriptions[$language_code] = $query->rows;
+		}
+		return $filter_descriptions;
+	}
+
+
+	protected function getFilters( &$languages ) {
+		$results = $this->db->query( "SELECT * FROM `".DB_PREFIX."filter` ORDER BY filter_group_id ASC, filter_id ASC" );
+		$filter_descriptions = $this->getFilterDescriptions( $languages );
+		foreach ($languages as $language) {
+			$language_code = $language['code'];
+			foreach ($results->rows as $key=>$row) {
+				if (isset($filter_descriptions[$language_code][$key])) {
+					$results->rows[$key]['name'][$language_code] = $filter_descriptions[$language_code][$key]['name'];
+				} else {
+					$results->rows[$key]['name'][$language_code] = '';
+				}
+			}
+		}
+		return $results->rows;
+	}
+
+
+	protected function populateFiltersWorksheet( &$worksheet, $languages, &$box_format, &$text_format ) {
+		// Set the column widths
+		$j = 0;
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('filter_id'),2)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('filter_group_id'),4)+1);
+		$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('sort_order'),5)+1);
+		foreach ($languages as $language) {
+			$worksheet->getColumnDimensionByColumn($j++)->setWidth(max(strlen('name')+4,30)+1);
+		}
+
+		// The filters headings row and column styles
+		$styles = array();
+		$data = array();
+		$i = 1;
+		$j = 0;
+		$data[$j++] = 'filter_id';
+		$data[$j++] = 'filter_group_id';
+		$data[$j++] = 'sort_order';
+		foreach ($languages as $language) {
+			$styles[$j] = &$text_format;
+			$data[$j++] = 'name('.$language['code'].')';
+		}
+		$worksheet->getRowDimension($i)->setRowHeight(30);
+		$this->setCellRow( $worksheet, $i, $data, $box_format );
+		
+		// The actual filters values data
+		$i += 1;
+		$j = 0;
+		$options = $this->getFilters( $languages );
+		foreach ($options as $row) {
+			$worksheet->getRowDimension($i)->setRowHeight(13);
+			$data = array();
+			$data[$j++] = $row['filter_id'];
+			$data[$j++] = $row['filter_group_id'];
+			$data[$j++] = $row['sort_order'];
+			foreach ($languages as $language) {
+				$data[$j++] = html_entity_decode($row['name'][$language['code']],ENT_QUOTES,'UTF-8');
+			}
+			$this->setCellRow( $worksheet, $i, $data, $this->null_array, $styles );
+			$i += 1;
+			$j = 0;
+		}
 	}
 
 
@@ -4910,6 +6636,7 @@ class ModelToolExportImport extends Model {
 		$cwd = getcwd();
 		chdir( DIR_SYSTEM.'PHPExcel' );
 		require_once( 'Classes/PHPExcel.php' );
+		PHPExcel_Cell::setValueBinder( new PHPExcel_Cell_ExportImportValueBinder() );
 		chdir( $cwd );
 
 		// find out whether all data is to be downloaded
@@ -4938,7 +6665,7 @@ class ModelToolExportImport extends Model {
 			//$workbook->getDefaultStyle()->getAlignment()->setIndent(0.5);
 			$workbook->getDefaultStyle()->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
 			$workbook->getDefaultStyle()->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
-			$workbook->getDefaultStyle()->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_TEXT);
+			$workbook->getDefaultStyle()->getNumberFormat()->setFormatCode(PHPExcel_Style_NumberFormat::FORMAT_GENERAL);
 
 			// pre-define some commonly used styles
 			$box_format = array(
@@ -4956,10 +6683,10 @@ class ModelToolExportImport extends Model {
 				*/
 			);
 			$text_format = array(
-				/*
 				'numberformat' => array(
 					'code' => PHPExcel_Style_NumberFormat::FORMAT_TEXT
 				),
+				/*
 				'alignment' => array(
 					'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
 					'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER,
@@ -5005,6 +6732,16 @@ class ModelToolExportImport extends Model {
 					$worksheet->setTitle( 'Categories' );
 					$this->populateCategoriesWorksheet( $worksheet, $languages, $box_format, $text_format, $offset, $rows, $min_id, $max_id );
 					$worksheet->freezePaneByColumnAndRow( 1, 2 );
+
+					// creating the CategoryFilters worksheet
+					if ($this->existFilter()) {
+						$workbook->createSheet();
+						$workbook->setActiveSheetIndex($worksheet_index++);
+						$worksheet = $workbook->getActiveSheet();
+						$worksheet->setTitle( 'CategoryFilters' );
+						$this->populateCategoryFiltersWorksheet( $worksheet, $languages, $default_language_id, $box_format, $text_format, $min_id, $max_id );
+						$worksheet->freezePaneByColumnAndRow( 1, 2 );
+					}
 					break;
 
 				case 'p':
@@ -5070,6 +6807,16 @@ class ModelToolExportImport extends Model {
 					$worksheet->setTitle( 'ProductAttributes' );
 					$this->populateProductAttributesWorksheet( $worksheet, $languages, $default_language_id, $box_format, $text_format, $min_id, $max_id );
 					$worksheet->freezePaneByColumnAndRow( 1, 2 );
+
+					// creating the ProductFilters worksheet
+					if ($this->existFilter()) {
+						$workbook->createSheet();
+						$workbook->setActiveSheetIndex($worksheet_index++);
+						$worksheet = $workbook->getActiveSheet();
+						$worksheet->setTitle( 'ProductFilters' );
+						$this->populateProductFiltersWorksheet( $worksheet, $languages, $default_language_id, $box_format, $text_format, $min_id, $max_id );
+						$worksheet->freezePaneByColumnAndRow( 1, 2 );
+					}
 					break;
 
 				case 'o':
@@ -5103,6 +6850,28 @@ class ModelToolExportImport extends Model {
 					$worksheet = $workbook->getActiveSheet();
 					$worksheet->setTitle( 'Attributes' );
 					$this->populateAttributesWorksheet( $worksheet, $languages, $box_format, $text_format );
+					$worksheet->freezePaneByColumnAndRow( 1, 2 );
+					break;
+
+				case 'f':
+					if (!$this->existFilter()) {
+						throw new Exception( $this->language->get( 'error_filter_not_supported' ) );
+						break;
+					}
+
+					// creating the FilterGroups worksheet
+					$workbook->setActiveSheetIndex($worksheet_index++);
+					$worksheet = $workbook->getActiveSheet();
+					$worksheet->setTitle( 'FilterGroups' );
+					$this->populateFilterGroupsWorksheet( $worksheet, $languages, $box_format, $text_format );
+					$worksheet->freezePaneByColumnAndRow( 1, 2 );
+
+					// creating the Filters worksheet
+					$workbook->createSheet();
+					$workbook->setActiveSheetIndex($worksheet_index++);
+					$worksheet = $workbook->getActiveSheet();
+					$worksheet->setTitle( 'Filters' );
+					$this->populateFiltersWorksheet( $worksheet, $languages, $box_format, $text_format );
 					$worksheet->freezePaneByColumnAndRow( 1, 2 );
 					break;
 
@@ -5153,6 +6922,13 @@ class ModelToolExportImport extends Model {
 				case 'a':
 					$filename = 'attributes-'.$datetime.'.xlsx';
 					break;
+				case 'f':
+					if (!$this->existFilter()) {
+						throw new Exception( $this->language->get( 'error_filter_not_supported' ) );
+						break;
+					}
+					$filename = 'filters-'.$datetime.'.xlsx';
+					break;
 				default:
 					$filename = $datetime.'.xlsx';
 					break;
@@ -5195,7 +6971,7 @@ class ModelToolExportImport extends Model {
 
 	public function getNotifications() {
 		$language_code = $this->config->get( 'config_admin_language' );
-		$result = $this->curl_get_contents("http://www.mhccorp.com/index.php?route=information/message&type=tool_export_import_2_19&language_code=$language_code");
+		$result = $this->curl_get_contents("http://www.mhccorp.com/index.php?route=information/message&type=tool_export_import_2_27&language_code=$language_code");
 		if (stripos($result,'<html') !== false) {
 			return '';
 		}
@@ -5242,6 +7018,55 @@ class ModelToolExportImport extends Model {
 		$sql .= "GROUP BY ag.attribute_group_id, ad.`name`";
 		$query = $this->db->query( $sql );
 		return $query->rows;
+	}
+
+
+	public function getFilterGroupNameCounts() {
+		$default_language_id = $this->getDefaultLanguageId();
+		$sql  = "SELECT `name`, COUNT(filter_group_id) AS `count` FROM `".DB_PREFIX."filter_group_description` ";
+		$sql .= "WHERE language_id='".(int)$default_language_id."' ";
+		$sql .= "GROUP BY `name`";
+		$query = $this->db->query( $sql );
+		return $query->rows;
+	}
+
+
+	public function getFilterNameCounts() {
+		$default_language_id = $this->getDefaultLanguageId();
+		$sql  = "SELECT fg.filter_group_id, fd.`name`, COUNT(fd.filter_id) AS `count` FROM `".DB_PREFIX."filter_description` fd ";
+		$sql .= "INNER JOIN `".DB_PREFIX."filter` f ON f.filter_id=fd.filter_id ";
+		$sql .= "INNER JOIN `".DB_PREFIX."filter_group` fg ON fg.filter_group_id=f.filter_group_id ";
+		$sql .= "WHERE fd.language_id='".(int)$default_language_id."' ";
+		$sql .= "GROUP BY fg.filter_group_id, fd.`name`";
+		$query = $this->db->query( $sql );
+		return $query->rows;
+	}
+
+
+	public function existFilter() {
+		// only newer OpenCart versions support filters
+		$query = $this->db->query( "SHOW TABLES LIKE '".DB_PREFIX."filter'" );
+		$exist_table_filter = ($query->num_rows > 0);
+		$query = $this->db->query( "SHOW TABLES LIKE '".DB_PREFIX."filter_group'" );
+		$exist_table_filter_group = ($query->num_rows > 0);
+		$query = $this->db->query( "SHOW TABLES LIKE '".DB_PREFIX."product_filter'" );
+		$exist_table_product_filter = ($query->num_rows > 0);
+		$query = $this->db->query( "SHOW TABLES LIKE '".DB_PREFIX."category_filter'" );
+		$exist_table_category_filter = ($query->num_rows > 0);
+
+		if (!$exist_table_filter) {
+			return false;
+		}
+		if (!$exist_table_filter_group) {
+			return false;
+		}
+		if (!$exist_table_product_filter) {
+			return false;
+		}
+		if (!$exist_table_category_filter) {
+			return false;
+		}
+		return true;
 	}
 }
 ?>

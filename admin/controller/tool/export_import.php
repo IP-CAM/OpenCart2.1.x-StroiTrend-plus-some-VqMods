@@ -24,7 +24,14 @@ class ControllerToolExportImport extends Controller {
 				}
 				else {
 					$this->error['warning'] = $this->language->get('error_upload');
-					$this->error['warning'] .= "<br />\n".$this->language->get( 'text_log_details' );
+					if (defined('VERSION')) {
+						if (version_compare(VERSION,'2.1.0.0') > 0) {
+							$this->error['warning'] .= "<br />\n".$this->language->get( 'text_log_details_2_1_x' );
+						} else
+							$this->error['warning'] .= "<br />\n".$this->language->get( 'text_log_details_2_0_x' );
+					} else {
+						$this->error['warning'] .= "<br />\n".$this->language->get( 'text_log_details' );
+					}
 				}
 			}
 		}
@@ -87,6 +94,12 @@ class ControllerToolExportImport extends Controller {
 				case 'a':
 					$this->model_tool_export_import->download('a', null, null, null, null);
 					break;
+				case 'f':
+					if ($this->model_tool_export_import->existFilter()) {
+						$this->model_tool_export_import->download('f', null, null, null, null);
+						break;
+					}
+					break;
 				default:
 					break;
 			}
@@ -120,12 +133,15 @@ class ControllerToolExportImport extends Controller {
 	protected function getForm() {
 		$data = array();
 		$data['heading_title'] = $this->language->get('heading_title');
+		
+		$data['exist_filter'] = $this->model_tool_export_import->existFilter();
 
-		$data['text_export_type_category'] = $this->language->get('text_export_type_category');
-		$data['text_export_type_product'] = $this->language->get('text_export_type_product');
+		$data['text_export_type_category'] = ($data['exist_filter']) ? $this->language->get('text_export_type_category') : $this->language->get('text_export_type_category_old');
+		$data['text_export_type_product'] = ($data['exist_filter']) ? $this->language->get('text_export_type_product') : $this->language->get('text_export_type_product_old');
 		$data['text_export_type_poa'] = $this->language->get('text_export_type_poa');
 		$data['text_export_type_option'] = $this->language->get('text_export_type_option');
 		$data['text_export_type_attribute'] = $this->language->get('text_export_type_attribute');
+		$data['text_export_type_filter'] = $this->language->get('text_export_type_filter');
 		$data['text_yes'] = $this->language->get('text_yes');
 		$data['text_no'] = $this->language->get('text_no');
 		$data['text_loading_notifications'] = $this->language->get( 'text_loading_notifications' );
@@ -145,6 +161,8 @@ class ControllerToolExportImport extends Controller {
 		$data['entry_settings_use_option_value_id'] = $this->language->get( 'entry_settings_use_option_value_id' );
 		$data['entry_settings_use_attribute_group_id'] = $this->language->get( 'entry_settings_use_attribute_group_id' );
 		$data['entry_settings_use_attribute_id'] = $this->language->get( 'entry_settings_use_attribute_id' );
+		$data['entry_settings_use_filter_group_id'] = $this->language->get( 'entry_settings_use_filter_group_id' );
+		$data['entry_settings_use_filter_id'] = $this->language->get( 'entry_settings_use_filter_id' );
 		$data['entry_settings_use_export_cache'] = $this->language->get( 'entry_settings_use_export_cache' );
 		$data['entry_settings_use_import_cache'] = $this->language->get( 'entry_settings_use_import_cache' );
 
@@ -161,7 +179,7 @@ class ControllerToolExportImport extends Controller {
 		$data['help_range_type'] = $this->language->get( 'help_range_type' );
 		$data['help_incremental_yes'] = $this->language->get( 'help_incremental_yes' );
 		$data['help_incremental_no'] = $this->language->get( 'help_incremental_no' );
-		$data['help_import'] = $this->language->get( 'help_import' );
+		$data['help_import'] = ($data['exist_filter']) ? $this->language->get( 'help_import' ) : $this->language->get( 'help_import_old' );
 		$data['help_format'] = $this->language->get( 'help_format' );
 
 		$data['error_select_file'] = $this->language->get('error_select_file');
@@ -279,6 +297,22 @@ class ControllerToolExportImport extends Controller {
 			$data['settings_use_attribute_id'] = '0';
 		}
 
+		if (isset($this->request->post['export_import_settings_use_filter_group_id'])) {
+			$data['settings_use_filter_group_id'] = $this->request->post['export_import_settings_use_filter_group_id'];
+		} else if ($this->config->get( 'export_import_settings_use_filter_group_id' )) {
+			$data['settings_use_filter_group_id'] = '1';
+		} else {
+			$data['settings_use_filter_group_id'] = '0';
+		}
+
+		if (isset($this->request->post['export_import_settings_use_filter_id'])) {
+			$data['settings_use_filter_id'] = $this->request->post['export_import_settings_use_filter_id'];
+		} else if ($this->config->get( 'export_import_settings_use_filter_id' )) {
+			$data['settings_use_filter_id'] = '1';
+		} else {
+			$data['settings_use_filter_id'] = '0';
+		}
+
 		if (isset($this->request->post['export_import_settings_use_export_cache'])) {
 			$data['settings_use_export_cache'] = $this->request->post['export_import_settings_use_export_cache'];
 		} else if ($this->config->get( 'export_import_settings_use_export_cache' )) {
@@ -368,6 +402,26 @@ class ControllerToolExportImport extends Controller {
 			}
 		}
 
+		if (!$this->config->get( 'export_import_settings_use_filter_group_id' )) {
+			$filter_group_names = $this->model_tool_export_import->getFilterGroupNameCounts();
+			foreach ($filter_group_names as $filter_group_name) {
+				if ($filter_group_name['count'] > 1) {
+					$this->error['warning'] = str_replace( '%1', $filter_group_name['name'], $this->language->get( 'error_filter_group_name' ) );
+					return false;
+				}
+			}
+		}
+
+		if (!$this->config->get( 'export_import_settings_use_filter_id' )) {
+			$filter_names = $this->model_tool_export_import->getFilterNameCounts();
+			foreach ($filter_names as $filter_name) {
+				if ($filter_name['count'] > 1) {
+					$this->error['warning'] = str_replace( '%1', $filter_name['name'], $this->language->get( 'error_filter_name' ) );
+					return false;
+				}
+			}
+		}
+
 		return true;
 	}
 
@@ -449,6 +503,26 @@ class ControllerToolExportImport extends Controller {
 			foreach ($attribute_names as $attribute_name) {
 				if ($attribute_name['count'] > 1) {
 					$this->error['warning'] = str_replace( '%1', $attribute_name['name'], $this->language->get( 'error_attribute_name' ) );
+					return false;
+				}
+			}
+		}
+
+		if (empty($this->request->post['export_import_settings_use_filter_group_id'])) {
+			$filter_group_names = $this->model_tool_export_import->getFilterGroupNameCounts();
+			foreach ($filter_group_names as $filter_group_name) {
+				if ($filter_group_name['count'] > 1) {
+					$this->error['warning'] = str_replace( '%1', $filter_group_name['name'], $this->language->get( 'error_filter_group_name' ) );
+					return false;
+				}
+			}
+		}
+
+		if (empty($this->request->post['export_import_settings_use_filter_id'])) {
+			$filter_names = $this->model_tool_export_import->getFilterNameCounts();
+			foreach ($filter_names as $filter_name) {
+				if ($filter_name['count'] > 1) {
+					$this->error['warning'] = str_replace( '%1', $filter_name['name'], $this->language->get( 'error_filter_name' ) );
 					return false;
 				}
 			}

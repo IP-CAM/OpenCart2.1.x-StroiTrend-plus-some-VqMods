@@ -20,7 +20,13 @@
     white-space: nowrap !important;
     line-height: 20px !important;
 }
-
+#payment_address_email_confirm_input div {
+    white-space: nowrap;
+}
+#payment_address_agree_input label
+{
+    text-align: left !important;
+}
 .buttoncard:hover {
     border: 1px solid #00562f !important;
     color: #00562f !important;
@@ -634,7 +640,7 @@ hr {
 }
 
 /*mega filter pro*/
-.box-heading
+.box-heading 
 {
     margin-top: 0px;
     margin-bottom: 0px;
