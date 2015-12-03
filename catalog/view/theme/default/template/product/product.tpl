@@ -332,25 +332,7 @@
           </div>
           <?php } ?>
           
-          
-    </div>     
-          
-
-     
-          
-   
-          
-         
-
-          
-         
-      </div>
-      
- 
-      
-      
-      
-    <?php echo $column_right; ?></div></div>
+           </div>
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-description" data-toggle="tab"><?php echo $tab_description; ?></a></li>
      
@@ -506,10 +488,32 @@
         <?php } ?>
         <?php } ?>
       </p>
-      <?php } ?>
+         
+          
+      <?php } ?> 
+    </div>     
+          
+
+     
+          
+   
+          
+         
+
+          
+         
+      </div>
+      
+ 
+      
+      
+      
+    <?php echo $column_right; ?>
+       
+      
       <?php echo $content_bottom; ?>
       
-      
+      </div>
       
       
       
