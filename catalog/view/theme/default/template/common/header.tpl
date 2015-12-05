@@ -21,11 +21,12 @@
                 <meta name="keywords" content="<?php echo $keywords; ?>" />
                 <?php } ?>
                     <script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
-                    <link href="catalog/view/theme/default/stylesheet/style.css" rel="stylesheet">
+                    
+                    <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 
                     <link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+             
                     <link href="catalog/view/theme/default/stylesheet/style.css" rel="stylesheet">
-                    <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
                     <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
                     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,400i,300,700" rel="stylesheet" type="text/css" />
 
@@ -47,16 +48,14 @@
                                                 <?php echo $analytic; ?>
                                                     <?php } ?>
 
-                                                        <script type="text/javascript" src="catalog/view/javascript/callback.js"></script>
-                                                        <script type="text/javascript" src="catalog/view/javascript/jquery.simplemodal.js"></script>
+
                                                         <link href="catalog/view/theme/default/stylesheet/callback.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body class="<?php echo $class; ?>">
     <header id="top" name="top">
         <div class="topH">
-            <div class="container" style="padding-left: 30px;
-    padding-right: 27px;">
+            <div class="container" style="padding-left: 30px;padding-right: 27px;">
                 <div class="row">
                   <!-- LOGO -->
                   <div class="logo-block">
@@ -101,13 +100,14 @@
                                     <?php echo $cart; ?>
                                 </div>
                             </li>
+                            
                         </ul>
                     </div>
                     <!-- MENU -->
                     <nav id="menu" class="navbar">
                         <div class="navbar navbar-header froboto">
-                            <button type="button" class="buttonbl navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
-                        </div>
+                           <div class="row"> <button type="button" class="buttonbl navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+                     </div>   </div>
                         
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav">
@@ -126,6 +126,7 @@
                                         <?php echo $category['name']; ?>
                                     </a>
                                 </div>
+                                </li>
                                 <li>
                                     <div class="froboto uppcase">
                                         <div>

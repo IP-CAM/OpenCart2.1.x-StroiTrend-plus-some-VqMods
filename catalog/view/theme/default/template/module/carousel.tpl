@@ -7,7 +7,8 @@
     <?php foreach ($banners as $banner) { ?>
         <div class="item text-center">
             <?php if ($banner['link']) { ?>
-                <a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['preview']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" />
+                <a href="<?php echo $banner['link']; ?>">
+                <img src="<?php echo $banner['preview']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" />
                 
                 
                 
@@ -16,12 +17,18 @@
                 <p></p>
                 <p style="text-align-center;">
                 <b>
-                 <?php echo $banner['title']; ?>   
+                <a href="<?php echo $banner['link']; ?>">
+                 <?php echo $banner['title']; ?>   </a>
                    </b> 
                 </p>
                 <p>
                 <?php echo $banner['description']; ?>
                </p>
+               
+               <a href="<?php echo $banner['link']; ?>" style="padding-bottom:10px;display:block;">
+                   Перейти к статье
+               </a>
+               
                 <?php } else { ?>
                     <img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" />
                     <?php } ?>

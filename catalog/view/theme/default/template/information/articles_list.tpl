@@ -15,20 +15,42 @@
     <?php } ?>
    <div class="news_list_style">
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
-      <h1>Применение фанеры</h1>
-      <table class="table bordergr table-bordered table-striped table-hover">
-		<tbody>
+      <h2>Применение фанеры</h2>
+      <hr class="hrprdct" style="width:100%;margin-left:0%;margin-bottom:20px;margin-top:15px;">
+      
+      
+
 		<?php foreach ($all_articles as $articles) { ?>
-		  <tr>
-		   <td style="vertical-align:middle; padding:0px;" class="text-center" ><img style="width:100%;" src="<?php echo $articles['image']; ?>" /></td>
-		   <!--<td style="vertical-align:middle"><?php echo $articles['title']; ?></td>-->
-		   <td  class="news_text_size" style="vertical-align:middle"><?php echo $articles['description']; ?></td>
-		   <td  class="news_text_size" style="vertical-align:middle"><?php echo $articles['date_added']; ?></td>
-		   <td style="vertical-align:middle" class="text-right"><a class="button_news_short" href="<?php echo $articles['view']; ?>"><?php echo $text_view; ?></a></td>
-		  </tr>
+		<div class="row">
+        <div class="col-xs-12">
+		   <a href="<?php echo $articles['view']; ?>"> <h4><strong style="color:#00562f;"> <?php echo $articles['title']; ?></strong> </h4> </a>
+		    </div>
+		    
+		</div>
+	
+		 <div class="row">
+      
+       <div class="col-xs-4">
+		   <img style="width:100%;" src="<?php echo $articles['image']; ?>" />
+       </div>
+       <div class="col-xs-8">
+		
+		   <p><?php echo $articles['description']; ?></p>
+		   <a class="buttonbl" href="<?php echo $articles['view']; ?>" style="float:right;"><?php echo $text_view; ?></a>
+		   </div>
+	
+		   
+		
+		 </div>
+		 	<div class="row">
+		    <div class="col-xs-12">
+		         <hr class="hrprdct" style="opacity:0.1; width:100%;margin-left:0%;margin-top:15px;margin-bottom:0px;">
+		    </div>
+		</div>
 		<?php } ?>
-		</tbody>
-	  </table>
+		
+	  
+	  
 	  <div class="row">
         <div class="col-sm-6 text-left"><?php echo $pagination; ?></div>
         <div class="col-sm-6 text-right"><?php echo $results; ?></div>

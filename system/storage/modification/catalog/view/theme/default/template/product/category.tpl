@@ -169,7 +169,9 @@
                                
                                                     <!-- child-->
                                                     
-                                             <?php foreach ($products_child as $ch) { 
+                                          
+                                                        
+                                             <?php $zzz=1; foreach ($products_child as $ch) { 
                                              
                                              if($ch['product_id']!=$product['product_id'])
                                              {
@@ -177,6 +179,21 @@
                                               if($ch['sku']==$product['sku']) {
                                              ?>
                                              
+                                              <?php 
+                                              if($zzz==1)
+                                              {
+                                              $zzz=0;
+                                              ?>        
+                                            
+                                   <div class="row" > 
+                                           <div class="col-xs-11 col-xs-offset-1">
+                                            <h4 class="froboto" style="color:#00562f"> Модификации:</h4>
+                                            </div>
+                                            <hr class="hrprdct">
+                                            </div>         
+                                          
+                                             <?php } ?>
+                                              
                                               
                                 <div class="row" style="   padding-top:3px;padding-bottom:3px;">
                                     
@@ -199,7 +216,10 @@
                                                
    <a onclick="cart.add('<?php echo $ch['product_id']; ?>', '<?php echo $ch['minimum']; ?>');" class="buttoncard hand " style="    padding-top: 2px !important;
     padding-bottom: 2px !important;
-   ">Купить</a>  </div>  
+   ">Купить
+          </a> 
+           
+            </div>  
                                             
                                               </div>
                                               <?php  } } }?>       
