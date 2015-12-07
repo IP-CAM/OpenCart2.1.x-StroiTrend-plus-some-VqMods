@@ -77,8 +77,8 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="froboto uppcase">
-                                    <a class="froboto uppcase" href="<?php echo $contact; ?>"><?php echo $telephone; ?></a>
+                                <div class=" uppcase" style="padding:20px 0px;">
+                                    <a class=" uppcase" style="color:black;" href="<?php echo $contact; ?>"><?php echo $telephone; ?></a>
                                 </div>
                             </li>
                             <?php if ($logged) { ?>

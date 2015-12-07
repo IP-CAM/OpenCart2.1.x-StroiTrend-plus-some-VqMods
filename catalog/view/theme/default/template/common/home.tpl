@@ -67,7 +67,7 @@
     var map;
     function init() {
         var mapOptions = {
-           center: new google.maps.LatLng(48.46489,35.044526),
+           center: new google.maps.LatLng(50.0100452,36.2266871),
             zoom: 15,
             zoomControl: true,
             zoomControlOptions: {
@@ -92,7 +92,7 @@
         var mapElement = document.getElementById('StroyTreyd');
         var map = new google.maps.Map(mapElement, mapOptions);
         var locations = [
-['title', 'undefined', 'undefined', 'undefined', 'undefined', 48.464777469718534, 35.044536123664784, '<?php echo HTTP_SERVER;  ?>image/catalog/static/mmap.png']
+['title', 'undefined', 'undefined', 'undefined', 'undefined', 50.01007098478007 , 36.2268893122673, '<?php echo HTTP_SERVER;  ?>image/catalog/static/mmap.png']
         ];
         for (i = 0; i < locations.length; i++) {
 			if (locations[i][1] =='undefined'){ description ='';} else { description = locations[i][1];}

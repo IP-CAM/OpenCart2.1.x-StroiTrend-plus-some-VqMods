@@ -940,6 +940,24 @@ hr {
         padding-top: 12px !important;
         padding-bottom: 12px !important;
     }
+    
+    .ulp > li a,
+nav li a {
+width: 100%;
+}
+    .ulp > li 
+    {
+        text-align: center;
+        float:none;
+    }
+    .contacts-block {
+    float: none;
+    }
+    .logo-block
+    {
+        margin-left: 40%;
+    }
+    
 
     
 }
