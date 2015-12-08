@@ -83,7 +83,7 @@ Please donate via PayPal to donate@opencart.com
 
 
                                                         <script type="text/javascript" src="catalog/view/javascript/callback.js"></script>
-                                                        <script type="text/javascript" src="catalog/view/javascript/jquery.simplemodal.js"></script>
+                                     
                                                         
                                                         
                                                         

@@ -155,3 +155,5 @@
 2015-11-30 15:02:13 - PHP Notice:  Undefined offset: 980 in C:\xampp\htdocs\OpenCart21-StroiTrend\system\library\currency.php on line 56
 2015-11-30 15:02:13 - PHP Notice:  Undefined offset: 980 in C:\xampp\htdocs\OpenCart21-StroiTrend\system\library\currency.php on line 57
 2015-11-30 15:02:13 - PHP Notice:  Undefined offset: 980 in C:\xampp\htdocs\OpenCart21-StroiTrend\system\library\currency.php on line 65
+2015-12-07 10:44:00 - PHP Warning:  rmdir(C:/xampp/htdocs/OpenCart21-StroiTrend/system/storage/modification/catalog/controller): Directory not empty in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\controller\extension\modification.php on line 390
+2015-12-07 10:44:00 - PHP Warning:  rmdir(C:/xampp/htdocs/OpenCart21-StroiTrend/system/storage/modification/catalog): Directory not empty in C:\xampp\htdocs\OpenCart21-StroiTrend\admin\controller\extension\modification.php on line 390
