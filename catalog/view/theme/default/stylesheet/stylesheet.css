@@ -870,9 +870,15 @@ footer h5 {
 }
 
 .rating .fa-star + .fa-star-o {
-    color: #E69500;
+    color: #00562f;
 }
-
+.fa-star-o:before {
+color:#00562f;
+}
+.fa-star:before 
+{
+   color:#00562f; 
+}
 h2.price {
     margin: 0;
 }

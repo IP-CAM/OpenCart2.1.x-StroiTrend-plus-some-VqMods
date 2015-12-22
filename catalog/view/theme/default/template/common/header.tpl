@@ -22,13 +22,15 @@
                 <?php } ?>
                    
                    
-                       <!-- jquery -->
-                    <script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" type="text/javascript"></script>
-                     <!-- bootstrap js -->
+                    <!-- jquery -->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
+                    <!-- bootstrap js -->
+                    <!-- Latest compiled and minified JavaScript -->
+  <!-- bootstrap js -->
                     <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
                      <!-- bootstrap-->
-                    <link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
-             
+                    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+
 
                    
                    

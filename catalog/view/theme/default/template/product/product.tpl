@@ -80,7 +80,7 @@
                            </div>
                     </div>
                             <div class="row">
-                                                <div class="col-sm-3">
+                                                <div class="col-sm-4">
                                                     <label class="control-label" for="input-quantity">Выберите город</label>
                                                 </div>
                                                 <div class="col-sm-3">
@@ -94,7 +94,7 @@
                                                           <label class="control-label" for="input-quantity"><?php echo $entry_qty; ?></label>
                                                 
                                                   </div>    
-                                                  <div class="col-sm-3">
+                                                  <div class="col-sm-2">
                                                                 <input type="text" name="quantity" value="<?php echo $minimum; ?>" size="2" id="input-quantity" class="form-control" />
                                                   </div>      
                            </div>  

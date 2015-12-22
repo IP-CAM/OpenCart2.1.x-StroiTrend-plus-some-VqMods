@@ -49,8 +49,9 @@
       </div>
 
  
-      
+      <?php if($button) { ?>
       <div class="col-xs-6"><a class="buttonbl" href="<?php echo $button_link; ?>" style="float:right;"><?php echo $button; ?></a></div>
+      <?php } ?>
   </div>
 </div>
 <?php echo $footer; ?> 
