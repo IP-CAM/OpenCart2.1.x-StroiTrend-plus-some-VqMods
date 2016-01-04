@@ -25,8 +25,8 @@ class ControllerModuleSlideshow extends Controller {
 			$data['banners'][] = array (
 				'title' 		=> html_entity_decode($articles['title'], ENT_QUOTES),
                 'image'			=> $this->model_tool_image->resize($articles['image'], $setting['width'], $setting['height']),
-                'preview'			=> $this->model_tool_image->resize($articles['image'], 300, 98),
-                'description' 	=> (strlen(strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES))) > 50 ?        substr(strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES)), 0, 50) . '...' : strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES))),
+                'preview'			=> $this->model_tool_image->resize($articles['image'], 294, 98),
+                'description' 	=> (mb_strlen(strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES))) > 100 ?        mb_substr(strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES)), 0, 100) . '...' : strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES))),
 				'link' 			=> $this->url->link('information/articles/articles', 'articles_id=' . $articles['articles_id']),
 				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($articles['date_added']))
 			);

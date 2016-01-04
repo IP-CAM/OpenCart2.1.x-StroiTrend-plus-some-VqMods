@@ -14,6 +14,9 @@
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
+		<div class="row">
+		 <h1 style="margin-bottom:5px;margin-top:0px;" id="namesProduct" ><?php echo $heading_title; ?></h1>
+		</div>
       <div class="row">
         <?php if ($column_left || $column_right) { ?>
         <?php $class = 'col-sm-5'; ?>
@@ -34,7 +37,59 @@
             <?php } ?>
           </ul>
           <?php } ?>
+					<!-- social -->
+					
+					
+				
+
+<div class="row">
+            <?php if ($review_status) { ?>
+        <div class="col-sm-5">
+          <div class="rating">
+            <p>
+              <?php for ($i = 1; $i <= 5; $i++) { ?>
+              <?php if ($rating < $i) { ?>
+              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+              <?php } else { ?>
+              <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+              <?php } ?>
+              <?php } ?>
+              </p>
+              </div> 
+        </div>
+<div class="col-sm-7">
+    
+    <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $reviews; ?></a> / <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $text_write; ?></a>
+</div>
+ </div>        
+    <div class="row">      
+            <div class="col-sm-12">
+         
+            <!-- AddThis Button BEGIN -->
+            <div class="addthis_toolbox addthis_default_style"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
+                       <script type="text/javascript" src="catalog/view/javascript/question.js"></script>
+                                                        <script type="text/javascript" src="catalog/view/javascript/jquery.simplemodal.js"></script>
+            <!-- AddThis Button END -->
+           </div>
+          </div>
+					    <div class="row">  
+          <div class="col-sm-12">
+            <a href="#" class="contact-btnquestion buttonbl" style="float:left;width:100%;text-align: center;">
+                
+                 Задать вопрос о товаре
+            </a> 
+          </div>
+					 </div>
+          <?php } ?>
           
+         
+					
+					
+					
+					<!-- social -->
+ 
+					
      </div>
          <?php if ($column_left || $column_right) { ?>
         <?php $class = 'col-sm-7'; ?>
@@ -46,24 +101,70 @@
        
          
           
-          <h1 style="margin:0px;" id="namesProduct" ><?php echo $heading_title; ?></h1>
+         
                                   <!-- Атрибуты вывод -->
                                     <?php if ($attribute_groups) { ?>
-                                 <h4><?php echo $tab_attribute; ?></h4>
+                                 
                          <?php if ($attribute_groups) { ?>
                                     <div class="tab-pane" id="tab-specification">
                                       <table class="table table-bordered">
                                         <?php foreach ($attribute_groups as $attribute_group) { ?>
                                         <thead>
                                           <tr>
-                                            <td colspan="2"><strong><?php echo $attribute_group['name']; ?></strong></td>
+                                            <td colspan="2"><strong><?php echo $tab_attribute; ?></strong></td>
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          <?php foreach ($attribute_group['attribute'] as $attribute) { ?>
+                                          <?php
+																					$sty='style="display:none"';
+																					$numItems = count($attribute_group['attribute']);
+																					$iii = 0;
+																					$jd1 = 0;
+																					$jd2 = 0;
+																					$jd3 = 0;
+																					foreach ($attribute_group['attribute'] as $attribute) { ?>
                                           <tr>
-                                            <td><?php echo $attribute['name']; ?></td>
-                                            <td><?php echo $attribute['text']; ?></td>
+																				
+																				
+																				   
+                                                
+                                             
+																				
+																				
+										
+																					
+																					<?php 	 if(++$jd1 === $numItems-3) { ?>
+												<td id="1costforlist"><?php echo $attribute['name']; ?> <br /> <span id="atr1costforlist"> До <?php echo $discounts[0]['quantity'];  ?>				</span>	</td>
+												<td id="costforlist1">		<?php echo $price;  ?>									</td>  	<?php ++$jd2;++$jd3;++$iii; continue; ?> 		
+																					<?php	}  ?>
+																					
+																				<?php if(++$jd2 === $numItems-2) { ?>
+																				<td id="2costforlist" <?php if(!$discounts[0]['quantity']) echo $sty;  ?>><?php echo $attribute['name']; ?>	 <br /> <span id="atr2costforlist">От <?php echo $discounts[0]['quantity'];  ?>	</span>	</td>
+																				<td id="costforlist2" <?php if(!$discounts[0]['quantity']) echo $sty;  ?>>	<?php echo $discounts[0]['price'];  ?>		</td>  <?php ++$jd3;++$iii; continue; ?> 	
+																					<?php	}  ?>	
+																					
+																			<?php if(++$jd3 === $numItems-1 ) { ?>
+																					<td id="2costforlist" <?php if(!$discounts[1]['quantity']) echo $sty;  ?> >
+																						<?php echo $attribute['name']; ?>	
+																						<br /> 
+																						<span id="atr3costforlist">От  <?php echo $discounts[1]['quantity'];  ?></span>	 
+																					</td>
+													<td id="costforlist3" <?php if(!$discounts[1]['quantity']) echo $sty;  ?> >				<?php echo $discounts[1]['price'];  ?>							</td> 						
+																					<?php	++$iii; continue; }  ?>
+																					
+																					
+																					
+																									<?php 	 if(++$iii === $numItems) { ?>
+																									<td ><?php echo $attribute['name']; ?>	</td>
+													<td id="sizefanera">			<?php echo $attribute['text']; ?> 													</td> 
+																					<?php	break; }  ?>
+																					
+																														<td><?php echo $attribute['name']; ?>	</td>
+																														<td><?php echo $attribute['text']; ?></td>
+																				
+																						
+																						
+																						
                                           </tr>
                                           <?php } ?>
                                         </tbody>
@@ -73,38 +174,79 @@
                                     <?php } ?>
                          <?php } ?>
                                     <!-- Атрибуты вывод -->
+																		<div class="row">
+																		<div class="col-sm-12"> 
+																		<label  for="input-name"><b style="color:red;">*</b> Цена за 1 кв.м - <span id ="tmpcostlist"style="font-size:14pt;"></span></label>
+																		</div></div>
+																		<div class="row">
+																		<div class="col-sm-12"> 
+																		<label  for="input-name"><b style="color:red;">*</b> Продажа товара осуществляется листами.</label>
+																		</div></div>
                            <!-- доставка расчет -->      
                    <div class="row">
                            <div class="col-sm-12">
                                <h4>Предварительный расчет</h4>
                            </div>
                     </div>
-                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <label class="control-label" for="input-quantity">Выберите город</label>
-                                                </div>
-                                                <div class="col-sm-3">
-                                                   <select name="dostavka" class="form-control" id="1" >
-                                                        <option value="1">Город 1</option>
-                                                        <option value="2">Город 2</option>
-                                                        <option value="3">Город 3</option>
-                                                    </select>    
-                                                </div> 
-                                                  <div class="col-sm-3">
-                                                          <label class="control-label" for="input-quantity"><?php echo $entry_qty; ?></label>
-                                                
-                                                  </div>    
-                                                  <div class="col-sm-2">
-                                                                <input type="text" name="quantity" value="<?php echo $minimum; ?>" size="2" id="input-quantity" class="form-control" />
-                                                  </div>      
-                           </div>  
+
+    
+	<div class="row">
+    <div class="col-sm-4">
+        <label class="control-label" for="input-quantity">
+            Количество м.кв.: 
+        </label>
+
+    </div>
+
+    <div class="col-sm-2">
+        <input type="text" name="quantity" value="<?php echo $minimum; ?>" size="2" id="input-quantity" class="form-control" />
+    </div>
+
+    
+    <div class="col-sm-4">
+        <label class="control-label">Количество листов:</label>
+      </div>  
+      
+    <div class="col-sm-2"  >
+          <input type="text" name="quantity" value="<?php echo $minimum; ?>" size="2" id="input-quantity-fanera" class="form-control" />
+        
+    </div>
+    </div>
+		  <div class="row">
+    <div class="col-sm-4">
+        <label class="control-label" for="input-quantity">Выберите город:</label>
+    </div>
+    <div class="col-sm-8">
+        <select id="dostavka_id" name="dostavka" class="form-control">
+            <option value="">----Город----</option>
+            <?php foreach ($cities as $city) { ?>
+                <option value="<?php echo $city['Ref']; ?>">
+                    <?php echo $city['DescriptionRu']; ?>
+                </option>
+                <?php } ?>
+        </select>
+    </div>
+    </div>
+		
+    <div class="row">
+    
+    <div class="col-sm-4">
+        <label class="control-label">Стоимость доставки:</label>
+      </div>  
+      
+    <div class="col-sm-8"  >
+          <label class="control-label" style="color: red;font-size: inherit;float: right;" id="resvaluecost"></label>
+        
+    </div>
+    </div>
+  
+ 
                       <!-- цена -->
                                <div class="row" style="margin-top:20px;">
                                     <div class="col-sm-4">
                                          
                                      
-<button type="button" data-toggle="tooltip" class="btn btn-primary" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product_id; ?>');" style="width:100%;"><i class="fa fa-exchange"></i></button>
-
+<h4> Общая сумма:</h4>
              
                                      </div>
                                     <div class="col-sm-4">
@@ -113,7 +255,7 @@
                                                       <ul class="list-unstyled" style="float:right;">
                                                         <?php if (!$special) { ?>
                                                         <li>
-                                                          <h2 style="margin:0;"><?php echo $price; ?></h2>
+                                                          <h2 style="margin:0;" id="chcgpr"><?php echo $price; ?></h2>
                                                         </li>
                                                         <?php } else { ?>
                                                         <li><span style="text-decoration: line-through;"><?php echo $price; ?></span></li>
@@ -127,14 +269,7 @@
                                                         <?php if ($points) { ?>
                                                         <li><?php echo $text_points; ?> <?php echo $points; ?></li>
                                                         <?php } ?>
-                                                        <?php if ($discounts) { ?>
-                                                        <li>
-                                                          <hr>
-                                                        </li>
-                                                        <?php foreach ($discounts as $discount) { ?>
-                                                        <li> <?php echo $discount['quantity']; ?><?php echo $text_discount; ?><?php echo $discount['price']; ?></li>
-                                                        <?php } ?>
-                                                        <?php } ?>
+                                                   
                                                       </ul>
                                                       <?php } ?>
                                        
@@ -143,7 +278,7 @@
 <div class="form-group">
 <input type="hidden" name="product_id" value="<?php echo $product_id; ?>" />
 
-<button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn buttoncard btn-lg btn-block"><?php echo $button_cart; ?></button>
+<button type="button" id="button-cart" data-loading-text="<?php echo $text_loading; ?>" class="btn buttoncard btn-lg btn-block" onclick="cart.add('<?php echo $product_id; ?>',coltocart)"><?php echo $button_cart; ?></button>
 </div>
 </div>
                                </div>
@@ -289,50 +424,206 @@
           <!-- slideshow product -->
           
           
-          
-          
- <div class="col-sm-12">
-
-<div class="row">
-            <?php if ($review_status) { ?>
-        <div class="col-sm-2">
-          <div class="rating">
-            <p>
-              <?php for ($i = 1; $i <= 5; $i++) { ?>
-              <?php if ($rating < $i) { ?>
-              <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
-              <?php } else { ?>
-              <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
-              <?php } ?>
-              <?php } ?>
-              </p>
-              </div> 
-        </div>
-<div class="col-sm-3">
-    
-    <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $reviews; ?></a> / <a href="" onclick="$('a[href=\'#tab-review\']').trigger('click'); return false;"><?php echo $text_write; ?></a>
-</div>
-         
-          
-            <div class="col-sm-5">
-         
-            <!-- AddThis Button BEGIN -->
-            <div class="addthis_toolbox addthis_default_style"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
-            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
-                       <script type="text/javascript" src="catalog/view/javascript/question.js"></script>
-                                                        <script type="text/javascript" src="catalog/view/javascript/jquery.simplemodal.js"></script>
-            <!-- AddThis Button END -->
+          <!-- details -->
+                <div class="row">
+            <div class="col-xs-12">
+                <h4 class="froboto" style="color:#00562f"> Детали заказа:</h4>
+				<hr class="hrprdct" style="margin-left:0px; width:100%;">
+            </div>
            
+        </div>
+          <div class="row">
+              <div class="col-xs-12">
+                  <p id="detals">
+                    
+                  </p>
+              </div>
           </div>
-          <div class="col-sm-2">
-            <a href="#" class="contact-btnquestion " style="float:right;">
+          <!-- details -->
+         <!-- sc dostavka -->
+        <script>
+		
+		
+		var frstcost;
+		var coltocart=$('#input-quantity-fanera').val();
+	var dostavka;
+	 $.ajax({
+                url: 'index.php?route=product/product/getNovaPrice',
+                type: 'post',
+                data: 'city=' + $('#dostavka_id').val() + '&quantity=' + $('#input-quantity-fanera').val() + '&product_id=<?php echo $product_id; ?>',
+                dataType: 'json',
+                success: function (json) {
+                    if (json['error'])
+                        alert(json['error']);
+                    else if (json['cost'])
+										$('#resvaluecost').html(json['cost']);
+										dostavka=json['cost'];
+										frstcost = json['price'];
+										var elem = document.getElementById("input-quantity");
+																elem.value = (parseFloat($('#sizefanera').text()));
+																
+																var lstcst=parseFloat(frstcost)/parseFloat($('#sizefanera').text());
+	
+	$('#tmpcostlist').html(lstcst.toFixed(2)+'грн.');  
+																}
+									});
+
+	
+	
+        $('#dostavka_id, #input-quantity, #input-quantity-fanera').change(function () {
+				
+            $.ajax({
+                url: 'index.php?route=product/product/getNovaPrice',
+                type: 'post',
+                data: 'city=' + $('#dostavka_id').val() + '&quantity=' + $('#input-quantity-fanera').val() + '&product_id=<?php echo $product_id; ?>',
+                dataType: 'json',
+                success: function (json) {
+                    if (json['error'])
+                        alert(json['error']);
+                    else if (json['cost'])
+										$('#resvaluecost').html(json['cost']+"грн.");
+										frstcost = json['price'];
+									 dostavka=json['cost'];
+										var SzF=parseFloat($('#sizefanera').text());
+										var inpkv=$('#input-quantity').val().replace(',','.');
+										
+										$('#tmpcostlist').html((frstcost/SzF).toFixed(2)+'грн.');
+										
+															if(coltocart!=$('#input-quantity-fanera').val())
+															{
+															coltocart=$('#input-quantity-fanera').val();
+															var resss=coltocart*frstcost;
+															$('#chcgpr').html(dostavka+resss+'грн.');
+																
+																
+																var elem = document.getElementById("input-quantity");
+																elem.value = (SzF*coltocart);
+														
+																
+																						
+																						inpkv=$('#input-quantity').val().replace(',','.');
+																
+															}
+															if(inpkv>SzF)
+															{
+															if(inpkv%SzF==0)
+															{
+																	inpkv=$('#input-quantity-fanera').val().replace(',','.');
+																	coltocart=inpkv;
+																	var ress=parseFloat(coltocart*frstcost);
+																	var elem = document.getElementById("input-quantity");
+																	elem.value = SzF*coltocart;
+																	$('#chcgpr').html(dostavka+ress+'грн.');
+																		$('#tmpcostlist').html((frstcost/SzF).toFixed(2)+'грн.');
+															
+															}
+															else 
+																{
+															
+														
+																inpkv=$('#input-quantity').val().replace(',','.');
+																
+																var tmps=inpkv%SzF;
+																coltocart=parseFloat(inpkv)+(SzF-tmps);
+																coltocart=parseInt(coltocart/SzF);
+																
+																var ress=parseFloat(coltocart*frstcost);
+																var elem = document.getElementById("input-quantity-fanera");
+																elem.value = coltocart;
+																$('#chcgpr').html(dostavka+ress+'грн.');
+																	
+																	
+																}
+															}
+															else
+															{
+																var ress=parseFloat(1*frstcost);
+																var elem = document.getElementById("input-quantity-fanera");
+																elem.value = 1;
+																$('#chcgpr').html(dostavka+ress+'грн.'); 
+															}
+                     var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+
+    var yyyy = today.getFullYear();
+    if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+    var today = dd+'/'+mm+'/'+yyyy;
+                    
+                     $('#detals').html(' <p> Количество м.кв. &mdash; <strong>' + $('#input-quantity').val() +'</strong> </p> <p>Kоличество листов &mdash; <strong>'+$('#input-quantity-fanera').val()+'</strong></p> Oбщая стоимость заказа &mdash; <strong style="color:red;">'+ress+'грн </strong> без доставки </p> Cтоимость доставки в город <strong> '+$('#dostavka_id option:selected').text() + '</strong>&mdash; <strong style="color:#00562f;">'+parseFloat(dostavka)+'грн.</strong></p> <p><label for="input-name"><b style="color:red;">*</b> Стоимость доставки рассчитана по тарифам - "Новой Почты" на '+ today +'.</span></label>    </p>   '); 
+                    
+                    
+                    
+															coltocart=$('#input-quantity-fanera').val();
+															},
+																	error: function (xhr, textStatus, thrownError) {
+																			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+																	}
                 
-                 Задать вопрос
-            </a> 
-          </div>
-          <?php } ?>
-          
-           </div>
+                        
+                
+															});
+  
+            
+						  
+						
+        });
+			 	
+    </script>
+    <!-- sc dostavka -->  
+ 
+					 
+					 <!-- modify -->
+					 	 <!-- child-->		                        
+ <div  class = "chi" style="    margin-top: 15px; margin-bottom: 15px;">
+    <?php $zzz=1; foreach ($products_child as $ch) { 
+    if($ch['product_id']!=$product_id)
+    {
+        if($ch['sku']==$sku) { ?>
+    <?php  if($zzz==1)
+        {$zzz=0; ?>
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="froboto" style="color:#00562f"> Модификации:</h4>
+								 <hr class="hrprdct" style="margin-left:0px; width:100%;">
+            </div>
+           
+        </div>
+        <?php } ?>
+    <div class="row" style="   padding-top:3px;padding-bottom:3px;">
+        <div class="col-xs-7">
+            <a href="<?php echo $ch['href']; ?>">
+                <?php echo $ch['name']; ?>
+            </a>
+        </div>
+        <div class="col-xs-3"> <span class="price">
+            <?php if (!$ch['special']) { ?>
+            <?php echo $ch['price']; ?>
+            <?php } else { ?>
+                <span class="price-new"><?php echo $ch['special']; ?></span> <span class="price-old"><?php echo $ch['price']; ?></span>
+            <?php } ?>
+            <?php if ($ch['tax']) { ?>
+                <span class="price-tax"><?php echo $text_tax; ?> <?php echo $ch['tax']; ?></span>
+            <?php } ?>
+            </span>
+        </div>
+        <div class="col-xs-2">
+            <a class="buttoncard hand " style=" float:right;      padding-top: 2px !important; padding-bottom: 2px !important;" href="<?php echo $ch['href']; ?>">Перейти</a>
+        </div>
+    </div>
+    <?php  } } } ?>
+
+
+</div>
+		 	<!-- child-->
+					 <!--modify -->
+					 
+					 
           <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-description" data-toggle="tab"><?php echo $tab_description; ?></a></li>
      
@@ -409,20 +700,25 @@
               </form>
             </div>
             <?php } ?>
-          </div>
-        </div>
-        <?php if ($column_left || $column_right) { ?>
+            
+            
+            
+            
+            <!--recomendation -->
+            
+            
+              <?php if ($column_left || $column_right) { ?>
         <?php $class = 'col-sm-6'; ?>
         <?php } else { ?>
         <?php $class = 'col-sm-6'; ?>
         <?php } ?>
-        
-      </div>
       <?php if ($products) { ?>
       <h3><?php echo $text_related; ?></h3>
       <div class="row">
-        <?php $i = 0; ?>
-        <?php foreach ($products as $product) { ?>
+        <?php $jq = $i = 0; ?>
+        <?php foreach ($products as $product) { 
+        $jq++; 
+        if($jq==4)break; ?>
         <?php if ($column_left && $column_right) { ?>
         <?php $class = 'col-lg-6 col-md-6 col-sm-12 col-xs-12'; ?>
         <?php } elseif ($column_left || $column_right) { ?>
@@ -434,7 +730,7 @@
           <div class="product-thumb transition">
             <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
             <div class="caption">
-              <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
+              <h4 style="text-align:center;"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
               <p><?php echo $product['description']; ?></p>
               <?php if ($product['rating']) { ?>
               <div class="rating">
@@ -450,20 +746,26 @@
               <?php if ($product['price']) { ?>
               <p class="price">
                 <?php if (!$product['special']) { ?>
-                <?php echo $product['price']; ?>
+                  Цена за лист: <strong> <?php echo $product['price']; ?> </strong>
                 <?php } else { ?>
-                <span class="price-new"><?php echo $product['special']; ?></span> <span class="price-old"><?php echo $product['price']; ?></span>
+                <span class="price-new">Цена за лист: <?php echo $product['special']; ?></span> <span class="price-old"><?php echo $product['price']; ?></span>
                 <?php } ?>
                 <?php if ($product['tax']) { ?>
-                <span class="price-tax"><?php echo $text_tax; ?> <?php echo $product['tax']; ?></span>
+                <span class="price-tax">Цена за лист: <?php echo $text_tax; ?> <?php echo $product['tax']; ?></span>
                 <?php } ?>
               </p>
               <?php } ?>
             </div>
-            <div class="button-group">
-              <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');"><span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span> <i class="fa fa-shopping-cart"></i></button>
-              <button type="button" data-toggle="tooltip" title="<?php echo $button_wishlist; ?>" onclick="wishlist.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-heart"></i></button>
-              <button type="button" data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>
+            <div style="margin-bottom:10px;">
+               <div class="row">
+                   <div class="col-xs-12" style="text-align:center;">
+                        <a class="buttonbl" style="    display: inline-block;" href="<?php echo $product['href']; ?>"> Подробнее</a>
+                       
+                   </div>
+                   
+                   
+               </div>
+               
             </div>
           </div>
         </div>
@@ -478,6 +780,18 @@
         <?php } ?>
       </div>
       <?php } ?>
+            
+            <!--recomendation -->
+            
+            
+            
+            
+            
+            
+          </div>
+        </div>
+          </div>
+      
       <?php if ($tags) { ?>
       <p><?php echo $text_tags; ?>
         <?php for ($i = 0; $i < count($tags); $i++) { ?>
@@ -516,7 +830,7 @@
       </div>
       
       
-      
+     
       
   
 

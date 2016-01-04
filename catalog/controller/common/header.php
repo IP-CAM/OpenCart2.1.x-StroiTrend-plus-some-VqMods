@@ -38,7 +38,8 @@ class ControllerCommonHeader extends Controller {
        
 
 		$data['name'] = $this->config->get('config_name');
-
+$data['fax'] = $this->config->get('config_fax');
+        $data['comment'] = $this->config->get('config_comment');
 		if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
 			$data['logo'] = $server . 'image/' . $this->config->get('config_logo');
 		} else {

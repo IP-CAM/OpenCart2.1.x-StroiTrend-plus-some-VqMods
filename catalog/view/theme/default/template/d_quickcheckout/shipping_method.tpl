@@ -67,7 +67,7 @@
 									      <input type="radio" name="shipping_method" value="<%= quote.code %>" id="<%= quote.code %>" data-refresh="5" class="styled"/> 
 									    <% } %>
 									    <span class="text"><%= quote.title %></span>
-									    <%  if (quote.text== "0грн.") { %>
+									    <%  if (quote.text== "0.00грн.") { %>
 									    <span class="price">Оплата при доставке.</span>
 									    <%  } else { %>
 									    <span class="price"><%= quote.text %></span>

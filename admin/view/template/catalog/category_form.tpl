@@ -253,7 +253,7 @@
           </div>
         </form>
       </div>
-      <pre><?php var_dump($g); ?></pre>
+
       
     </div>
   </div>

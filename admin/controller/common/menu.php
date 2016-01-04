@@ -22,6 +22,7 @@ class ControllerCommonMenu extends Controller {
 		$data['text_customer_group'] = $this->language->get('text_customer_group');
 		$data['text_customer_field'] = $this->language->get('text_customer_field');
 		$data['text_custom_field'] = $this->language->get('text_custom_field');
+		     $data['text_export_import'] = $this->language->get('text_export_import');
 		$data['text_sale'] = $this->language->get('text_sale');
 		$data['text_paypal'] = $this->language->get('text_paypal');
 		$data['text_paypal_search'] = $this->language->get('text_paypal_search');
@@ -114,6 +115,7 @@ class ControllerCommonMenu extends Controller {
 		$data['attribute'] = $this->url->link('catalog/attribute', 'token=' . $this->session->data['token'], 'SSL');
 		$data['attribute_group'] = $this->url->link('catalog/attribute_group', 'token=' . $this->session->data['token'], 'SSL');
 		$data['backup'] = $this->url->link('tool/backup', 'token=' . $this->session->data['token'], 'SSL');
+			$data['export_import'] = $this->url->link('tool/export_import', 'token=' . $this->session->data['token'], 'SSL');
 		$data['banner'] = $this->url->link('design/banner', 'token=' . $this->session->data['token'], 'SSL');
 		$data['captcha'] = $this->url->link('extension/captcha', 'token=' . $this->session->data['token'], 'SSL');
 		$data['category'] = $this->url->link('catalog/category', 'token=' . $this->session->data['token'], 'SSL');

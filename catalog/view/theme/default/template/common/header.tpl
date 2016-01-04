@@ -39,6 +39,7 @@
 
                  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
                     <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+                    
                     <link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
 
                     <?php foreach ($styles as $style) { ?>
@@ -60,9 +61,10 @@
 </head>
 
 <body class="<?php echo $class; ?>">
+   <div id="wrap">
     <header id="top" name="top">
         <div class="topH">
-            <div class="container" style="padding-left: 30px;padding-right: 27px;">
+            <div class="container" style="padding-right: 27px;">
                 <div class="row">
                   <!-- LOGO -->
                   <div class="logo-block">
@@ -81,8 +83,10 @@
                                 </div>
                             </li>
                             <li>
-                                <div class=" uppcase" style="padding:20px 0px;">
-                                    <a class=" uppcase" style="color:black;" href="<?php echo $contact; ?>"><?php echo $telephone; ?></a>
+                                <div class=" uppcase" style="padding-top: 5px;">
+                                    <a class=" uppcase" style="color:black;;     max-height: 14px;" href="<?php echo $contact; ?>"><?php echo $telephone; ?></a>
+                                    <a class=" uppcase" style="color:black;     max-height: 14px;" href="<?php echo $contact; ?>"><?php echo $fax; ?></a>
+                                    <a class=" uppcase" style="color:black;     max-height: 14px;" href="<?php echo $contact; ?>"><?php echo $comment; ?></a>
                                 </div>
                             </li>
                             <?php if ($logged) { ?>
@@ -113,8 +117,8 @@
                     <!-- MENU -->
                     <nav id="menu" class="navbar">
                         <div class="navbar navbar-header froboto">
-                           <div class="row"> <button type="button" class="buttonbl navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
-                     </div>   </div>
+                            <button type="button" style="    margin-right: 0px;" class="buttonbl navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+                     </div>  
                         
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav">
@@ -193,3 +197,4 @@
     </header>
     <?php if ($categories) { ?>
         <?php } ?>
+        

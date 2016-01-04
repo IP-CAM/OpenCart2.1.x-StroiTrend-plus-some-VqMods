@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row mr">
             <p class="Head">
-                Преймущества Строй-трейд
+                Преимущества Строй-Трейд
             </p>
         </div>
         <div class="row">
@@ -37,7 +37,7 @@
                 <div class="white_box">
                     <p class="froboto fsize16">Быстрая доставка по всей Украине</p>
                     <div class="row"><img src="<?php echo HTTP_SERVER;  ?>/image/catalog/static/carr.jpg" alt=""> </div>
-                    <i clas="fsize11">Мы гарантируем оптимальные условия достаки в любой населенный пункт</i>
+                    <i clas="fsize11">Мы гарантируем оптимальные условия доставки в любой населенный пункт</i>
                 </div>
             </div>
             <div class="col-md-4">
@@ -56,8 +56,8 @@
         <?php echo $content_bottom; ?>
     </div>
 
-        </div>
-    </div>
+
+ 
     
     
     <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyA_NQ-DRsT8exnEeAcDgMl4wdQHHIObmWE&sensor=false&extension=.js'></script> 
@@ -135,6 +135,6 @@ link = '';     }
 
 <div id='StroyTreyd'></div>
     
-    
+            </div>
     
     <?php echo $footer; ?>

@@ -75,6 +75,18 @@ class ControllerProductSearch extends Controller {
 
 		$data['breadcrumbs'] = array();
 
+					/* = */
+					require_once DIR_CONFIG .'ssb_library/ssb_data.php';
+					$this->ssb_data = ssb_data::getInstance();
+					$tools = $this->ssb_data->getSetting('tools');
+					if($tools){
+					$canonical = $tools['canonical'];
+					if($canonical['status']){
+					$this->document->addLink($this->url->link('product/search'), 'canonical');
+					}
+					/* = */
+				}
+
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
 			'href' => $this->url->link('common/home')

@@ -33,6 +33,18 @@ class ControllerProductSpecial extends Controller {
 
 		$this->document->setTitle($this->language->get('heading_title'));
 
+					/* = */
+					require_once DIR_CONFIG .'ssb_library/ssb_data.php';
+					$this->ssb_data = ssb_data::getInstance();
+					$tools = $this->ssb_data->getSetting('tools');
+					if($tools){
+					$canonical = $tools['canonical'];
+					if($canonical['status']){
+					$this->document->addLink($this->url->link('product/special'), 'canonical');
+					}
+					/* = */	
+				}
+
 		$data['breadcrumbs'] = array();
 
 		$data['breadcrumbs'][] = array(

@@ -67,6 +67,13 @@ class ControllerProductProduct extends Controller {
 			}
 		}
 
+
+
+
+
+
+
+
 		$this->load->model('catalog/manufacturer');
 
 		if (isset($this->request->get['manufacturer_id'])) {
@@ -155,8 +162,15 @@ class ControllerProductProduct extends Controller {
 		}
 
 		$this->load->model('catalog/product');
+		
+		$data['cities'] = $this->model_catalog_product->getCities();
 
 		$product_info = $this->model_catalog_product->getProduct($product_id);
+		
+		
+		
+
+		
 
 		if ($product_info) {
 			$url = '';
@@ -264,6 +278,11 @@ class ControllerProductProduct extends Controller {
 			$data['tab_review'] = sprintf($this->language->get('tab_review'), $product_info['reviews']);
 
 			$data['product_id'] = (int)$this->request->get['product_id'];
+			
+		
+			$data['sku'] = $product_info['sku'];    
+			
+			
 			$data['manufacturer'] = $product_info['manufacturer'];
 			$data['manufacturers'] = $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $product_info['manufacturer_id']);
             //model
@@ -283,7 +302,61 @@ class ControllerProductProduct extends Controller {
 			}
 
 			$this->load->model('tool/image');
+//child
 
+    
+   $results_child = $this->model_catalog_product->getProducts_child($filter_data);
+            foreach ($results_child as $result) {
+				if ($result['image']) {
+					$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+                   
+				} else {
+					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
+				}
+
+				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
+					$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
+				} else {
+					$price = false;
+				}
+
+				if ((float)$result['special']) {
+					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
+				} else {
+					$special = false;
+				}
+
+				if ($this->config->get('config_tax')) {
+					$tax = $this->currency->format((float)$result['special'] ? $result['special'] : $result['price']);
+				} else {
+					$tax = false;
+				}
+
+				if ($this->config->get('config_review_status')) {
+					$rating = (int)$result['rating'];
+				} else {
+					$rating = false;
+				}
+
+				$data['products_child'][] = array(
+					'product_id'  => $result['product_id'],
+					'thumb'       => $image,
+					'name'        => $result['name'],
+					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
+					'price'       => $price,
+					'special'     => $special,
+					'tax'         => $tax,
+					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
+					'rating'      => $result['rating'],
+					'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url),
+                    'sku'         =>  $result['sku']
+                    
+				);
+			}
+            
+            
+            
+//child
 			if ($product_info['image']) {
 				$data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_popup_width'), $this->config->get('config_image_popup_height'));
 			} else {
@@ -705,6 +778,54 @@ class ControllerProductProduct extends Controller {
 			}
 		}
 
+		$this->response->addHeader('Content-Type: application/json');
+		$this->response->setOutput(json_encode($json));
+	}
+	
+	public function getNovaPrice() {
+		$json = array();
+		
+		if (isset($this->request->post['product_id']))
+			$product_id = (int)$this->request->post['product_id'];
+		else
+			$json['error'] = 'NET ID!';
+		if (isset($this->request->post['quantity']))
+			$quantity = (int)$this->request->post['quantity'];
+		else
+			$json['error'] = 'NET KOLI4ESTVA!';
+		if (isset($this->request->post['city']))
+			$city = $this->request->post['city'];
+		else
+			$json['error'] = 'NET CITY!';
+		
+		if (!isset($json['error'])) {
+			$this->load->helper('novaposhta');
+			$this->load->model('catalog/product');
+			
+			$registry = array();
+			$novaposhta = new NovaPoshta($this->registry);
+			if ($product_info = $this->model_catalog_product->getProduct($product_id)) {			
+				$properties = array (
+					'CitySender'			=> $this->config->get('novaposhta_sender_city'),
+					'CityRecipient'		=> $city,
+					'ServiceType'			=> $this->config->get('novaposhta_service_type'),
+					'Weight'					=> $quantity*$product_info['weight'],
+					'Cost'						=> ((float)($product_info['special'] ? $product_info['special'] : $product_info['price']))*$quantity
+				);
+				
+				$json['cost'] = $novaposhta->getDocumentPrice($properties);
+				
+				$discounts = $this->model_catalog_product->getProductDiscounts($product_id, $quantity);
+				if ($discounts)
+						$json['price'] = ($product_info['special'] ? $product_info['special'] : $discounts[0]['price']);
+				else
+					$json['price'] = ($product_info['special'] ? $product_info['special'] : $product_info['price']);
+				
+			}
+			else
+				$json['error'] = 'NET TOVARA!';
+		}
+		
 		$this->response->addHeader('Content-Type: application/json');
 		$this->response->setOutput(json_encode($json));
 	}

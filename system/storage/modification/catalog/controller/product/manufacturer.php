@@ -100,6 +100,20 @@ class ControllerProductManufacturer extends Controller {
 					}
 				}
 			
+
+					/* = */
+					if(isset($_SESSION['seo_page_prev']) AND $_SESSION['seo_page_prev'] != ''){
+					$this->document->addLink($_SESSION['seo_page_prev'],'prev');
+					}
+					if(isset($_SESSION['seo_page_next']) AND $_SESSION['seo_page_next'] != ''){
+					$this->document->addLink($_SESSION['seo_page_next'],'next');
+					}
+					$_SESSION['seo_page_prev'] = '';
+					$_SESSION['seo_page_next'] = '';
+					
+					$_SESSION["ssb_page_data"] = $data;
+					/* = */
+				
 			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/product/manufacturer_list.tpl', $data));
 		} else {
 
@@ -143,6 +157,20 @@ class ControllerProductManufacturer extends Controller {
 					}
 				}
 			
+
+					/* = */
+					if(isset($_SESSION['seo_page_prev']) AND $_SESSION['seo_page_prev'] != ''){
+					$this->document->addLink($_SESSION['seo_page_prev'],'prev');
+					}
+					if(isset($_SESSION['seo_page_next']) AND $_SESSION['seo_page_next'] != ''){
+					$this->document->addLink($_SESSION['seo_page_next'],'next');
+					}
+					$_SESSION['seo_page_prev'] = '';
+					$_SESSION['seo_page_next'] = '';
+					
+					$_SESSION["ssb_page_data"] = $data;
+					/* = */
+				
 			$this->response->setOutput($this->load->view('default/template/product/manufacturer_list.tpl', $data));
 		}
 	}
@@ -232,6 +260,82 @@ class ControllerProductManufacturer extends Controller {
 			);
 
 			$data['heading_title'] = $manufacturer_info['name'];
+
+					/* = */
+					if(isset($manufacturer_info['seo_h1']) && $manufacturer_info['seo_h1']){
+					$data['heading_title'] = $manufacturer_info['seo_h1'];
+					}
+					if(isset($manufacturer_info['seo_h2']) && $manufacturer_info['seo_h2']){
+					$data['seo_h2'] = $manufacturer_info['seo_h2'];
+					}
+					if(isset($manufacturer_info['seo_h3']) && $manufacturer_info['seo_h3']){
+					$data['seo_h3'] = $manufacturer_info['seo_h3'];
+					}
+
+					$data['description'] = '';
+					if(isset($manufacturer_info['description']))
+					$data['description'] = html_entity_decode($manufacturer_info['description'], ENT_QUOTES, 'UTF-8');
+					$this->document->setDescription($manufacturer_info['meta_description']);
+					$this->document->setKeywords($manufacturer_info['meta_keyword']);
+
+					if(isset($manufacturer_info['seo_title']) AND $manufacturer_info['seo_title']){
+
+					if($page > 1){
+					require_once DIR_CONFIG .'ssb_library/ssb_data.php';
+					$ssb_data = ssb_data::getInstance();
+					$tools = $ssb_data->getSetting('tools');
+					if($tools['seo_pagination']['data']['add_pag_title']){
+					$manufacturer_info['seo_title'] = $manufacturer_info['seo_title'] .  ' - page ' . $page;
+					}
+					}
+					if((isset($manufacturer_info['seo_title']) AND $manufacturer_info['seo_title'])){
+					$this->document->setTitle($manufacturer_info['seo_title']);
+					}else{
+					$this->document->setTitle($manufacturer_info['meta_title']);
+					}
+					}
+
+					$data['manufacturer_name'] = $manufacturer_info['name'];
+					if ($manufacturer_info['image']) {
+						$data['manufacturer_image'] = $this->model_tool_image->resize($manufacturer_info['image'], $this->config->get('config_image_category_width'), $this->config->get('config_image_category_height'));
+					} else {
+						$data['manufacturer_image'] = false;
+					}
+
+					$data['tags'] = array();
+					if (isset($manufacturer_info['tag']) AND $manufacturer_info['tag']) {
+					$tags = explode(',', $manufacturer_info['tag']);
+
+					foreach ($tags as $tag) {
+					$data['tags'][] = array(
+					'tag'  => trim($tag),
+					'href' => $this->url->link('product/search', 'tag=' . trim($tag))
+					);
+					}
+					}
+
+					require_once DIR_CONFIG .'ssb_library/ssb_data.php';
+					$this->ssb_data = ssb_data::getInstance();
+					$entity = $this->ssb_data->getSetting('entity');
+					$data['seo_h2_position'] = $entity['seo_h2']['brand']['position'];
+					$data['seo_h3_position'] = $entity['seo_h3']['brand']['position']; 
+					$tools = $this->ssb_data->getSetting('tools');
+					if($tools){
+					$canonical = $tools['canonical'];
+					if($canonical['status']){
+					if (isset($this->request->get['manufacturer_id'])){
+					$canonical = $this->request->get['manufacturer_id'];
+					$this->document->addLink($this->url->link('product/manufacturer/info', 'manufacturer_id=' . $canonical), 'canonical');
+					}
+					}
+					}
+
+					$this->language->load('product/product');
+					$data['text_tags'] = $this->language->get('text_tags');
+
+					$_SESSION["ssb_page_type"] = 'brand';
+					/* = */
+				
 
 			$data['text_empty'] = $this->language->get('text_empty');
 			$data['text_quantity'] = $this->language->get('text_quantity');
@@ -507,6 +611,20 @@ class ControllerProductManufacturer extends Controller {
 					}
 				}
 			
+
+					/* = */
+					if(isset($_SESSION['seo_page_prev']) AND $_SESSION['seo_page_prev'] != ''){
+					$this->document->addLink($_SESSION['seo_page_prev'],'prev');
+					}
+					if(isset($_SESSION['seo_page_next']) AND $_SESSION['seo_page_next'] != ''){
+					$this->document->addLink($_SESSION['seo_page_next'],'next');
+					}
+					$_SESSION['seo_page_prev'] = '';
+					$_SESSION['seo_page_next'] = '';
+					
+					$_SESSION["ssb_page_data"] = $data;
+					/* = */
+				
 				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/product/manufacturer_info.tpl', $data));
 			} else {
 
@@ -550,6 +668,20 @@ class ControllerProductManufacturer extends Controller {
 					}
 				}
 			
+
+					/* = */
+					if(isset($_SESSION['seo_page_prev']) AND $_SESSION['seo_page_prev'] != ''){
+					$this->document->addLink($_SESSION['seo_page_prev'],'prev');
+					}
+					if(isset($_SESSION['seo_page_next']) AND $_SESSION['seo_page_next'] != ''){
+					$this->document->addLink($_SESSION['seo_page_next'],'next');
+					}
+					$_SESSION['seo_page_prev'] = '';
+					$_SESSION['seo_page_next'] = '';
+					
+					$_SESSION["ssb_page_data"] = $data;
+					/* = */
+				
 				$this->response->setOutput($this->load->view('default/template/product/manufacturer_info.tpl', $data));
 			}
 		} else {
@@ -646,6 +778,20 @@ class ControllerProductManufacturer extends Controller {
 					}
 				}
 			
+
+					/* = */
+					if(isset($_SESSION['seo_page_prev']) AND $_SESSION['seo_page_prev'] != ''){
+					$this->document->addLink($_SESSION['seo_page_prev'],'prev');
+					}
+					if(isset($_SESSION['seo_page_next']) AND $_SESSION['seo_page_next'] != ''){
+					$this->document->addLink($_SESSION['seo_page_next'],'next');
+					}
+					$_SESSION['seo_page_prev'] = '';
+					$_SESSION['seo_page_next'] = '';
+					
+					$_SESSION["ssb_page_data"] = $data;
+					/* = */
+				
 				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found.tpl', $data));
 			} else {
 
@@ -689,6 +835,20 @@ class ControllerProductManufacturer extends Controller {
 					}
 				}
 			
+
+					/* = */
+					if(isset($_SESSION['seo_page_prev']) AND $_SESSION['seo_page_prev'] != ''){
+					$this->document->addLink($_SESSION['seo_page_prev'],'prev');
+					}
+					if(isset($_SESSION['seo_page_next']) AND $_SESSION['seo_page_next'] != ''){
+					$this->document->addLink($_SESSION['seo_page_next'],'next');
+					}
+					$_SESSION['seo_page_prev'] = '';
+					$_SESSION['seo_page_next'] = '';
+					
+					$_SESSION["ssb_page_data"] = $data;
+					/* = */
+				
 				$this->response->setOutput($this->load->view('default/template/error/not_found.tpl', $data));
 			}
 		}

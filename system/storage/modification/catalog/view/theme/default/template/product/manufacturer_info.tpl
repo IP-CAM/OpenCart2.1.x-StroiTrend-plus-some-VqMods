@@ -15,6 +15,16 @@
     <?php } ?>
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?><div id="mfilter-content-container">
       <h2><?php echo $heading_title; ?></h2>
+
+<!-- * = * -->
+<?php if(isset($seo_h2) && $seo_h2 && $seo_h2_position == 'after_h1'){ ?><h2><?php echo $seo_h2; ?></h2><?php } ?>
+<?php if(isset($seo_h3) && $seo_h3 && $seo_h3_position == 'after_h1'){ ?><h3><?php echo $seo_h3; ?></h3><?php } ?>
+<div class="manufacturer-description"><?php if (isset($manufacturer_image) AND $manufacturer_image) { ?><img src="<?php echo $manufacturer_image; ?>" alt="<?php echo $manufacturer_name; ?>" class="manufacturer-info-logo" /><?php } ?><?php if ($description) { ?>
+<?php if(isset($seo_h2) && $seo_h2 && $seo_h2_position == 'before_description'){ ?><h2><?php echo $seo_h2; ?></h2><?php } ?>
+<?php if(isset($seo_h3) && $seo_h3 && $seo_h3_position == 'before_description'){ ?><h3><?php echo $seo_h3; ?></h3><?php } ?>
+<?php echo $description; ?><?php } ?></div>  
+<!-- * = * -->
+				
       <?php if ($products) { ?>
       <p><a href="<?php echo $compare; ?>" id="compare-total"> <?php echo $text_compare; ?></a></p>
       <div class="row">
@@ -97,6 +107,11 @@
       </div>
       <div class="row">
         <div class="col-sm-6 text-left"><?php echo $pagination; ?></div>
+
+				<!-- * = * -->	
+                <?php if (isset($tags) AND $tags) { ?><div class="tags"><b><?php echo $text_tags; ?></b><?php for ($i = 0; $i < count($tags); $i++) { ?><?php if ($i < (count($tags) - 1)) { ?><a href="<?php echo $tags[$i]['href']; ?>"><?php echo $tags[$i]['tag']; ?></a>,<?php } else { ?><a href="<?php echo $tags[$i]['href']; ?>"><?php echo $tags[$i]['tag']; ?></a><?php } ?><?php } ?></div><?php } ?>
+				<!-- * = * -->
+				
         <div class="col-sm-6 text-right"><?php echo $results; ?></div>
       </div>
       <?php } else { ?>

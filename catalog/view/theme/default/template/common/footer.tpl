@@ -1,4 +1,6 @@
-<footer>
+</div>
+
+   <footer id="footer">
     <div class="container">
         <div class="row">
 
@@ -29,22 +31,24 @@
             </div>
 
             <div class="col-xs-1 upsite" style="float:right">
-                <a href="#top" title="titles">
+                <a id='myTops' href="#top" title="titles">
                     <i class="fa fa-angle-up fsize28"></i>
                 </a>
        </div>
 
         </div>
-        <br>
-        <div class="row AlignTc">
+      
+    <!--    <div class="row AlignTc">
 
             <div class="col-md-12 ">
                 <a href="#" title="titles"><i class="fa fa-instagram fsize28" ></i></a>
                 <a href="#" title="titles"><i class="fa fa-google-plus fsize28" ></i></a>
                 <a href="#" title="titles"><i class="fa fa-twitter fsize28" ></i></a>
                 <a href="#" title="titles"><i class="fa fa-vk fsize28"></i></a>
-                <a href="#" title="titles"><i class="fa fa-facebook fsize28" ></i></a></div>
-        </div>
+                <a href="#" title="titles"><i class="fa fa-facebook fsize28" ></i></a>
+                </div>
+              
+        </div>  -->
         <br>
         <div class="row AlignTc">
             <div class="col-md-12 "><a href="" title="titles">КОПИРАЙТ&nbsp;&copy;&nbsp;2015&nbsp;СТРОЙ&nbsp;ТРЕЙД</a></div>
@@ -66,11 +70,83 @@ Please donate via PayPal to donate@opencart.com
 
 <!-- Theme created by Welford Media for OpenCart 2.0 www.welfordmedia.co.uk -->
 
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter34457135 = new Ya.Metrika({
+                    id:34457135,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/34457135" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter34457465 = new Ya.Metrika({
+                    id:34457465,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-71803016-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/34457465" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
 </body>
 
 <script>
  $('a[href^="#"]').click(function (e) {
- e.preventDefault();
+ e.preventDefault(); 
  var link = $(this).attr('href');
  if (link.length > 1) {
   $('body').animate({
@@ -78,12 +154,34 @@ Please donate via PayPal to donate@opencart.com
   } , 400);
  }
 });
+    
+    
+
+
+$( document ).ready(function() {
+    
+
+    
+       $(window).scroll(function () { 
+if ($(this).scrollTop() > 300) 
+$('#myTops').fadeIn(); 
+else 
+$('#myTops').fadeOut(); 
+}); 
+$('#myTops').click(function () { 
+$('body, html').animate({scrollTop: 0}, 400); 
+})
+
+});
+
+
+    
 </script>
 
 
 
                                                         <script type="text/javascript" src="catalog/view/javascript/callback.js"></script>
-                                     
+                                                        <script type="text/javascript" src="catalog/view/javascript/jquery.simplemodal.js"></script>
                                                         
                                                         
                                                         

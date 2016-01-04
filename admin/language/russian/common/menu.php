@@ -23,6 +23,7 @@ $_['text_design']                      = 'Дизайн';
 $_['text_download']                    = 'Загрузки';
 $_['text_error_log']                   = 'Журнал ошибок';
 $_['text_extension']                   = 'Модули';
+$_['text_export_import']               = 'Export / Import (Excel)';
 $_['text_feed']                        = 'Каналы продвижения';
 $_['text_articles']                        = 'Статьи';
 $_['text_filter']                      = 'Фильтры';

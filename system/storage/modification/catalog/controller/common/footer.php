@@ -3,6 +3,19 @@ class ControllerCommonFooter extends Controller {
 	public function index() {
 		$this->load->language('common/footer');
 
+				/* = */
+				require_once DIR_CONFIG .'ssb_library/ssb_data.php';
+				$this->ssb_data = ssb_data::getInstance();
+				$tools = $this->ssb_data->getSetting('tools');
+				if($tools AND isset($_SESSION["ssb_page_type"])){
+					if($tools['qr_code']['status'] OR $tools['soc_buttons']['status']){
+						$h_title = $this->document->getTitle();
+						$data['h_title'] = str_replace('"', '',$h_title);
+					}
+				}
+				/* = */
+				
+
 		$data['scripts'] = $this->document->getScripts('footer');
 
 		$data['text_information'] = $this->language->get('text_information');

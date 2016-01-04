@@ -63,6 +63,33 @@
                       <textarea name="product_description[<?php echo $language['language_id']; ?>][description]" placeholder="<?php echo $entry_description; ?>" id="input-description<?php echo $language['language_id']; ?>"><?php echo isset($product_description[$language['language_id']]) ? $product_description[$language['language_id']]['description'] : ''; ?></textarea>
                     </div>
                   </div>
+
+				<!-- * = * -->
+				<div class="form-group">
+				<label class="col-sm-2 control-label" for="input-h1-title<?php echo $language['language_id']; ?>">Seo H1</label>
+				<div class="col-sm-10"><input type="text" name="seodata[<?php echo $language['language_id']; ?>][seo_h1]" value="<?php echo isset($seodata[$language['language_id']]['seo_h1']) ? $seodata[$language['language_id']]['seo_h1'] : ''; ?>" id="input-h1-title<?php echo $language['language_id']; ?>" class="form-control" placeholder="Enter Seo H1" /></div>
+				</div>
+				<div class="form-group">
+				<label class="col-sm-2 control-label" for="input-h2-title<?php echo $language['language_id']; ?>">Seo H2</label>
+				<div class="col-sm-10"><input type="text" name="seodata[<?php echo $language['language_id']; ?>][seo_h2]" value="<?php echo isset($seodata[$language['language_id']]['seo_h2']) ? $seodata[$language['language_id']]['seo_h2'] : ''; ?>" id="input-h2-title<?php echo $language['language_id']; ?>" class="form-control" placeholder="Enter Seo H2" /></div>
+				</div>
+				<div class="form-group">
+				<label class="col-sm-2 control-label" for="input-h3-title<?php echo $language['language_id']; ?>">Seo H3</label>
+				<div class="col-sm-10"><input type="text" name="seodata[<?php echo $language['language_id']; ?>][seo_h3]" value="<?php echo isset($seodata[$language['language_id']]['seo_h3']) ? $seodata[$language['language_id']]['seo_h3'] : ''; ?>" id="input-h3-title<?php echo $language['language_id']; ?>" class="form-control" placeholder="Enter Seo H3" /></div>
+				</div>
+				
+				<div class="form-group">
+				<label class="col-sm-2 control-label" for="input-h1-title<?php echo $language['language_id']; ?>">Alt Image</label>
+				<div class="col-sm-10"><input type="text" name="seodata[<?php echo $language['language_id']; ?>][alt_image]" value="<?php echo isset($seodata[$language['language_id']]['alt_image']) ? $seodata[$language['language_id']]['alt_image'] : ''; ?>" id="input-h1-title<?php echo $language['language_id']; ?>" class="form-control" placeholder="Enter Alt Image" /></div>
+				</div>
+				<div class="form-group">
+				<label class="col-sm-2 control-label" for="input-h1-title<?php echo $language['language_id']; ?>">Title Image</label>
+				<div class="col-sm-10"><input type="text" name="seodata[<?php echo $language['language_id']; ?>][title_image]" value="<?php echo isset($seodata[$language['language_id']]['title_image']) ? $seodata[$language['language_id']]['title_image'] : ''; ?>" id="input-h1-title<?php echo $language['language_id']; ?>" class="form-control" placeholder="Enter Title Image" /></div>
+				</div>
+				
+				<div class="form-group"><label class="col-sm-2 control-label" for="input-seo_title-title<?php echo $language['language_id']; ?>">Seo Title</label><div class="col-sm-10"><input type="text" name="seodata[<?php echo $language['language_id']; ?>][seo_title]" value="<?php echo isset($seodata[$language['language_id']]['seo_title']) ? $seodata[$language['language_id']]['seo_title'] : ''; ?>" id="input-seo_title-title<?php echo $language['language_id']; ?>" class="form-control" placeholder="Enter Seo Title" /></div></div>
+				<!-- * = * -->	
+				
                   <div class="form-group required">
                     <label class="col-sm-2 control-label" for="input-meta-title<?php echo $language['language_id']; ?>"><?php echo $entry_meta_title; ?></label>
                     <div class="col-sm-10">
@@ -255,6 +282,7 @@
                 <label class="col-sm-2 control-label" for="input-keyword"><span data-toggle="tooltip" title="<?php echo $help_keyword; ?>"><?php echo $entry_keyword; ?></span></label>
                 <div class="col-sm-10">
                   <input type="text" name="keyword" value="<?php echo $keyword; ?>" placeholder="<?php echo $entry_keyword; ?>" id="input-keyword" class="form-control" />
+If you have a few language, to view the all keywords for all language, you can go to "Paladin >> Edit SEO Items". 
                   <?php if ($error_keyword) { ?>
                   <div class="text-danger"><?php echo $error_keyword; ?></div>
                   <?php } ?>

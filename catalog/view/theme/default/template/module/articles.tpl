@@ -26,14 +26,14 @@
                 
                 </a>
                 </div>
-<div class="text" style="min-height:90px;">
+<div class="text" style="min-height:95px;">
               <i>
               <?php echo $articles['description']; ?>
               </i>  
             </div>
-            <div class="row mr" style="margin-bottom:35px;">
-                    <a class="buttinv" href="<?php echo $articles['view']; ?>" >
-                            Подробней
+            <div class="row mr" style="margin-bottom:10px;">
+                    <a class="buttinv artsty" style="padding-top:0px; padding-bottom:0px;"  href="<?php echo $articles['view']; ?>" >
+                            Подробнее
                     </a>
                     
                     </div>

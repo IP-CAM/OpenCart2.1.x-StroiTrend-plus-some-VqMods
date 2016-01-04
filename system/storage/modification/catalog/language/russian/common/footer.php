@@ -3,9 +3,6 @@
 $_['text_information']  = 'Информация';
 
 				$_['text_articles'] = 'Our articles';
-
-				$_['text_articles'] = 'Our Articles';
-			
 			
 $_['text_service']      = 'Служба поддержки';
 $_['text_extra']        = 'Дополнительно';

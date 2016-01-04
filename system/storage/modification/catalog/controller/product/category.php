@@ -101,6 +101,84 @@ class ControllerProductCategory extends Controller {
 
 			$data['heading_title'] = $category_info['name'];
 
+				/* = */
+				if(isset($category_info['seo_h1']) && $category_info['seo_h1']){
+				$data['heading_title'] = $category_info['seo_h1'];
+				}
+
+				if(isset($category_info['seo_h2']) && $category_info['seo_h2']){
+				$data['seo_h2'] = $category_info['seo_h2'];
+				}
+				
+				if(isset($category_info['seo_h3']) && $category_info['seo_h3']){
+				$data['seo_h3'] = $category_info['seo_h3'];
+				}
+				
+				if(isset($category_info['seo_title']) AND $category_info['seo_title']){
+				require_once DIR_CONFIG .'ssb_library/ssb_data.php';
+				$ssb_data = ssb_data::getInstance();
+				$tools = $ssb_data->getSetting('tools');
+				if($page > 1){
+				if($tools['seo_pagination']['data']['add_pag_title']){
+				$category_info['seo_title'] = $category_info['seo_title'] .  ' - page ' . $page;
+				}
+				}
+				if((isset($category_info['seo_title']) AND $category_info['seo_title'])){
+				$this->document->setTitle($category_info['seo_title']);
+				}else{
+				$this->document->setTitle($category_info['meta_title']);
+				}
+				}
+
+				$data['tags'] = array();
+				if (isset($category_info['tag']) AND $category_info['tag']) {
+				$tags = explode(',', $category_info['tag']);
+				foreach ($tags as $tag) {
+				$data['tags'][] = array(
+				'tag'  => trim($tag),
+				'href' => $this->url->link('product/search', 'tag=' . trim($tag))
+				);
+				}
+				}
+
+				$data['category_alt_image'] = isset($category_info['alt_image']) ? $category_info['alt_image'] : '';
+				$data['category_title_image'] = isset($category_info['title_image']) ? $category_info['title_image'] : '';
+
+				require_once DIR_CONFIG .'ssb_library/ssb_data.php';
+				$this->ssb_data = ssb_data::getInstance();
+				$entity = $this->ssb_data->getSetting('entity');
+				$data['seo_h2_position'] = $entity['seo_h2']['category']['position'];
+				$data['seo_h3_position'] = $entity['seo_h3']['category']['position']; 
+				$tools = $this->ssb_data->getSetting('tools');
+				if($tools){
+					if($tools['if_modified']['data']['category']){
+						$LastModified_unix = strtotime($category_info['date_modified']); 
+						$LastModified = gmdate("D, d M Y H:i:s \G\M\T", $LastModified_unix);
+						$IfModifiedSince = false; if (isset($_ENV['HTTP_IF_MODIFIED_SINCE']))	
+						$IfModifiedSince = strtotime(substr($_ENV['HTTP_IF_MODIFIED_SINCE'], 5));  
+						if (isset($_SERVER['HTTP_IF_MODIFIED_SINCE']))	
+						$IfModifiedSince = strtotime(substr($_SERVER['HTTP_IF_MODIFIED_SINCE'], 5));
+						$this->response->addHeader('Last-Modified: '. $LastModified);
+						if ($IfModifiedSince && $IfModifiedSince >= $LastModified_unix){	
+							$head_start = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.1';
+							header($head_start . ' 304 Not Modified');	exit();
+						}
+					}
+					$canonical = $tools['canonical'];
+					if($canonical['status']){
+					$canonical = explode('_', $this->request->get['path']);
+					$canonical = end($canonical);
+					$this->document->addLink($this->url->link('product/category', 'path=' . $canonical ), 'canonical');
+					}
+				}
+
+				$this->language->load('product/product');
+				$data['text_tags'] = $this->language->get('text_tags');
+				
+				$_SESSION["ssb_page_type"] = 'category';
+				/* = */
+				
+
 			$data['text_refine'] = $this->language->get('text_refine');
 			$data['text_empty'] = $this->language->get('text_empty');
 			$data['text_quantity'] = $this->language->get('text_quantity');
@@ -185,9 +263,10 @@ class ControllerProductCategory extends Controller {
 					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
 				}
 				$data['categories'][] = array(
-					'name' => $result['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+					'name' => $result['name'] ,
 					'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url),
-                    'image'=> $image
+                    'image'=> $image,
+										'description' => $result['description']
 				);
 			}
             
@@ -272,6 +351,10 @@ class ControllerProductCategory extends Controller {
 
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
+
+				'title_image'=> isset($result['title_image']) ? $result['title_image'] : '',
+				'alt_image'=> isset($result['alt_image']) ? $result['alt_image'] : '',
+				
 					'thumb'       => $image,
 					'name'        => $result['name'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
@@ -281,7 +364,8 @@ class ControllerProductCategory extends Controller {
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $result['rating'],
 					'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url),
-                    'sku'       =>$result['sku']
+                    'sku'       =>$result['sku'],
+                    'attribute_groups' => $this->model_catalog_product->getProductAttributes($result['product_id'])
                     
 				);
 			}
@@ -324,6 +408,10 @@ class ControllerProductCategory extends Controller {
 
 				$data['products_child'][] = array(
 					'product_id'  => $result['product_id'],
+
+				'title_image'=> isset($result['title_image']) ? $result['title_image'] : '',
+				'alt_image'=> isset($result['alt_image']) ? $result['alt_image'] : '',
+				
 					'thumb'       => $image,
 					'name'        => $result['name'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
@@ -547,6 +635,37 @@ class ControllerProductCategory extends Controller {
 					}
 				}
 			
+
+					/* = */
+					if(isset($tools) AND $tools AND $category_info){
+						$set_bread = $tools['seo_breadcrumbs']['data']['category'];
+						$set_add = $tools['seo_breadcrumbs']['data']['additional'];
+
+						if($set_bread['mode'] != 'default'){
+							require_once DIR_CONFIG .'ssb_library/catalog/tools/bread_and_path.php';
+							$breadAndPath = breadAndPath::getInstance();
+							$data['breadcrumbs'] = $breadAndPath->getCategoryBreadcrumb(
+							$category_id,
+							$data['breadcrumbs'], 
+							$set_bread['mode'], 
+							$set_bread['reverse'], 
+							$set_add['title'], 
+							$set_add['home_to_store']);
+						}
+					}
+					
+					if(isset($_SESSION['seo_page_prev']) AND $_SESSION['seo_page_prev'] != ''){
+					$this->document->addLink($_SESSION['seo_page_prev'],'prev');
+					}
+					if(isset($_SESSION['seo_page_next']) AND $_SESSION['seo_page_next'] != ''){
+					$this->document->addLink($_SESSION['seo_page_next'],'next');
+					}
+					$_SESSION['seo_page_prev'] = '';
+					$_SESSION['seo_page_next'] = '';
+					
+					$_SESSION["ssb_page_data"] = $data;
+					/* = */
+				
 				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/product/category.tpl', $data));
 			} else {
 
@@ -590,6 +709,37 @@ class ControllerProductCategory extends Controller {
 					}
 				}
 			
+
+					/* = */
+					if(isset($tools) AND $tools AND $category_info){
+						$set_bread = $tools['seo_breadcrumbs']['data']['category'];
+						$set_add = $tools['seo_breadcrumbs']['data']['additional'];
+
+						if($set_bread['mode'] != 'default'){
+							require_once DIR_CONFIG .'ssb_library/catalog/tools/bread_and_path.php';
+							$breadAndPath = breadAndPath::getInstance();
+							$data['breadcrumbs'] = $breadAndPath->getCategoryBreadcrumb(
+							$category_id,
+							$data['breadcrumbs'], 
+							$set_bread['mode'], 
+							$set_bread['reverse'], 
+							$set_add['title'], 
+							$set_add['home_to_store']);
+						}
+					}
+					
+					if(isset($_SESSION['seo_page_prev']) AND $_SESSION['seo_page_prev'] != ''){
+					$this->document->addLink($_SESSION['seo_page_prev'],'prev');
+					}
+					if(isset($_SESSION['seo_page_next']) AND $_SESSION['seo_page_next'] != ''){
+					$this->document->addLink($_SESSION['seo_page_next'],'next');
+					}
+					$_SESSION['seo_page_prev'] = '';
+					$_SESSION['seo_page_next'] = '';
+					
+					$_SESSION["ssb_page_data"] = $data;
+					/* = */
+				
 				$this->response->setOutput($this->load->view('default/template/product/category.tpl', $data));
 			}
 		} else {
@@ -690,6 +840,37 @@ class ControllerProductCategory extends Controller {
 					}
 				}
 			
+
+					/* = */
+					if(isset($tools) AND $tools AND $category_info){
+						$set_bread = $tools['seo_breadcrumbs']['data']['category'];
+						$set_add = $tools['seo_breadcrumbs']['data']['additional'];
+
+						if($set_bread['mode'] != 'default'){
+							require_once DIR_CONFIG .'ssb_library/catalog/tools/bread_and_path.php';
+							$breadAndPath = breadAndPath::getInstance();
+							$data['breadcrumbs'] = $breadAndPath->getCategoryBreadcrumb(
+							$category_id,
+							$data['breadcrumbs'], 
+							$set_bread['mode'], 
+							$set_bread['reverse'], 
+							$set_add['title'], 
+							$set_add['home_to_store']);
+						}
+					}
+					
+					if(isset($_SESSION['seo_page_prev']) AND $_SESSION['seo_page_prev'] != ''){
+					$this->document->addLink($_SESSION['seo_page_prev'],'prev');
+					}
+					if(isset($_SESSION['seo_page_next']) AND $_SESSION['seo_page_next'] != ''){
+					$this->document->addLink($_SESSION['seo_page_next'],'next');
+					}
+					$_SESSION['seo_page_prev'] = '';
+					$_SESSION['seo_page_next'] = '';
+					
+					$_SESSION["ssb_page_data"] = $data;
+					/* = */
+				
 				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/error/not_found.tpl', $data));
 			} else {
 
@@ -733,6 +914,37 @@ class ControllerProductCategory extends Controller {
 					}
 				}
 			
+
+					/* = */
+					if(isset($tools) AND $tools AND $category_info){
+						$set_bread = $tools['seo_breadcrumbs']['data']['category'];
+						$set_add = $tools['seo_breadcrumbs']['data']['additional'];
+
+						if($set_bread['mode'] != 'default'){
+							require_once DIR_CONFIG .'ssb_library/catalog/tools/bread_and_path.php';
+							$breadAndPath = breadAndPath::getInstance();
+							$data['breadcrumbs'] = $breadAndPath->getCategoryBreadcrumb(
+							$category_id,
+							$data['breadcrumbs'], 
+							$set_bread['mode'], 
+							$set_bread['reverse'], 
+							$set_add['title'], 
+							$set_add['home_to_store']);
+						}
+					}
+					
+					if(isset($_SESSION['seo_page_prev']) AND $_SESSION['seo_page_prev'] != ''){
+					$this->document->addLink($_SESSION['seo_page_prev'],'prev');
+					}
+					if(isset($_SESSION['seo_page_next']) AND $_SESSION['seo_page_next'] != ''){
+					$this->document->addLink($_SESSION['seo_page_next'],'next');
+					}
+					$_SESSION['seo_page_prev'] = '';
+					$_SESSION['seo_page_next'] = '';
+					
+					$_SESSION["ssb_page_data"] = $data;
+					/* = */
+				
 				$this->response->setOutput($this->load->view('default/template/error/not_found.tpl', $data));
 			}
 		}

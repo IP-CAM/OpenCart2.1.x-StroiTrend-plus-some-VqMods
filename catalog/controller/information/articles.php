@@ -65,8 +65,8 @@ class ControllerInformationArticles extends Controller {
 				'title' 		=> html_entity_decode($articles['title'], ENT_QUOTES),
 				'image'			=> $this->model_tool_image->resize($articles['image'], 280, 100),
 				'description' 	=> 
-                (strlen(strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES))) > 50 ?
-                 substr(strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES)), 0, 300) . '...' : strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES))),
+                (mb_strlen(strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES))) > 50 ?
+                 mb_substr(strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES)), 0, 300) . '...' : strip_tags(html_entity_decode($articles['short_description'], ENT_QUOTES))),
 				'view' 			=> $this->url->link('information/articles/articles', 'articles_id=' . $articles['articles_id']),
 				'date_added' 	=> date($this->language->get('date_format_short'), strtotime($articles['date_added']))
 			);
@@ -121,7 +121,7 @@ class ControllerInformationArticles extends Controller {
 			
 			$this->load->model('tool/image');
 			
-			$data['image'] = $this->model_tool_image->resize($articles['image'], 1920, 854);
+			$data['image'] = $this->model_tool_image->resize($articles['image'], 1140, 400);
  
 			$data['heading_title'] = html_entity_decode($articles['title'], ENT_QUOTES);
 			$data['description'] = html_entity_decode($articles['description'], ENT_QUOTES);

@@ -42,6 +42,7 @@
 
                  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
                     <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+                    
                     <link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
 
                     <?php foreach ($styles as $style) { ?>
@@ -49,7 +50,12 @@
                         <?php } ?>
                             <script src="catalog/view/javascript/common.js" type="text/javascript"></script>
                             <?php foreach ($links as $link) { ?>
-                                <link href="<?php echo $link['href']; ?>" rel="<?php echo $link['rel']; ?>" />
+                                
+<!-- * = * -->
+<?php $linkTags = '';	foreach($link as $key => $val){$linkTags .= $key . '="' . $val . '" ';}
+?><link <?php echo $linkTags; ?>/>
+<!-- * = * -->
+				
                                 <?php } ?>
                                     <?php foreach ($scripts as $script) { ?>
                                         <script src="<?php echo $script; ?>" type="text/javascript"></script>
@@ -60,12 +66,53 @@
 
 
                                                         <link href="catalog/view/theme/default/stylesheet/callback.css" rel="stylesheet" type="text/css" />
+
+					<!-- * = * -->
+					<?php require_once DIR_CONFIG .'ssb_library/ssb_data.php';
+					$this->ssb_data = ssb_data::getInstance();
+					$tools = $this->ssb_data->getSetting('tools');
+					if($tools AND isset($_SESSION["ssb_page_type"])){
+					if($tools['qr_code']['status'] OR $tools['soc_buttons']['status']){
+					include_once DIR_CONFIG .'ssb_library/catalog/tools/panel_bar_head.tpl';
+					}
+
+					if($tools['webm_tool']['data']['google']){
+					$google_meta = $tools['webm_tool']['data']['google'];
+					if ( strpos( $google_meta, 'content' ) !== false ) {
+					preg_match( '/content="([^"]+)"/', htmlspecialchars_decode($google_meta), $match );
+					if(isset($match[1])){
+					$google_meta = $match[1];
+					}
+					}
+					echo "\n<meta name=\"google-site-verification\" content=\"$google_meta\" />\n";
+					}
+
+					if($tools['webm_tool']['data']['bing']){
+					$bing_meta = $tools['webm_tool']['data']['bing'];
+					if ( strpos( $bing_meta, 'content' ) !== false) {
+					preg_match( '/content="([^"]+)"/', htmlspecialchars_decode($bing_meta), $match );
+					if(isset($match[1])){
+					$bing_meta = $match[1];
+					}
+					}
+					echo "<meta name=\"msvalidate.01\" content=\"$bing_meta\" />\n";
+					}
+
+					if($tools['webm_tool']['data']['alexa']){
+					$alexaverify = $tools['webm_tool']['data']['alexa'];
+					echo "<meta name=\"alexaVerifyID\" content=\"" . htmlspecialchars( $alexaverify, ENT_NOQUOTES, 'UTF-8' ) . "\" />\n";
+					}
+					}
+					?>
+					<!-- * = * -->
+				
 </head>
 
 <body class="<?php echo $class; ?>">
+   <div id="wrap">
     <header id="top" name="top">
         <div class="topH">
-            <div class="container" style="padding-left: 30px;padding-right: 27px;">
+            <div class="container" style="padding-right: 27px;">
                 <div class="row">
                   <!-- LOGO -->
                   <div class="logo-block">
@@ -84,8 +131,10 @@
                                 </div>
                             </li>
                             <li>
-                                <div class=" uppcase" style="padding:20px 0px;">
-                                    <a class=" uppcase" style="color:black;" href="<?php echo $contact; ?>"><?php echo $telephone; ?></a>
+                                <div class=" uppcase" style="padding-top: 5px;">
+                                    <a class=" uppcase" style="color:black;;     max-height: 14px;" href="<?php echo $contact; ?>"><?php echo $telephone; ?></a>
+                                    <a class=" uppcase" style="color:black;     max-height: 14px;" href="<?php echo $contact; ?>"><?php echo $fax; ?></a>
+                                    <a class=" uppcase" style="color:black;     max-height: 14px;" href="<?php echo $contact; ?>"><?php echo $comment; ?></a>
                                 </div>
                             </li>
                             <?php if ($logged) { ?>
@@ -116,8 +165,8 @@
                     <!-- MENU -->
                     <nav id="menu" class="navbar">
                         <div class="navbar navbar-header froboto">
-                           <div class="row"> <button type="button" class="buttonbl navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
-                     </div>   </div>
+                            <button type="button" style="    margin-right: 0px;" class="buttonbl navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"><i class="fa fa-bars"></i></button>
+                     </div>  
                         
                         <div class="collapse navbar-collapse navbar-ex1-collapse">
                             <ul class="nav navbar-nav">
@@ -196,3 +245,4 @@
     </header>
     <?php if ($categories) { ?>
         <?php } ?>
+        

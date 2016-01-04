@@ -22,6 +22,7 @@ class ControllerCommonMenu extends Controller {
 		$data['text_customer_group'] = $this->language->get('text_customer_group');
 		$data['text_customer_field'] = $this->language->get('text_customer_field');
 		$data['text_custom_field'] = $this->language->get('text_custom_field');
+		     $data['text_export_import'] = $this->language->get('text_export_import');
 		$data['text_sale'] = $this->language->get('text_sale');
 		$data['text_paypal'] = $this->language->get('text_paypal');
 		$data['text_paypal_search'] = $this->language->get('text_paypal_search');
@@ -114,6 +115,7 @@ class ControllerCommonMenu extends Controller {
 		$data['attribute'] = $this->url->link('catalog/attribute', 'token=' . $this->session->data['token'], 'SSL');
 		$data['attribute_group'] = $this->url->link('catalog/attribute_group', 'token=' . $this->session->data['token'], 'SSL');
 		$data['backup'] = $this->url->link('tool/backup', 'token=' . $this->session->data['token'], 'SSL');
+			$data['export_import'] = $this->url->link('tool/export_import', 'token=' . $this->session->data['token'], 'SSL');
 		$data['banner'] = $this->url->link('design/banner', 'token=' . $this->session->data['token'], 'SSL');
 		$data['captcha'] = $this->url->link('extension/captcha', 'token=' . $this->session->data['token'], 'SSL');
 		$data['category'] = $this->url->link('catalog/category', 'token=' . $this->session->data['token'], 'SSL');
@@ -128,9 +130,6 @@ class ControllerCommonMenu extends Controller {
 		$data['download'] = $this->url->link('catalog/download', 'token=' . $this->session->data['token'], 'SSL');
 		$data['error_log'] = $this->url->link('tool/error_log', 'token=' . $this->session->data['token'], 'SSL');
 		$data['feed'] = $this->url->link('extension/feed', 'token=' . $this->session->data['token'], 'SSL');
-
-				$data['articles'] = $this->url->link('extension/articles', 'token=' . $this->session->data['token'], 'SSL');	
-			
 
 				$data['articles'] = $this->url->link('extension/articles', 'token=' . $this->session->data['token'], 'SSL');	
 			
@@ -213,6 +212,14 @@ class ControllerCommonMenu extends Controller {
 			'etsy' => $this->config->get('etsy_status'),
 		);
 
+
+				/* = */
+					$this->load->model('setting/setting');
+					$data['paladin_modules']['psm'] = $this->model_setting_setting->getSetting('superseobox') ? $this->url->link('module/superseobox', 'token=' . $this->session->data['token'], 'SSL') : false;
+					$data['paladin_modules']['prm'] = $this->model_setting_setting->getSetting('prmod') ? $this->url->link('module/paladinrm', 'token=' . $this->session->data['token'], 'SSL') : false;
+					$data['paladin_modules']['psg'] = $this->model_setting_setting->getSetting('paladinSiteMapGenerator') ? 		$this->url->link('module/psmsitemapgenerator', 'token=' . $this->session->data['token'], 'SSL') : false;
+				/* = */
+				
 		return $this->load->view('common/menu.tpl', $data);
 	}
 }

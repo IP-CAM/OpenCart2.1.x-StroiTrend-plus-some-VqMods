@@ -1,6 +1,69 @@
 <?php
 class ModelCatalogCategory extends Model {
 
+				/* = */
+				public function getDescripCategory($category_id) {
+				$seodata = array();$sql = "SELECT language_id, tag, seo_title, seo_h1, seo_h2, seo_h3, meta_description, meta_keyword, description, alt_image, title_image, meta_seo_data FROM " . DB_PREFIX . "category_description WHERE category_id = '" . (int)$category_id . "'";$query = $this->db->query($sql);
+				if(count($query->rows)){
+					$_SESSION['current_meta_seo_data'] = array();
+				}else{
+					unset($_SESSION['current_meta_seo_data']);
+				}
+				foreach ($query->rows as $result) {
+					$seodata[$result['language_id']] = array('seo_title' => $result['seo_title'],'seo_h1' => $result['seo_h1'],'seo_h2' => $result['seo_h2'],'seo_h3' => $result['seo_h3'],'tag'=> $result['tag'], 'alt_image'=> $result['alt_image'], 'title_image'=> $result['title_image']);
+					$_SESSION['current_meta_seo_data'][$result['language_id']] = $result;
+				}return $seodata;
+				}
+				
+				public function setDescripCategory($category_id, $data = array(), $oc_data = array()) {
+				
+				if(!count($data)){
+					$this->load->model('localisation/language');$languages = $this->model_localisation_language->getLanguages();$data = array();
+					foreach ($languages as $l_code => $l_val) {
+						$data[$l_val['language_id']] = array('seo_title'=> '','seo_h1'=> '','seo_h2'=> '','seo_h3'=> '','tag'=> '');
+					}
+				}
+				foreach($data as $language_id => $val){
+				$val['meta_description'] = $oc_data[$language_id]['meta_description'];
+				$val['meta_keyword'] = $oc_data[$language_id]['meta_keyword'];
+				$val['description'] = $oc_data[$language_id]['description'];
+				
+				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "category_description WHERE category_id = '" . (int)$category_id . "' AND language_id = '". (int)$language_id ."';");
+				if(count($query->rows)){
+				$meta_seo_data = $this->getSeoMetaData($val, $language_id);
+				$meta_seo_data = "meta_seo_data = '" . $meta_seo_data . "'";
+				
+				$sql = "UPDATE " . DB_PREFIX . "category_description SET tag = '" . $this->db->escape($val['tag']) . "', seo_title = '". $this->db->escape($val['seo_title']) ."', seo_h1 = '". $this->db->escape($val['seo_h1']) ."', seo_h2 = '". $this->db->escape($val['seo_h2']) ."', seo_h3 = '". $this->db->escape($val['seo_h3']) ."', alt_image = '". $this->db->escape($val['alt_image']) ."', title_image = '". $this->db->escape($val['title_image']) ."', ". $meta_seo_data ."  WHERE category_id = '" . (int)$category_id . "' AND language_id = '". (int)$language_id ."'";}else{$sql = "INSERT INTO " . DB_PREFIX . "category_description SET category_id = '". (int)$category_id ."', tag = '" . $this->db->escape($val['tag']) . "', seo_h1 = '" . $this->db->escape($val['seo_h1']) . "', seo_h2 = '" . $this->db->escape($val['seo_h2']) . "', seo_h3 = '" . $this->db->escape($val['seo_h3']) . "', seo_title = '". $this->db->escape($val['seo_title']) ."', alt_image = '". $this->db->escape($val['alt_image']) ."', title_image = '". $this->db->escape($val['title_image']) ."';";}$this->db->query($sql);}
+				unset($_SESSION['current_meta_seo_data']);
+				}
+				
+				private function getSeoMetaData($new_data, $language_id){
+					if(!isset($_SESSION['current_meta_seo_data'][$language_id])) return '';
+					$meta_seo_data = json_decode($_SESSION['current_meta_seo_data'][$language_id]['meta_seo_data'], true);
+					$old_data = $_SESSION['current_meta_seo_data'][$language_id];
+					
+					if($meta_seo_data && is_array($meta_seo_data)){
+						foreach($old_data as $key => $val){
+							if(isset($new_data[$key]) AND $this->db->escape($new_data[$key]) != $val AND isset($meta_seo_data[$key])){
+								if($val !='' AND $meta_seo_data[$key] == 'ag' AND $new_data[$key] != ''){
+									$meta_seo_data[$key] = 'et'; // edited
+								}elseif($val !='' AND $meta_seo_data[$key] == 'et' AND $new_data[$key] != ''){
+									/*empty*/
+								}else{
+									unset($meta_seo_data[$key]);
+								}
+							}elseif(isset($new_data[$key]) AND $this->db->escape($new_data[$key]) == '' AND isset($meta_seo_data[$key])){
+								unset($meta_seo_data[$key]);
+							}
+						}
+					}else{
+						$meta_seo_data = '';
+					}
+					return !$meta_seo_data ? "" : $this->db->escape(json_encode($meta_seo_data));
+				}
+				/* = */
+				
+
 	
 			public function getCategories_MF($data) {
 				if( version_compare( VERSION, '1.5.5', '>=' ) ) {
@@ -93,6 +156,12 @@ class ModelCatalogCategory extends Model {
 		}
 
 		$this->cache->delete('category');
+
+				/* = */
+				require_once DIR_CONFIG .'ssb_library/ssb_data.php';$this->ssb_data = ssb_data::getInstance();$ssb_setting = $this->ssb_data->getSetting();if(isset($data['seodata']) AND is_array($data['seodata']) AND $ssb_setting){
+				$this->model_catalog_category->setDescripCategory($category_id, $data['seodata'], $data['category_description']);include_once DIR_CONFIG .'ssb_library/ssb_autogen.php';$ssb_autogen = ssb_autogen::getInstance();$ssb_autogen->genAutoSeo('category', $category_id);}
+				/* = */
+				
 
 		$this->event->trigger('post.admin.category.add', $category_id);
 
@@ -189,13 +258,34 @@ class ModelCatalogCategory extends Model {
 			}
 		}
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id . "'");
+		
+				/* = */
+				$this->db->query("ALTER TABLE " . DB_PREFIX . "url_alias CHANGE `language_id` `language_id` int(11) NOT NULL DEFAULT '". (int)$this->config->get('config_language_id') ."';");
+				$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id. "' AND language_id = '" . (int)$this->config->get('config_language_id') . "'");
+				
+				$urls = $this->db->query("SELECT * FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id. "'");
+				$languages_duplicat = array();
+				foreach($urls->rows as $url){
+					if (in_array($url['language_id'], $languages_duplicat)) {
+						$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE url_alias_id = " . $url['url_alias_id']);
+					}else{
+						$languages_duplicat[] = $url['language_id'];
+					}
+				}
+				/* = */
+				
 
 		if ($data['keyword']) {
 			$this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'category_id=" . (int)$category_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
 		}
 
 		$this->cache->delete('category');
+
+				/* = */
+				require_once DIR_CONFIG .'ssb_library/ssb_data.php';$this->ssb_data = ssb_data::getInstance();$ssb_setting = $this->ssb_data->getSetting();if(isset($data['seodata']) AND is_array($data['seodata']) AND $ssb_setting){
+				$this->model_catalog_category->setDescripCategory($category_id, $data['seodata'], $data['category_description']);include_once DIR_CONFIG .'ssb_library/ssb_autogen.php';$ssb_autogen = ssb_autogen::getInstance();$ssb_autogen->genAutoSeo('category', $category_id);}
+				/* = */
+				
 
 		$this->event->trigger('post.admin.category.edit', $category_id);
 	}
@@ -220,6 +310,12 @@ class ModelCatalogCategory extends Model {
 		$this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id . "'");
 
 		$this->cache->delete('category');
+
+				/* = */
+				require_once DIR_CONFIG .'ssb_library/ssb_data.php';$this->ssb_data = ssb_data::getInstance();$ssb_setting = $this->ssb_data->getSetting();if(isset($data['seodata']) AND is_array($data['seodata']) AND $ssb_setting){
+				$this->model_catalog_category->setDescripCategory($category_id, $data['seodata'], $data['category_description']);include_once DIR_CONFIG .'ssb_library/ssb_autogen.php';$ssb_autogen = ssb_autogen::getInstance();$ssb_autogen->genAutoSeo('category', $category_id);}
+				/* = */
+				
 
 		$this->event->trigger('post.admin.category.delete', $category_id);
 	}
@@ -249,7 +345,7 @@ class ModelCatalogCategory extends Model {
 	}
 
 	public function getCategory($category_id) {
-		$query = $this->db->query("SELECT DISTINCT *, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') FROM " . DB_PREFIX . "category_path cp LEFT JOIN " . DB_PREFIX . "category_description cd1 ON (cp.path_id = cd1.category_id AND cp.category_id != cp.path_id) WHERE cp.category_id = c.category_id AND cd1.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY cp.category_id) AS path, (SELECT DISTINCT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id . "') AS keyword FROM " . DB_PREFIX . "category c LEFT JOIN " . DB_PREFIX . "category_description cd2 ON (c.category_id = cd2.category_id) WHERE c.category_id = '" . (int)$category_id . "' AND cd2.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+		$query = $this->db->query("SELECT DISTINCT *, (SELECT GROUP_CONCAT(cd1.name ORDER BY level SEPARATOR '&nbsp;&nbsp;&gt;&nbsp;&nbsp;') FROM " . DB_PREFIX . "category_path cp LEFT JOIN " . DB_PREFIX . "category_description cd1 ON (cp.path_id = cd1.category_id AND cp.category_id != cp.path_id) WHERE cp.category_id = c.category_id AND cd1.language_id = '" . (int)$this->config->get('config_language_id') . "' GROUP BY cp.category_id) AS path, (SELECT DISTINCT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'category_id=" . (int)$category_id . "' AND language_id = '" . (int)$this->config->get('config_language_id') . "') AS keyword FROM " . DB_PREFIX . "category c LEFT JOIN " . DB_PREFIX . "category_description cd2 ON (c.category_id = cd2.category_id) WHERE c.category_id = '" . (int)$category_id . "' AND cd2.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
 		return $query->row;
 	}

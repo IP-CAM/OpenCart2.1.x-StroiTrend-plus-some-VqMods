@@ -15,20 +15,20 @@
                 
                 </a>
                 <p></p>
-                <p style="text-align-center;">
+                <p style="text-align-center;min-height:37px;" >
                 <b>
-                <a href="<?php echo $banner['link']; ?>">
+                <a href="<?php echo $banner['link']; ?>" >
                  <?php echo $banner['title']; ?>   </a>
                    </b> 
                 </p>
-                <p>
+                <p style="min-height:80px;">
                 <?php echo $banner['description']; ?>
                </p>
                
-               <a href="<?php echo $banner['link']; ?>" style="padding-bottom:10px;display:block;">
+               <a class="buttonbl" href="<?php echo $banner['link']; ?>" style="padding:2px 10px;display:block; margin:20px;">
                    Перейти к статье
                </a>
-               
+               <br />
                 <?php } else { ?>
                     <img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" />
                     <?php } ?>

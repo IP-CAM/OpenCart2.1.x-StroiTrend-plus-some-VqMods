@@ -4,7 +4,7 @@
 
 
 /* Здесь менять почту получателя */
-$questions = "maxxl2012@gmail.com";
+$questions = "info@stroy-trade.com.ua";
 
 
 

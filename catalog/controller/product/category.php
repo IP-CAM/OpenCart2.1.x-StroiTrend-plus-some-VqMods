@@ -166,9 +166,10 @@ class ControllerProductCategory extends Controller {
 					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
 				}
 				$data['categories'][] = array(
-					'name' => $result['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+					'name' => $result['name'] ,
 					'href' => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '_' . $result['category_id'] . $url),
-                    'image'=> $image
+                    'image'=> $image,
+										'description' => $result['description']
 				);
 			}
             
@@ -236,7 +237,8 @@ class ControllerProductCategory extends Controller {
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $result['rating'],
 					'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'] . $url),
-                    'sku'       =>$result['sku']
+                    'sku'       =>$result['sku'],
+                    'attribute_groups' => $this->model_catalog_product->getProductAttributes($result['product_id'])
                     
 				);
 			}

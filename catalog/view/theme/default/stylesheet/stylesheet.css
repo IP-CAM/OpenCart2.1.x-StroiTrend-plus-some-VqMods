@@ -1,5 +1,10 @@
 /*green  #00562f */
 
+html
+{
+        height: 100%;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
@@ -7,7 +12,8 @@ body {
     font-size: 12px;
     line-height: 20px;
     width: 100%;
-    overflow-x: hidden;
+   /* overflow-x: hidden;*/
+    height: 100%;
 }
 
 body a {
@@ -29,6 +35,17 @@ body li {
     transition: all 0.3s ease;
 }
 
+#wrap {min-height: 100%;
+padding-bottom: 253px;}
+
+#main {overflow:auto;
+	padding-bottom: 253px;}  /* must be same height as the footer */
+
+#footer {position: relative;
+	margin-top: -253px; /* negative value of footer height */
+	height: 253px;
+	clear:both;} 
+
 h1,
 h2,
 h3,
@@ -37,7 +54,12 @@ h5,
 h6 {
     color: #444;
 }
-
+#atr1costforlist,
+#atr2costforlist,
+#atr3costforlist
+{
+opacity:0.7;
+}
 header {
     padding-bottom: 2px;
 }
@@ -53,6 +75,7 @@ header {
 /* Override the bootstrap defaults */
 
 h1 {
+    margin-top: 0px;
     font-size: 33px;
 }
 
@@ -158,11 +181,39 @@ div.required .control-label:before {
 
 
 /* top */
+#myTops
+{
+    display: none;
+    position: fixed;
+    top: 80%;
+ 
+    background: rgba(0, 86, 47, 0.33);
+
+    z-index: 9999999;
+    right: 30px;
+}
+#myTops:hover
+{ background-color: #00562f !important;
+    
+    background: rgba(0, 86, 47, 0.33);
+    
+}
+#myTops:focus
+{
+        color: white;
+     background-color: rgba(0, 86, 47, 0.33) !important;
+ 
+}
+#myTops i
+{
+    color: white;
+    z-index: 99999;
+}
 
 #top {
     background-color: #ffffff;
     padding-top: 20px;
-    ;
+    
 }
 
 #top .container {
@@ -225,7 +276,25 @@ div.required .control-label:before {
     border: 1px solid white;
 }
 
+.hov
+{
+    position: relative;
+        background: #000000;
 
+}
+.hov img 
+{
+
+       -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.hov:hover img
+{
+
+opacity: 1 !important;
+}
 /* search */
 
 #search {
@@ -474,7 +543,14 @@ footer a {
 footer a:hover {
     color: #fff;
 }
-
+.hrcate
+{
+    margin-top: 0px;
+    margin-bottom: 5px;
+   width: 100%;
+    color: #00562F;
+    border-top: 1px solid #00562f; 
+}
 footer h5 {
     font-family: 'Open Sans', sans-serif;
     font-size: 13px;
@@ -574,6 +650,7 @@ footer h5 {
     font-size: 12px;
 }
 
+
 .btn-group > .btn-xs {
     font-size: 9px;
 }
@@ -585,7 +662,11 @@ footer h5 {
 .btn-group > .btn-lg {
     font-size: 15px;
 }
-
+.msld
+{
+    margin-top: 8px;
+    margin-bottom: 32px;
+}
 .btn-default {
     color: #000000 !important;
     background: rgba(247, 40, 44, 0) !important;
@@ -765,7 +846,10 @@ footer h5 {
     text-shadow: 0 1px 0 #FFF;
 }
 
-
+.mfilter-box {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 /* carousel */
 
 .carousel-caption {
@@ -826,12 +910,80 @@ footer h5 {
 
 .product-thumb .caption {
     padding: 0 20px;
-    min-height: 180px;
+    min-height: 160px;
 }
 
 .product-list .product-thumb .caption {
     margin-left: 230px;
 }
+
+
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+    #content .col-lg-2:nth-child(6n+1),
+    #content .col-lg-2:nth-child(6n+1),
+    #content .col-lg-3:nth-child(4n+1),
+    #content .col-lg-4:nth-child(3n+1),
+    #content .col-lg-6:nth-child(2n+1) {
+        clear: left;
+    }
+   
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    #content .col-md-2:nth-child(6n+1),
+    #content .col-md-2:nth-child(6n+1),
+    #content .col-md-3:nth-child(4n+1),
+    #content .col-md-4:nth-child(3n+1),
+    #content .col-md-6:nth-child(2n+1) {
+        clear: left;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    #content .col-sm-2:nth-child(6n+1),
+    #content .col-sm-2:nth-child(6n+1),
+    #content .col-sm-3:nth-child(4n+1),
+    #content .col-sm-4:nth-child(3n+1),
+    #content .col-sm-6:nth-child(2n+1) {
+        clear: left;
+    }
+   
+}
+
+
+/* fixed colum left + content + right*/
+
+@media (min-width: 768px) {
+    #column-left .product-layout .col-md-3 {
+        width: 100%;
+    }
+    #column-left + #content .product-layout .col-md-3 {
+        width: 50%;
+    }
+    #column-left + #content + #column-right .product-layout .col-md-3 {
+        width: 100%;
+    }
+    #content + #column-right .product-layout .col-md-3 {
+        width: 100%;
+    }
+}
+
+
+/* fixed product layouts used in left and right columns */
+
+#column-left .product-layout,
+#column-right .product-layout {
+    width: 100%;
+}
+
+
+/* fixed mobile cart quantity input */
+
+.input-group .form-control[name^=quantity] {
+    min-width: 50px;
+}
+
 
 @media (max-width: 1200px) {
     .product-grid .product-thumb .caption {
@@ -920,7 +1072,7 @@ h2.price {
 }
 
 .product-thumb .button-group button {
-    width: 49%;
+    width: 49% !important;
     border: none;
     display: inline-block;
     float: left;
@@ -933,7 +1085,7 @@ h2.price {
 }
 
 .product-thumb .button-group button + button {
-    width: 49%;
+    width: 49% !important;
     border-left: 1px solid #ddd;
 }
 
@@ -993,70 +1145,6 @@ h2.price {
     float: left;
     margin-left: 20px;
 }
-
-@media (min-width: 1200px) {
-    #content .col-lg-2:nth-child(6n+1),
-    #content .col-lg-2:nth-child(6n+1),
-    #content .col-lg-3:nth-child(4n+1),
-    #content .col-lg-4:nth-child(3n+1),
-    #content .col-lg-6:nth-child(2n+1) {
-        clear: left;
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {
-    #content .col-md-2:nth-child(6n+1),
-    #content .col-md-2:nth-child(6n+1),
-    #content .col-md-3:nth-child(4n+1),
-    #content .col-md-4:nth-child(3n+1),
-    #content .col-md-6:nth-child(2n+1) {
-        clear: left;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-    #content .col-sm-2:nth-child(6n+1),
-    #content .col-sm-2:nth-child(6n+1),
-    #content .col-sm-3:nth-child(4n+1),
-    #content .col-sm-4:nth-child(3n+1),
-    #content .col-sm-6:nth-child(2n+1) {
-        clear: left;
-    }
-}
-
-
-/* fixed colum left + content + right*/
-
-@media (min-width: 768px) {
-    #column-left .product-layout .col-md-3 {
-        width: 100%;
-    }
-    #column-left + #content .product-layout .col-md-3 {
-        width: 50%;
-    }
-    #column-left + #content + #column-right .product-layout .col-md-3 {
-        width: 100%;
-    }
-    #content + #column-right .product-layout .col-md-3 {
-        width: 100%;
-    }
-}
-
-
-/* fixed product layouts used in left and right columns */
-
-#column-left .product-layout,
-#column-right .product-layout {
-    width: 100%;
-}
-
-
-/* fixed mobile cart quantity input */
-
-.input-group .form-control[name^=quantity] {
-    min-width: 50px;
-}
-
 
 /* Missing focus and border color to overwrite bootstrap */
 
@@ -1237,7 +1325,12 @@ h2.price {
     text-decoration: none;
     background-color: #ffffff;
 }
-
+.slideshowbtn {
+    position: absolute;
+    left: 0;
+    bottom: 40px;
+    width: 100%;
+    }
 .buttonbls {
     color: #000000;
     background: rgba(247, 40, 44, 0);
@@ -1246,7 +1339,7 @@ h2.price {
     -moz-border-radius: 0;
     border-radius: 0;
     text-shadow: none;
-    border: 1px solid #000000;
+    border: 1px solid #00572F;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
@@ -1259,11 +1352,12 @@ h2.price {
     margin-left: 2px;
     white-space: nowrap;
     line-height: 20px;
-}
+    display: inline-block;
+    }
 
 .buttonbls:hover {
-    border: 1px solid #ffffff;
-    color: #ffffff;
+    background-color: #00572F;
+    color: #fff;
 }
 
 .inl-block {
@@ -1311,15 +1405,15 @@ a:focus {
     font-weight: 300;
 }
 
-.fplay {
+.fplay {  
     font-family: 'Playfair Display', serif;
-    min-height: 60px;
 }
 
 .froboto a {
     border: 0px !important;
     color: black;
-    padding: 20px 0;
+    padding: 5px 0;
+    padding-top: 20px;
     border-bottom: 2px solid rgba(255, 255, 255, 0) !important;
 }
 
@@ -1341,7 +1435,7 @@ a:focus {
 a:focus {
     background-color: transparent !important;
     color: rgba(255, 255, 255, 1);
-    border-bottom: 0px !important;
+    /*border-bottom: 0px !important;*/
     transition: all 0.0s ease !important;
 }
 
@@ -1373,6 +1467,7 @@ a:hover {
 /*logo*/
 
 .logo-block {
+        margin-left: 10px;
     float: left;
     width: 60px;
 }
@@ -1469,6 +1564,7 @@ header .buttonbl {
 }
 
 .Article .title {
+ 
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -1489,6 +1585,8 @@ header .buttonbl {
 }
 
 .mr {
+    padding: 0px 20px;
+       min-height: 60px;
     margin-top: 15px;
     margin-bottom: 15px;
 }
@@ -1663,6 +1761,9 @@ hr {
     bottom: 30px;
     position: absolute;
     z-index: 9;
+    left: 0;
+    right: 0;
+    
 }
 
 .popup-preview >div>div {
@@ -1671,7 +1772,7 @@ hr {
 
 .valc {
     position: absolute;
-    top: 40%;
+    bottom: -10px;
     z-index: 10;
     font-size: medium;
     width: 100%;
@@ -1681,40 +1782,39 @@ hr {
 /*slider*/
 
 .slideshowtxt {
+    background: rgba(237, 237, 237, 0.9);
+    width: 300px;
+    top: 10%;
+    height: 310px;
+    padding: 40px 20px;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
     position: absolute;
     z-index: 11;
-    top: 0;
-    width: 100%;
     text-align: center;
+    color: #000;
+    line-height: 2em;
 }
-
+.slideshowtxt p {
+    margin: 0;
+}
 .slideshowtxt div {
     border: none !important;
 }
 
-.titlef >p {
-    font-size: 48pt !important;
-    color: black;
-    margin-top: 2em;
-    margin-bot: 2em;
-}
-
-.titles >p {
-    font-size: 20pt;
-    color: black;
-    margin-top: 2em;
-    margin-bot: 2em;
-}
+.titlef {
+    font-size: 24px !important;
+    margin: 0 0 15px;
+    }
+.titles {
+    font-size: 14px;
+    }
 
 .panel {
     border-radius: 0px;
 }
-
-.slideshowbtn {
-    margin-top: 3em;
-    margin-bot: 3em;
-}
-
 #slideshow0 {
     max-height: 600px;
 }
@@ -1806,7 +1906,8 @@ hr {
 }
 
 .table-bordered td {
-    border: 1px solid #C7DAD1 !important;
+    border: none !important;
+    border-color: #C7DAD1 !important;
 }
 
 .pagination>li:first-child>span {
@@ -1884,7 +1985,7 @@ hr {
 
 .img-thumbnail {
     border-radius: 0px;
-    border: 1px solid rgba(0, 86, 47, 0.22) !important;
+    border: 0px solid rgba(0, 86, 47, 0.22) !important;
 }
 
 .bordergr {
@@ -1897,50 +1998,65 @@ hr {
 
 
 /*MEDIA*/
+@media (max-width: 1399px) {
 
-@media (max-width: 1200px) {
-    .titlef >p {
-        font-size: 28pt !important;
-        color: black;
-        margin-top: 1em;
-        margin-bot: 1em;
-    }
-    .titles >p {
-        font-size: 14pt;
-        color: black;
-        margin-top: 1em;
-        margin-bot: 1em;
-    }
-    .slideshowbtn {
-        margin-top: 1.5em;
-        margin-bot: 1.5em;
-    }
     #slideshow0 {
         max-height: 600px;
-    }
-    #slideshow0,
-    .owl-stage,
-    .owl-stage-outer {
+        }
+    #slideshow0, .owl-stage, .owl-stage-outer {
         max-height: 600px !important;
-    }
+        }
+    .popup-preview {
+        margin: 0;
+        }
+    .popup-preview>div {
+        display: inline-block;
+        padding: 0;
+        width: 25px;
+        }
+    .popup-preview .hov a *{
+        display: none;
+        }
+    .hov {
+        background: transparent;
+        border: none !important;
+        display: inline-block;
+        }
+    .popup-preview a {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        padding: 0;
+        background-color: #fff !important;
+        display: inline-block;
+        box-shadow: 0 1px 3px rgba(0,0,0,.5);
+        }
+    .slideshowtxt {
+        height: 250px;
+        padding: 20px;
+        }
+    .slideshowbtn {
+        bottom: 20px;
+        }
 }
-
-
+@media (max-width: 1199px) {
+    
+    }
 /* Portrait tablet to landscape and desktop */
 
 @media (min-width: 768px) and (max-width: 991px) {
     .topH li {
         min-height: 30px;
-    }
+        }
     .buttonbl {
         padding-top: 5px;
         padding-bottom: 5px;
         padding-left: 10px;
         padding-right: 10px;
-    }
+        }
     #menu {
         float: right;
-    }
+        }
     .popup-preview {
         display: none;
     }
@@ -1949,25 +2065,21 @@ hr {
         margin-right: 10%;
     }
     /*slideshow*/
-    .titlef >p {
-        font-size: 28pt !important;
-        color: black;
-        margin-top: 1em;
-        margin-bot: 1em;
-    }
-    .titles >p {
-        font-size: 14pt;
-        color: black;
-        margin-top: 1em;
-        margin-bot: 1em;
-    }
+    .slideshowtxt {
+        left: 20px;
+        transform: none;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        }
     .slideshowbtn {
-        margin-top: 1.5em;
-        margin-bot: 1.5em;
-    }
+        position: relative;
+        bottom: auto;
+        }
     #slideshow0 {
         max-height: 300px;
     }
+    
 }
 
 
@@ -1977,6 +2089,9 @@ hr {
     #menu {
         float: none;
         clear: both;
+    }
+    #slideshow {
+    display: none;
     }
     .rowp10 {
         margin-left: 10%;
@@ -1990,11 +2105,60 @@ hr {
         display: none;
     }
 }
-
-
+@media (max-width: 640px) {
+.breadcrumb > li:after {
+    top: 4px;
+    right: -5px;
+    width: 14px;
+    height: 14px;
+  
+    
+}
+      .chi
+    {
+        
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+    
+    
+    
+}
 /* Landscape phones and down */
 
 @media (max-width: 480px) {
+    #myTops
+     {    
+    display: none;
+    }
+    .name_news
+    {
+            font-size: x-large;
+    }
+    h1
+    {
+        font-size: 25px;
+    }
+    .contact-btnquestion
+    {
+        margin-bottom: 10px;
+    }
+    .breadcrumb > li {
+        padding: 0 10px;
+            line-height: 39px;
+             white-space: normal;
+        display: inherit;
+        right:10px;
+    }
+    .breadcrumb > li:after {
+    top: 8px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+   
+    
+    }
+    
     .rowp10 {
         margin-left: 10%;
         margin-right: 10%;
@@ -2025,6 +2189,10 @@ hr {
     }
     .logo-block {
         margin-left: 40%;
+    }
+    .ulp > li {
+    padding-left: 0px;
+    padding-right: 0px;
     }
 }
 
@@ -2063,4 +2231,40 @@ hr {
 
 #slideshow {
     position: relative;
+}
+
+a.ma_punkt
+{
+    color: #00562f;
+    border: none !important;
+    text-transform: uppercase;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+a.ma_punkt:hover
+{
+        color: #00562f !important;
+    border-bottom: 1px solid #00562f !important;
+}
+.artsty
+{
+     display:inline-block;
+    font-size: 16px;
+    line-height: 32px;   
+}
+
+.list-group #carousel0 a {
+border: 0px !important;
+}
+.list-group #carousel0 .buttonbl
+{
+    border: 1px solid #00562f !important;
+    text-shadow: none !important;
+
+  
+}
+.list-group #carousel0 .buttonbl:hover
+{
+  color: white !important;
+  
 }
